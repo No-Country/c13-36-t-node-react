@@ -10,9 +10,9 @@ app.use(morgan("dev"));
 app.use(cors());
 app.use(express.json());
 
-const port = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3001;
 
 app.use("/api", router);
 
 dbInit().then();
-app.listen(port, () => console.log(`Server listening at ${port}`));
+app.listen(PORT, () => console.log(`Server listening at ${PORT}`));
