@@ -1,16 +1,18 @@
 import "./App.css";
 import { register } from "swiper/element";
 import Slider from "./Components/Slider/Slider";
-import Avatar from "./Components/Avatar/Avatar";
+import Navbar from "./Components/Navbar/Navbar";
 
 register();
 
 function App() {
+
+
   return (
-    <>
-      <Avatar size="large" src="avatar.png" />
-      <Slider />
-    </>
+    <main className="">
+      <Navbar></Navbar>
+      <Slider/>
+    </main>
   );
 }
 
