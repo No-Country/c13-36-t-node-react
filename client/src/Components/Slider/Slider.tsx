@@ -5,10 +5,13 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import BtnSilder from "../BtnSlider/BtnSilder";
 
 const Slider = () => {
+
   // TO-DO: debe recibir el listado de imagenes por props.
   return (
+    <>
     <Swiper
       navigation={true}
       pagination={{ clickable: true, type: "bullets" }}
@@ -30,8 +33,13 @@ const Slider = () => {
       <SwiperSlide>
         <img className="object-cover w-full h-[80%]" src="perrito3.jpg" />
       </SwiperSlide>
+      <SwiperSlide>
+        <img className="object-cover w-full h-[80%]" src="perrito4.jpg" />
+      </SwiperSlide>
     </Swiper>
-  );
+    <BtnSilder></BtnSilder>
+    </>
+  )
 };
 
 export default Slider;
