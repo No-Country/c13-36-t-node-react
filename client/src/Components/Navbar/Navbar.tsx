@@ -2,13 +2,13 @@ import Avatar from "../Avatar/Avatar";
 import AvatarUser from "../Avatar/AvatarUser";
 
 interface NavBarProps {
-  setUsuario: (usuario: boolean) => void;
+  setFormulario: (usuario: boolean) => void;
 }
-const Navbar: React.FC<NavBarProps> = ({ setUsuario }) => {
+const Navbar: React.FC<NavBarProps> = ({ setFormulario }) => {
   return (
     <nav className="border-2 w-full flex place-content-between items-center	 mb-2">
       <Avatar size="medium" src="avatar.png" />
-      <AvatarUser setusuario={setUsuario} />
+      <AvatarUser setFormulario={setFormulario} />
     </nav>
   );
 };
