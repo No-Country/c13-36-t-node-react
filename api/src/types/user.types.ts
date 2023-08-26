@@ -7,7 +7,11 @@ export interface User {
   password: string;
   phone: number;
   photo: Object;
+<<<<<<< HEAD
   localization: Object;
+=======
+  locatization: Object;
+>>>>>>> cedc874 (commit tempora)
 }
 
 /* USER RESPONSE TYPE */
