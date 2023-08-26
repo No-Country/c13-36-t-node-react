@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import User from "../models/User.model";
-import type { User as UserType } from "../types/user";
+import type { User as UserType } from "../types/user.types";
 
 const secretKey = process.env.SECRET_KEY as string;
 

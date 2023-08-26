@@ -1,9 +1,9 @@
 import { Router } from "express";
 import { body, param } from "express-validator";
 import validate from "../handlers/request.handler";
-import { auth } from "../middlewares/token";
+import { auth } from "../helpers/token";
 import PetModel from "../models/Pet.model";
-import { BreedModel } from "../models/Breed.model";
+import { BreedModel } from "../models/Breed&Specie.model";
 import {
     createPet,
     deletePet,
@@ -14,7 +14,7 @@ import UserModel from "../models/User.model";
 import {
     genderValidation,
     nameValidation
-} from "../middlewares/pet.middleware";
+} from "../helpers/PetValidator";
 
 const router = Router();
 

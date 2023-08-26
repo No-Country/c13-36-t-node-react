@@ -8,7 +8,7 @@ import {
   registerUser,
   updateUser,
 } from "../controllers/user.controller";
-import { auth } from "../middlewares/token";
+import { auth } from "../helpers/token";
 
 const router = express.Router();
 
