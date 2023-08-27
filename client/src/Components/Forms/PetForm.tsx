@@ -5,7 +5,7 @@ const PetForm = () => {
     <div className="flex justify-center content-center">
       <form action="">
         <h1 className="font-bold text-4xl mb-5 mt-5">Perfil de Shaby</h1>
-        <div className="grid grid-cols-2 gap-36 max-md:flex flex-col gap-0">
+        <div className="grid grid-cols-2 gap-36 max-md:flex flex-col gap-2">
           <div className="max-md:w-[100%] flex flex-col">
             <Avatar size={"large"} />
             <div className="flex flex-col items-start mb-4 mt-8 ">

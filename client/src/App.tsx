@@ -12,8 +12,12 @@ function App() {
   const [usuario, setUsuario] = useState(false);
   const [formulario, setFormulario] = useState(false);
   return (
-    <main className="">
-      <Navbar setFormulario={setFormulario} />
+    <main className="flex flex-col items-center">
+      <Navbar
+        setFormulario={setFormulario}
+        setusuario={setUsuario}
+        usuario={usuario}
+      />
       {formulario ? (
         <PetForm />
       ) : usuario ? (
@@ -21,6 +25,7 @@ function App() {
       ) : (
         <Login setUsuario={setUsuario} />
       )}
+      {/* <Confetti width={window.innerWidth} height={window.innerHeight} /> */}
     </main>
   );
 }
