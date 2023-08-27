@@ -21,7 +21,7 @@ const Slider = () => {
         navigation={true}
         pagination={{ clickable: true, type: "bullets" }}
         modules={[Navigation, Pagination]}
-        className="w-[736px] h-[612px] rounded-md"
+        className="w-[736px] h-[612px] rounded-md max-md:w-[100%]"
       >
         {imagenes.map((imagen) => (
           <SwiperSlide>
@@ -31,8 +31,8 @@ const Slider = () => {
               src="like-stamp-png.png"
             />
             <img className="object-cover w-full h-[80%]" src={imagen} />
-            <div className="bg-[#99A3B0] text-center flex flex-col items-center rounded-b-md">
-              <p className="py-4">
+            <div className="bg-[#99A3B0] text-center flex flex-col items-center rounded-b-md h-full border-2" >
+              <p className="py-2">
                 Perrito guau guau
                 {/*SE MOSTRARA EL NOMBRE DE LA MASCOTA Y SU BIO*/}
               </p>

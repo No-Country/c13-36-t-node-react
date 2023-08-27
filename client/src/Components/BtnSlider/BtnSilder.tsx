@@ -44,7 +44,7 @@ export default function BtnSilder() {
       ) : (
         ""
       )}
-      <figcaption className="w-[736px] mx-auto my-8 px-28 flex place-content-between items-center ">
+      <figcaption className="w-[736px] mx-auto my-8 px-28 flex place-content-between items-center max-md:w-[100%] px-4">
         <button className="bg-gray-300 shadow-md shadow-[10px 10px 17px -4px rgba(0,0,0,0.57)] hover:opacity-70 hover:shadow-inner active:shadow-md rounded-full	p-5">
           <img src="nop.png" width={60}></img>
         </button>
