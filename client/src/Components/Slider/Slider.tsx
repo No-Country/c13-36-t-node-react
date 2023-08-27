@@ -27,7 +27,7 @@ const Slider = () => {
           <SwiperSlide>
             <img
               className="absolute -rotate-45 right-2 bottom-36"
-              width={450}
+              width={300}
               src="like-stamp-png.png"
             />
             <img className="object-cover w-full h-[80%]" src={imagen} />
