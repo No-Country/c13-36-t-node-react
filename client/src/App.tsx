@@ -12,7 +12,7 @@ function App() {
   const [usuario, setUsuario] = useState(false);
   const [formulario, setFormulario] = useState(false);
   return (
-    <main className="flex flex-col items-center">
+    <main className="flex flex-col items-center" >
       <Navbar
         setFormulario={setFormulario}
         setusuario={setUsuario}
