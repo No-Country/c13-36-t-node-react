@@ -8,7 +8,6 @@ import { SECRET_TOKEN, KEY_MAIL, MY_EMAIL, MY_PASSWORD } from "../config";
 
 // [POST] create User
 export const registerUser = async (req: Request, res: Response) => {
-
   try {
     const {
       firstName,
@@ -38,7 +37,6 @@ export const registerUser = async (req: Request, res: Response) => {
     console.log(err);
     error(res);
   }
-
 };
 
 // [PUT] update User
