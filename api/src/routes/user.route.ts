@@ -16,4 +16,4 @@ router.post("/user/login", loginUser);
 router.post("/user/register", validateRegisterUser, registerUser);
 router.put("/user/:userId", [auth], validateUpdateUser, updateUser);
 
-export default router;
+export { router };
