@@ -21,7 +21,7 @@ const UserSchema = new Schema<User>(
       type: String,
       required: true,
     },
-    locatization: {
+    localization: {
       type: Object,
     },
     phone: {

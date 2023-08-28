@@ -2,8 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import User from "../models/User.model";
 import type { User as UserType } from "../types/user.types";
-
-const secretKey = process.env.SECRET_KEY as string;
+import { SECRET_TOKEN } from "../config";
 
 declare global {
   namespace Express {
@@ -21,7 +20,7 @@ export const auth = async (req: Request, res: Response, next: NextFunction) => {
       return res.status(401).json({ message: "Unauthorized. Token missing" });
     }
 
-    const decodedToken: any = jwt.verify(token, secretKey);
+    const decodedToken: any = jwt.verify(token, SECRET_TOKEN);
 
     const user = await User.findOne({ where: { id: decodedToken.userId } });
 

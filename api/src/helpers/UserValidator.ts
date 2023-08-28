@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { body, param, validationResult } from "express-validator";
+import UserModel from "../models/User.model";
 
 const handleValidationErrors = (
   req: Request,
@@ -16,7 +17,12 @@ const handleValidationErrors = (
 export const validateRegisterUser = [
   body("firstName").notEmpty().withMessage("First name is required."),
   body("lastName").notEmpty().withMessage("Last name is required."),
-  body("email").isEmail().withMessage("Invalid email format."),
+  body("email").isEmail().withMessage("Invalid email format.")
+    .custom(async (value) => {
+      const user = await UserModel.findOne({ email: value });
+      if (user) throw new Error("email already exist");
+      return false;
+    })
   body("password")
     .isLength({ min: 8 })
     .withMessage("Password must be at least 8 characters.")
@@ -24,7 +30,7 @@ export const validateRegisterUser = [
     .withMessage(
       "Password must contain at least one uppercase letter, one digit, and one special character."
     ),
-  body("locatization").notEmpty().withMessage("Localization is required."),
+  body("localization").notEmpty().withMessage("Localization is required."),
   body("phone").notEmpty().withMessage("Phone number is required."),
 
   handleValidationErrors,
@@ -42,7 +48,7 @@ export const validateUpdateUser = [
     .withMessage(
       "Password must contain at least one uppercase letter, one digit, and one special character."
     ),
-  body("locatization").notEmpty().withMessage("Localization is required."),
+  body("localization").notEmpty().withMessage("Localization is required."),
   body("phone").notEmpty().withMessage("Phone number is required."),
 
   handleValidationErrors,

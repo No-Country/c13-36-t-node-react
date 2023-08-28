@@ -12,8 +12,8 @@ import { auth } from "../helpers/token";
 
 const router = express.Router();
 
-router.post("/user/login", loginUser);
-router.post("/user/register", validateRegisterUser, registerUser);
-router.put("/user/:userId", [auth], validateUpdateUser, updateUser);
+router.post("/login", loginUser);
+router.post("/register", validateRegisterUser, registerUser);
+router.put("/:userId", [auth], validateUpdateUser, updateUser);
 
 export { router };
