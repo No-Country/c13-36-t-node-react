@@ -25,7 +25,7 @@ function App() {
             element={
               <>
                 <Navbar setusuario={setUsuario} usuario={usuario} />
-                <Login />
+                <Login setusuario={setUsuario} />
               </>
             }
           />
@@ -60,11 +60,11 @@ function App() {
             path="/create"
             element={
               <>
-                <Navbar setusuario={setUsuario} usuario={usuario}/>
+                <Navbar setusuario={setUsuario} usuario={usuario} />
                 <Create></Create>
               </>
             }
-           />
+          />
         </Routes>
       </Router>
     </main>

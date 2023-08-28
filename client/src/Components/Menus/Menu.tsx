@@ -1,12 +1,16 @@
+import { useNavigate } from "react-router-dom";
+
 interface MenuProps {
   setusuario: (usuario: boolean) => void;
   toggle: () => void;
 }
 
 const Menu: React.FC<MenuProps> = ({ setusuario, toggle }) => {
+  const navigate = useNavigate();
   const handleLogout = () => {
     setusuario(false);
     toggle();
+    navigate("/");
   };
   const labels = ["Perfil de usuario", "Mis mascotas", "Preferencias", "Salir"];
   return (
