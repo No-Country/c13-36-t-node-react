@@ -1,21 +1,25 @@
+import { NavLink } from "react-router-dom";
 import useModal from "../../Hooks/useModals";
 import Avatar from "../Avatar/Avatar";
 import Menu from "../Menus/Menu";
 
 interface NavBarProps {
-  setFormulario: (usuario: boolean) => void;
+  // setFormulario: (usuario: boolean) => void;
   setusuario: (usuario: boolean) => void;
   usuario: boolean;
 }
 const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
   const { isShowing, toggle } = useModal();
+
   const handleClick = () => {
     toggle();
   };
-  return (
-    <nav className="relative border-2 w-full flex place-content-between items-center	 mb-2">
-      <Avatar size="medium" src="Logo.svg" />
 
+  return (
+    <nav className="relative w-full flex place-content-between items-center mb-2">
+      <NavLink to={"/"}>
+        <Avatar size="medium" src="Logo.svg" />
+      </NavLink>
       {usuario && (
         <>
           <div>
