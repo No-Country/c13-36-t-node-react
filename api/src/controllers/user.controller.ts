@@ -7,7 +7,6 @@ import { SECRET_TOKEN } from "../config";
 
 // [POST] create User
 export const registerUser = async (req: Request, res: Response) => {
-
   try {
     const { firstName, lastName, email, password, localization, phone } =
       req.body;
@@ -24,20 +23,25 @@ export const registerUser = async (req: Request, res: Response) => {
 
     await newUser.save();
 
-    return created(res, newUser)
+    return created(res, newUser);
   } catch (error) {
     console.log("llego aca");
     console.log(error);
     error(res);
   }
-
 };
 
 // [PUT] update User
 export const updateUser = async (req: Request, res: Response) => {
   try {
-    const { firstName, lastName, email, password, localization: localization, phone } =
-      req.body;
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+      localization: localization,
+      phone,
+    } = req.body;
     const userId = req.params.userId;
 
     const user = await UserModel.findById(userId);
@@ -81,11 +85,15 @@ export const loginUser = async (req: Request, res: Response) => {
       return res.status(401).json({ message: "Incorrect password." });
     }
 
-    const token = jwt.sign({ email: user.email, id: user._id }, SECRET_TOKEN, {
+    const token = jwt.sign({ id: user._id }, SECRET_TOKEN, {
       expiresIn: "1h",
     });
 
+<<<<<<< Updated upstream
     res.status(200).header("Authorization", `Bearer token: ${token}`).json({
+=======
+    res.status(200).header("Authorization", `${token}`).json({
+>>>>>>> Stashed changes
       message: "Successful login.",
       user,
     });

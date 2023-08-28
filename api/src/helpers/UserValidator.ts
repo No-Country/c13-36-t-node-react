@@ -17,7 +17,9 @@ const handleValidationErrors = (
 export const validateRegisterUser = [
   body("firstName").notEmpty().withMessage("First name is required."),
   body("lastName").notEmpty().withMessage("Last name is required."),
-  body("email").isEmail().withMessage("Invalid email format.")
+  body("email")
+    .isEmail()
+    .withMessage("Invalid email format.")
     .custom(async (value) => {
       const user = await UserModel.findOne({ email: value });
       if (user) throw new Error("email already exist");
