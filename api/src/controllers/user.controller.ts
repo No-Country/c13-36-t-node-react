@@ -89,11 +89,7 @@ export const loginUser = async (req: Request, res: Response) => {
       expiresIn: "1h",
     });
 
-<<<<<<< Updated upstream
-    res.status(200).header("Authorization", `Bearer token: ${token}`).json({
-=======
     res.status(200).header("Authorization", `${token}`).json({
->>>>>>> Stashed changes
       message: "Successful login.",
       user,
     });
