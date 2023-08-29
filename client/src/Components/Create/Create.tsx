@@ -76,14 +76,16 @@ export default function Create() {
             Registrarme
           </button>
           <NavLink to={"/login"}>
-            <button
-            className="bg-red-400 text-white px-4 py-2 mb-4 rounded-xl"
-            >
-              <i className="fa-solid fa-arrow-left mr-2" style={{color: "#fff"}}></i>Atras
+            <button className="bg-red-400 text-white px-4 py-2 mb-4 rounded-xl">
+              <i
+                className="fa-solid fa-arrow-left mr-2"
+                style={{ color: "#fff" }}
+              ></i>
+              Atras
             </button>
           </NavLink>
         </div>
-
       </form>
-    </main>  )
+    </main>
+  );
 }
