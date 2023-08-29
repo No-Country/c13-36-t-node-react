@@ -17,7 +17,7 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
 
   return (
     <nav className="relative w-full flex place-content-between items-center mb-2">
-      <NavLink to={"/"}>
+      <NavLink to="/main">
         <Avatar size="medium" src="Logo.svg" />
       </NavLink>
       {usuario && (
