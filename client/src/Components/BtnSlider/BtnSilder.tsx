@@ -1,7 +1,11 @@
 import { useState } from "react";
 import Confetti from "react-confetti";
 
-export default function BtnSilder() {
+interface BtnSilderProps {
+  next: () => void;
+}
+
+export default function BtnSilder({ next }: BtnSilderProps) {
   const [matchDogs, setMatchDogs] = useState(false);
   const handleMatch = () => {
     setMatchDogs(!matchDogs);
@@ -49,7 +53,10 @@ export default function BtnSilder() {
         >
           <img src="like-nobg.png" width={120}></img>
         </button>
-        <button className="bg-gray-300 shadow-md shadow-[10px 10px 17px -4px rgba(0,0,0,0.57)] hover:opacity-70 hover:shadow-inner active:shadow-md rounded-full hover:cursor-pointer">
+        <button
+          className="bg-gray-300 shadow-md shadow-[10px 10px 17px -4px rgba(0,0,0,0.57)] hover:opacity-70 hover:shadow-inner active:shadow-md rounded-full hover:cursor-pointer"
+          onClick={next}
+        >
           <img src="arrow-next.png" width={110}></img>
         </button>
       </figcaption>

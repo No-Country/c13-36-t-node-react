@@ -1,6 +1,11 @@
 import "./App.css";
 import { register } from "swiper/element";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Slider from "./Components/Slider/Slider";
 import Login from "./Components/Login";
 import PetForm from "./Components/Forms/PetForm";
@@ -14,7 +19,7 @@ register();
 
 function App() {
   const [usuario, setUsuario] = useState(false);
-
+  const mascotas = ["chihuahua", "frances", "golden", "pastor"];
   return (
     <main className="flex flex-col items-center">
       <Router>
@@ -32,10 +37,14 @@ function App() {
           <Route
             path="/main"
             element={
-              <>
-                <Navbar setusuario={setUsuario} usuario={usuario} />
-                <Slider />
-              </>
+              usuario ? (
+                <>
+                  <Navbar setusuario={setUsuario} usuario={usuario} />
+                  <Slider mascotas={mascotas} />
+                </>
+              ) : (
+                <Navigate to="/login" />
+              )
             }
           />
           <Route
@@ -62,6 +71,15 @@ function App() {
               <>
                 <Navbar setusuario={setUsuario} usuario={usuario} />
                 <Create></Create>
+              </>
+            }
+          />
+          <Route
+            path="/mascotas"
+            element={
+              <>
+                <Navbar setusuario={setUsuario} usuario={usuario} />
+                <PetForm />
               </>
             }
           />

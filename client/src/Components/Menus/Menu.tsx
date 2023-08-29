@@ -12,6 +12,7 @@ const Menu: React.FC<MenuProps> = ({ setusuario, toggle }) => {
     toggle();
     navigate("/");
   };
+
   const labels = ["Perfil de usuario", "Mis mascotas", "Preferencias", "Salir"];
   return (
     <div>
@@ -22,6 +23,14 @@ const Menu: React.FC<MenuProps> = ({ setusuario, toggle }) => {
               key={index}
               className="bg-neutral-200 min-w-[150px] shadow-md shadow-neutral-500 rounded-full transition-all duration-300 px-4 py-2 hover:bg-neutral-100 cursor-pointer hover:border-black hover:border"
               onClick={handleLogout}
+            >
+              {label}
+            </li>
+          ) : label === "Mis mascotas" ? (
+            <li
+              key={index}
+              className="bg-neutral-200 min-w-[150px] shadow-md shadow-neutral-500 rounded-full px-4 py-2 hover:bg-neutral-100 cursor-pointer hover:border-black hover:border"
+              onClick={() => navigate("/mascotas")}
             >
               {label}
             </li>
