@@ -4,6 +4,7 @@ import {
   validateUpdateUser,
 } from "../helpers/UserValidator";
 import {
+  deleteUser,
   loginUser,
   registerUser,
   updateUser,
@@ -14,6 +15,7 @@ const router = express.Router();
 
 router.post("/login", loginUser);
 router.post("/register", validateRegisterUser, registerUser);
-router.put("/:userId", [auth], validateUpdateUser, updateUser);
+router.put("/update/:userId", [auth], validateUpdateUser, updateUser);
+router.delete("/delete/:userId", [auth], deleteUser);
 
 export { router };
