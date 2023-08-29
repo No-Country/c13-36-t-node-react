@@ -34,7 +34,7 @@ const Slider: React.FC<SliderProps> = ({ mascotas }) => {
         loop={true}
         pagination={{ clickable: true, type: "bullets" }}
         modules={[Navigation, Pagination]}
-        className="w-[736px] h-[612px] rounded-md max-md:w-[90%] z-0"
+        className="w-[736px] h-[612px] rounded-md max-md:w-[90%]"
       >
         {imagenes.map((imagen) => (
           <SwiperSlide key={imagenes.indexOf(imagen)}>

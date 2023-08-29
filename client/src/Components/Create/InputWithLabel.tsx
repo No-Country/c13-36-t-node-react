@@ -7,7 +7,6 @@ interface InputProps{
     viewPassword?: () => void;
 }
 
-
 function InputWithLabel({ label, type, placeholder, name, iconClass, viewPassword}:InputProps) {
   return (
     <>
@@ -18,14 +17,16 @@ function InputWithLabel({ label, type, placeholder, name, iconClass, viewPasswor
         <input
           type={type}
           placeholder={placeholder}
-          className="bg-[#D9D9D9] px-4 py-2 rounded-lg w-[100%]"
+          className="bg-[#D9D9D9] px-4 py-2 rounded-lg w-[100%] valid:border-2 border-green-400"
           name={name}
+          minLength={4}
+          maxLength={30}
+          required
         />
         <i
           className={`fa-solid ${iconClass} absolute right-3 top-[10px] hover:cursor-pointer`}
           style={{ color: "#333" }}
           onClick={viewPassword}
-
         ></i>
       </div>
     </>

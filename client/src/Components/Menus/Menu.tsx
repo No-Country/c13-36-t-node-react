@@ -16,7 +16,7 @@ const Menu: React.FC<MenuProps> = ({ setusuario, toggle }) => {
   const labels = ["Perfil de usuario", "Mis mascotas", "Preferencias", "Salir"];
   return (
     <div>
-      <ul className="list-none flex flex-col items-center gap-2 w-full p-2 rounded-md mb-2 transition-all duration-1000 z-50">
+      <ul className="list-none flex flex-col items-center gap-2 w-full p-2 rounded-md mb-2 transition-all duration-1000">
         {labels.map((label, index) =>
           label === "Salir" ? (
             <li
