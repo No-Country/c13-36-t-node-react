@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 export default function Create() {
@@ -8,7 +8,7 @@ export default function Create() {
         setView(!view)
       }
   return (
-    <main className="flex justify-start items-start flex-col items-center w-[500px] border-2 border-black relative rounded-md max-md:w-[100%] bg-[#fff]">
+    <main className="flex justify-start items-start flex-col items-center w-[500px] border-2 border-black relative rounded-md max-md:w-[100%] bg-[#fff] mt-10">
       <img src={"avatar.png"} className="absolute w-24 top-[-50px] border-2 rounded-full"></img>
       <h1 className="text-2xl mt-12 font-bold">Registrarme</h1>
       <form className="flex flex-col items-start gap-3 w-[350px]">

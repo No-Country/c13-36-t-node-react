@@ -18,7 +18,7 @@ const Login: React.FC<LoginProps> = ({ setusuario }) => {
     setView(!view);
   };
   return (
-    <main className="flex justify-start flex-col items-center w-[500px] border-2 border-black relative rounded-md max-md:w-[100%] bg-[#fff]">
+    <main className="flex justify-start flex-col items-center w-[500px] border-2 border-black relative rounded-md max-md:w-[100%]  bg-[#fff] m-10">
       <img
         src={"avatar.png"}
         className="absolute w-24 top-[-50px] border-2 rounded-full"

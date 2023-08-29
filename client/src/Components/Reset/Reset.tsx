@@ -10,7 +10,7 @@ const Reset = () => {
   return (
     <div>
       <div className="flex justify-center items-center flex-col p-8 w-[500px] border-2 border-black relative rounded-md max-md:w-[100%] bg-[#fff]">
-        <img src={"dogConfuse.png"} className="w-40 h-40 m-[-25px]"></img>
+        <img src={"dogConfuse.png"} className="w-44 h-40 m-[-25px]"></img>
         <h1 className="text-2xl my-5 font-bold font-sans">¿Olvidaste tu contraseña?</h1>
         <form className="flex flex-col items-center gap-3">
           <div className="flex flex-col w-[350px]">

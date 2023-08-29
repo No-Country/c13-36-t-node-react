@@ -17,7 +17,7 @@ export default function BtnSilder() {
               className="absolute top-3 right-6 cursor-pointer"
               onClick={handleMatch}
             >
-              X
+              <i className="fa-solid fa-xmark text-xl"></i>
             </div>
             <div className="px-10 mb-8 flex place-content-around">
               <img src={"perrito1.jpg"} className="w-20 rounded-full" />
