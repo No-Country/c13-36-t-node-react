@@ -11,7 +11,7 @@ export default function BtnSilder() {
     <>
       {matchDogs ? (
         <section className="">
-          <Confetti width={1920} height={1080} />
+          <Confetti style={{width:"100%", height:"100%"}}/>
           <div className="p-10 rounded-2xl	 w-96 h-2/4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-300 z-50 m-auto h-auto">
             <div
               className="absolute top-3 right-6 cursor-pointer"

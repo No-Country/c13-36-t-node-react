@@ -21,7 +21,7 @@ const Slider = () => {
         navigation={true}
         pagination={{ clickable: true, type: "bullets" }}
         modules={[Navigation, Pagination]}
-        className="w-[736px] h-[612px] rounded-md max-md:w-[100%] z-0"
+        className="w-[736px] h-[612px] rounded-md max-md:w-[90%] z-0"
       >
         {imagenes.map((imagen) => (
           <SwiperSlide>
@@ -44,7 +44,7 @@ const Slider = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <BtnSilder />
+      <BtnSilder/>
     </>
   );
 };

@@ -1,4 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom";
+import InputWithLabel from "../Create/InputWithLabel";
 
 const Reset = () => {
   const navigate = useNavigate();
@@ -14,16 +15,12 @@ const Reset = () => {
         <h1 className="text-2xl my-5 font-bold font-sans">¿Olvidaste tu contraseña?</h1>
         <form className="flex flex-col items-center gap-3">
           <div className="flex flex-col w-[350px]">
-          <label className="font-semibold ml-1 mt-2 text-left" htmlFor="emailUser">Correo electrónico</label>
-            <div className="relative w-[100%]">
-              <input
-                type="text"
-                placeholder="user123@thinderpet.com"
-                className="bg-[#D9D9D9] px-4 py-2 rounded-lg w-[100%]"
-                name="emailUser"
-              />
-              <i className="fa-solid fa-envelope absolute right-3 top-[12px] hover:cursor-pointer" style={{color:"#333"}}></i>
-            </div>
+          <InputWithLabel
+          label="Correo electrónico"
+          type="email"
+          placeholder="user123@thinderpet.com"
+          name="emailUser"
+          iconClass="fa-envelope"/>            
             <div className="flex flex-row justify-between">
               <NavLink to={"/reset"} className="text-[#979797] text-sm mr-5">
                 Elegir otro método
