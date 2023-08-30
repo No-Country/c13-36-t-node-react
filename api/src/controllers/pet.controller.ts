@@ -46,7 +46,6 @@ export const updatePet = async ({ body, params }: Request<any, any, PetRequest>,
     }
 };
 
-
 export const getPet = async ({ params }: Request, res: Response) => {
     try {
         const pet = await PetModel.findById(params.petId)
@@ -73,7 +72,22 @@ export const getPet = async ({ params }: Request, res: Response) => {
     }
 }
 
-// [DELETE] delete Pet
 export const deletePet = async (req: Request, res: Response) => {
+    try {
+        const petId = req.params.petId;
 
-}
+        const pet = await PetModel.findById(petId);
+        if (!pet) return badRequest(res, `Pet not exist`);
+
+        const deletedPet = await PetModel.findByIdAndDelete(petId);
+
+        return ok(res, {
+            message: "Pet was deleted successfully",
+            deletedPet
+        });
+    } catch (e) {
+        console.log(e);
+        error(res);
+    }
+};
+
