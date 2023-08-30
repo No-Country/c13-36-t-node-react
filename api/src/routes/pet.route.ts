@@ -95,6 +95,6 @@ router.put(
 router.get("/:petId", auth, getPet);
 
 // [DELETE] Pet
-router.delete("/:petId", [auth], deletePet);
+router.delete("/:petId", auth, deletePet);
 
 export { router };

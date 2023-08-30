@@ -48,10 +48,32 @@ export const updatePet = async ({ body, params }: Request<any, any, PetRequest>,
 
 
 export const getPet = async ({ params }: Request, res: Response) => {
+    try {
+        const pet = await PetModel.findById(params.petId)
+            .select(["-createdAt", "-updatedAt"])
+            .populate({
+                path: "breedId",
+                select: ["-createdAt", "-updatedAt"],
+                populate: {
+                    path: "specieId",
+                    select: ["-createdAt", "-updatedAt"],
+                },
+            })
+            .populate({
+                path: "ownerId",
+                select: ["-createdAt", "-updatedAt", "-password", "-salt"],
+            });
 
-};
+        if (!pet) return badRequest(res, "Pet not exist");
+
+        return ok(res, pet);
+    } catch (e) {
+        console.log(e);
+        error(res);
+    }
+}
 
 // [DELETE] delete Pet
 export const deletePet = async (req: Request, res: Response) => {
 
-};
+}
