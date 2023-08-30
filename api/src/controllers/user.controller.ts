@@ -2,43 +2,40 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { type Request, type Response } from "express";
 import UserModel from "../models/User.model";
-
-const secretKey = process.env.SECRET_KEY as string;
+import { created, error } from "../handlers/response.handler";
+import { SECRET_TOKEN } from "../config";
 
 // [POST] create User
 export const registerUser = async (req: Request, res: Response) => {
+
   try {
-    const { firstName, lastName, email, password, locatization, phone } =
+    const { firstName, lastName, email, password, localization, phone } =
       req.body;
 
-    const existingUser = await UserModel.findOne({ email });
-    if (existingUser) {
-      return res.status(409).json({ message: "Email is already registered." });
-    }
-
     const hashedPassword = await bcrypt.hash(password, 12);
-
     const newUser = new UserModel({
       firstName,
       lastName,
       email,
       password: hashedPassword,
-      locatization,
+      localization,
       phone,
     });
 
     await newUser.save();
 
-    res.status(201).json({ message: "Successfully registered user." });
-  } catch (error) {
-    res.status(500).json({ message: "server error." });
+    return created(res, newUser)
+  } catch (err) {
+    console.log(err);
+    error(res);
   }
+
 };
 
 // [PUT] update User
 export const updateUser = async (req: Request, res: Response) => {
   try {
-    const { firstName, lastName, email, password, locatization, phone } =
+    const { firstName, lastName, email, password, localization: localization, phone } =
       req.body;
     const userId = req.params.userId;
 
@@ -51,7 +48,7 @@ export const updateUser = async (req: Request, res: Response) => {
     user.firstName = firstName;
     user.lastName = lastName;
     user.email = email;
-    user.locatization = locatization;
+    user.localization = localization;
     user.phone = phone;
 
     if (password) {
@@ -83,11 +80,11 @@ export const loginUser = async (req: Request, res: Response) => {
       return res.status(401).json({ message: "Incorrect password." });
     }
 
-    const token = jwt.sign({ email: user.email, id: user._id }, secretKey, {
+    const token = jwt.sign({ email: user.email, id: user._id }, SECRET_TOKEN, {
       expiresIn: "1h",
     });
 
-    res.status(200).header("Authorization", `Bearer ${token}`).json({
+    res.status(200).header("Authorization", `Bearer token: ${token}`).json({
       message: "Successful login.",
       user,
     });

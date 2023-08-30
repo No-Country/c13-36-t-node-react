@@ -1,6 +1,5 @@
 import { connect } from "mongoose";
-
-const DB_URI = `${process.env.DB_URI}`;
+import { DB_URI } from "../config";
 
 const dbInit = async () => {
   try {

@@ -6,7 +6,7 @@ export interface User {
   password: string;
   phone: number;
   photo: Object;
-  locatization: Object;
+  localization: Object;
 }
 
 /* USER RESPONSE TYPE */
