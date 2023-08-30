@@ -17,9 +17,8 @@ export const createPet = async (
     res: Response
 ) => {
     try {
-        const pet = PetModel.create({ ...body })
+        const pet = await PetModel.create({ ...body })
         return created(res, pet);
-
     } catch (e) {
         console.log(e);
         error(res);

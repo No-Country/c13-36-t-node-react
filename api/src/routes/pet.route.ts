@@ -37,14 +37,18 @@ router.post(
 
         body("ownerId")
             .exists()
-            .withMessage("userId is required")
+            .withMessage("ownerId is required")
             .isLength({ min: 16 })
-            .withMessage("userId minimun 16 characters")
+            .withMessage("ownerId minimun 16 characters")
             .custom(async (value) => {
                 const user = await UserModel.findById(value);
-                if (!user) throw new Error("userId doesn't exist");
+                if (!user) throw new Error("ownerId doesn't exist");
                 return false;
             }),
+
+        body("age")
+            .exists().withMessage("age is required")
+            .isNumeric().withMessage("age require a numeric value"),
 
         validate
     ],
