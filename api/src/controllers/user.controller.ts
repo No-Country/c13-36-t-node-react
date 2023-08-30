@@ -84,7 +84,7 @@ export const loginUser = async (req: Request, res: Response) => {
       expiresIn: "1h",
     });
 
-    res.status(200).header("Authorization", `Bearer ${token}`).json({
+    res.status(200).header("Authorization", `Bearer token: ${token}`).json({
       message: "Successful login.",
       user,
     });
