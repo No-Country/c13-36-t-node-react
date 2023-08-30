@@ -55,3 +55,15 @@ export const validateUpdateUser = [
 
   handleValidationErrors,
 ];
+
+export const validateUpdatePasswordUser = [
+  body("password")
+    .isLength({ min: 8 })
+    .withMessage("Password must be at least 8 characters.")
+    .matches(/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/)
+    .withMessage(
+      "Password must contain at least one uppercase letter, one digit, and one special character."
+    ),
+
+  handleValidationErrors,
+];
