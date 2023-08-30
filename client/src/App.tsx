@@ -14,6 +14,7 @@ import { useState } from "react";
 import Navbar from "./Components/Navbar/Navbar";
 import Reset from "./Components/Reset/Reset";
 import Create from "./Components/Create/Create";
+import UserProfile from "./Components/UserProfile/UserProfile";
 
 register();
 
@@ -70,7 +71,7 @@ function App() {
             element={
               <>
                 <Navbar setusuario={setUsuario} usuario={usuario} />
-                <Create></Create>
+                <Create />
               </>
             }
           />
@@ -80,6 +81,15 @@ function App() {
               <>
                 <Navbar setusuario={setUsuario} usuario={usuario} />
                 <PetForm />
+              </>
+            }
+          />
+          <Route
+            path="/userprofile"
+            element={
+              <>
+                <Navbar setusuario={setUsuario} usuario={usuario} />
+                <UserProfile />
               </>
             }
           />
