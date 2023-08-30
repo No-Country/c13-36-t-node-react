@@ -25,9 +25,8 @@ export const registerUser = async (req: Request, res: Response) => {
     await newUser.save();
 
     return created(res, newUser)
-  } catch (error) {
-    console.log("llego aca");
-    console.log(error);
+  } catch (err) {
+    console.log(err);
     error(res);
   }
 

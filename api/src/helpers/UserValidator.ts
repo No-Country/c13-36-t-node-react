@@ -22,7 +22,7 @@ export const validateRegisterUser = [
       const user = await UserModel.findOne({ email: value });
       if (user) throw new Error("email already exist");
       return false;
-    })
+    }),
   body("password")
     .isLength({ min: 8 })
     .withMessage("Password must be at least 8 characters.")
