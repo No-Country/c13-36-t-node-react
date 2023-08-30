@@ -26,11 +26,24 @@ export const createPet = async (
 };
 
 // [PUT] update Pet by petId
-export const updatePet = async (
-    { body, params }: Request<any, any, PetRequest>,
-    res: Response
-) => {
+export const updatePet = async ({ body, params }: Request<any, any, PetRequest>, res: Response) => {
+    try {
+        const petId = params.petId;
 
+        const updatedPet = await PetModel.findByIdAndUpdate(petId, body, { new: true }).populate({
+            path: "breedId",
+            select: ["breed", "specieId"],
+            populate: {
+                path: "specieId",
+                select: ["-createdAt", "-updatedAt"],
+            },
+        });
+
+        return ok(res, updatedPet);
+    } catch (e) {
+        console.log(e);
+        error(res);
+    }
 };
 
 

@@ -21,6 +21,9 @@ const router = Router();
 router.post(
     "/",
     [
+
+        auth,
+
         ...nameValidation(false),
         ...genderValidation(false),
 
