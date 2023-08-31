@@ -9,14 +9,22 @@ import { SECRET_TOKEN, KEY_MAIL, MY_EMAIL, MY_PASSWORD } from "../config";
 // [POST] create User
 export const registerUser = async (req: Request, res: Response) => {
   try {
-    const { firstName, lastName, email, password, localization, phone } =
-      req.body;
+    const {
+      firstName,
+      lastName,
+      email,
+      username,
+      password,
+      localization,
+      phone,
+    } = req.body;
 
     const hashedPassword = await bcrypt.hash(password, 12);
     const newUser = new UserModel({
       firstName,
       lastName,
       email,
+      username,
       password: hashedPassword,
       localization,
       phone,
@@ -38,6 +46,7 @@ export const updateUser = async (req: Request, res: Response) => {
       firstName,
       lastName,
       email,
+      username,
       password,
       localization: localization,
       phone,
@@ -53,6 +62,7 @@ export const updateUser = async (req: Request, res: Response) => {
     user.firstName = firstName;
     user.lastName = lastName;
     user.email = email;
+    user.username = username;
     user.localization = localization;
     user.phone = phone;
 
@@ -70,6 +80,7 @@ export const updateUser = async (req: Request, res: Response) => {
   }
 };
 
+//[GET] User Id
 export const getUserById = async (req: Request, res: Response) => {
   try {
     const userId = req.params.userId;
@@ -92,7 +103,12 @@ export const loginUser = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
 
-    const user = await UserModel.findOne({ email });
+    const userByEmail = await UserModel.findOne({ email: email });
+
+    const userByUsername = await UserModel.findOne({ username: email });
+
+    const user = userByEmail || userByUsername;
+
     if (!user) {
       return res.status(401).json({ message: "User not found." });
     }
