@@ -1,22 +1,24 @@
 import { useNavigate } from "react-router-dom";
+import { Usuario } from "../../types/types";
 
 interface MenuProps {
-  setusuario: (usuario: boolean) => void;
+  setusuario: React.Dispatch<React.SetStateAction<Usuario | undefined>>;
   toggle: () => void;
 }
 
 const Menu: React.FC<MenuProps> = ({ setusuario, toggle }) => {
   const navigate = useNavigate();
   const handleLogout = () => {
-    setusuario(false);
+    setusuario(undefined);
     toggle();
+    localStorage.removeItem("token");
     navigate("/");
   };
 
   const labels = ["Perfil de usuario", "Mis mascotas", "Preferencias", "Salir"];
   return (
     <div>
-      <ul className="list-none flex flex-col items-center gap-2 w-full p-2 rounded-md mb-2 transition-all duration-1000 z-50">
+      <ul className="list-none flex flex-col items-center gap-2 mt-2 w-full p-2 rounded-md mb-2 transition-all duration-1000 z-50">
         {labels.map((label, index) =>
           label === "Salir" ? (
             <li

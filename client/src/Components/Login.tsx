@@ -1,23 +1,27 @@
 import { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import InputWithLabel from "./Create/InputWithLabel";
 import login from "../services/users";
+import { Usuario } from "../types/types";
 
 interface LoginProps {
   // setFormulario: (usuario: boolean) => void;
-  setusuario: (usuario: boolean) => void;
+  setusuario: (usuario: Usuario) => void;
 }
 
 const Login: React.FC<LoginProps> = ({ setusuario }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [view, setView] = useState(false);
-  const handleLogin = async () => {
+  const handleLogin = async (evento: React.MouseEvent<HTMLButtonElement>) => {
+    evento.preventDefault;
     const response = await login(email, password);
-    response.user ? setusuario(true) : setusuario(false);
-    console.log(response.user);
-    navigate("/main");
+    if (typeof response === "string") {
+      alert("datos erroneos");
+    } else {
+      setusuario(response);
+    }
   };
   const viewPassword = () => {
     setView(!view);

@@ -10,33 +10,25 @@ import Slider from "./Components/Slider/Slider";
 import Login from "./Components/Login";
 import PetForm from "./Components/Forms/PetForm";
 import Landing from "./Components/Landing/Landing";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "./Components/Navbar/Navbar";
 import Reset from "./Components/Reset/Reset";
 import Create from "./Components/Create/Create";
+import { Usuario } from "./types/types";
 
 register();
-type Usuario = {
-  token: string;
-  user: {
-    message: string;
-    user: {
-      firstName: string;
-      lastNme: string;
-      email: string;
-      password: string;
-      localization: string;
-      phone: number;
-      createdAt: string;
-      updatedAt: string;
-      id: string;
-    };
-  };
-};
 
 function App() {
-  const [usuario, setUsuario] = useState(false);
+  const [usuario, setUsuario] = useState<Usuario | undefined>();
   const mascotas = ["chihuahua", "frances", "golden", "pastor"];
+  const loged = localStorage.getItem("token");
+  useEffect(() => {
+    if (loged) {
+      const usuario = JSON.parse(loged);
+      setUsuario(usuario);
+    }
+  }, [loged]);
+
   return (
     <main className="flex flex-col w-full items-center">
       <Router>
@@ -45,22 +37,26 @@ function App() {
           <Route
             path="/login"
             element={
-              <>
-                <Navbar setusuario={setUsuario} usuario={usuario} />
-                <Login setusuario={setUsuario} />
-              </>
+              !loged ? (
+                <>
+                  <Navbar setusuario={setUsuario} usuario={usuario} />
+                  <Login setusuario={setUsuario} />
+                </>
+              ) : (
+                <Navigate to="/main" />
+              )
             }
           />
           <Route
             path="/main"
             element={
-              usuario ? (
+              loged ? (
                 <>
                   <Navbar setusuario={setUsuario} usuario={usuario} />
                   <Slider mascotas={mascotas} />
                 </>
               ) : (
-                <Navigate to="/login" />
+                <Navigate to="/main" />
               )
             }
           />
