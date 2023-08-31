@@ -15,6 +15,7 @@ const Login: React.FC<LoginProps> = ({ setusuario }) => {
   const [password, setPassword] = useState("");
   // const navigate = useNavigate();
   const [view, setView] = useState(false);
+
   const handleLogin = async (evento: React.MouseEvent<HTMLButtonElement>) => {
     evento.preventDefault;
     const response = await login(email, password);
@@ -24,6 +25,7 @@ const Login: React.FC<LoginProps> = ({ setusuario }) => {
       setusuario(response);
     }
   };
+
   const viewPassword = () => {
     setView(!view);
   };
