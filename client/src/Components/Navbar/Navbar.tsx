@@ -16,21 +16,22 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
   };
 
   return (
-    <nav className="relative w-full flex place-content-between items-center mb-2 py-2 px-4">
-      <NavLink to={"/"}>
-        <Avatar size="medium" src="Logo.svg" />
+    <nav className="relative w-full flex bg-[#B186F1]  place-content-between items-center mb-2 py-2 px-4">
+      <NavLink to={"/"} className="flex items-center">
+        <Avatar size="medium" src="logo.png" />
+        <h1 className="text-2xl text-white">ThinderPet</h1>
       </NavLink>
       {usuario && (
         <>
-          <div className="max-md:hidden">
-            Tus mascotas
-            <div className="flex gap-10">
-              <Avatar size="small" hover />
-              <Avatar size="small" hover />
-              <Avatar size="small" hover />
-            </div>
-          </div>
-          <Avatar size="medium" src="Vector.png" onClick={handleClick}/>
+          <ul className="max-md:hidden flex gap-10">
+            <li className="text-2xl text-white">Nosotros</li>
+            <li className="text-2xl text-white">Ayuda</li>
+            <select className="bg-white text-black">
+              <option>Español</option>
+              <option>English</option>
+            </select>
+          </ul>
+          <Avatar size="medium" src="Vector.png" onClick={handleClick} />
         </>
       )}
       <div className="absolute right-0 top-20">

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import InputWithLabel from "./Create/InputWithLabel";
+import login from "../services/users";
 
 interface LoginProps {
   // setFormulario: (usuario: boolean) => void;
@@ -8,38 +9,44 @@ interface LoginProps {
 }
 
 const Login: React.FC<LoginProps> = ({ setusuario }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const [view, setView] = useState(false);
-  const handleClick = () => {
-    setusuario(true);
+  const handleLogin = async () => {
+    const response = await login(email, password);
+    response.user ? setusuario(true) : setusuario(false);
+    console.log(response.user);
     navigate("/main");
   };
-
   const viewPassword = () => {
     setView(!view);
   };
   return (
-    <main className="flex justify-start flex-col items-center w-[500px] border-2 border-black relative rounded-md max-md:w-[100%] border-2 bg-[#fff] m-8">
+    <main className="flex justify-start flex-col items-center w-[500px] border-2 border-black relative rounded-md max-md:w-[100%] bg-[#fff] m-8">
       <img
         src={"avatar.png"}
         className="absolute w-24 top-[-50px] border-2 rounded-full"
       ></img>
       <h1 className="text-2xl mt-12 font-bold">Bienvenido a ThinderPet</h1>
-      <form className="flex flex-col items-start gap-3 w-[350px] max-md:w-[100%] items-center px-2">
+      <form className="flex flex-col gap-3 w-[350px] max-md:w-[100%] items-center px-2">
         <InputWithLabel
           label="Correo electrónico"
           type="email"
           placeholder="user123@thinderpet.com"
           name="emailUser"
           iconClass="fa-envelope"
+          onChange={setEmail}
         />
-        <InputWithLabel 
+        <InputWithLabel
           label="Contraseña"
           type={view ? "text" : "password"}
           placeholder="•••••••••"
           name="password"
           iconClass={view ? "fa-eye" : "fa-lock"}
-          viewPassword={viewPassword}/>
+          viewPassword={viewPassword}
+          onChange={setPassword}
+        />
         <NavLink
           to={"/reset"}
           className="font-semibold text-sm hover:underline-offset-1"
@@ -48,7 +55,7 @@ const Login: React.FC<LoginProps> = ({ setusuario }) => {
         </NavLink>
         <div className="flex flex-col m-auto gap-4">
           <button
-            onClick={handleClick}
+            onClick={handleLogin}
             value="Login"
             className="bg-[#54A4A5] text-white px-4 py-2 rounded-xl"
           >

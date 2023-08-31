@@ -7,6 +7,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import BtnSilder from "../BtnSlider/BtnSilder";
 import { useState } from "react";
+import Avatar from "../Avatar/Avatar";
 
 interface SliderProps {
   mascotas: string[];
@@ -29,6 +30,11 @@ const Slider: React.FC<SliderProps> = ({ mascotas }) => {
   ];
   return (
     <>
+      <div className="flex gap-10">
+        <Avatar size="small" hover />
+        <Avatar size="small" hover />
+        <Avatar size="small" hover />
+      </div>
       <Swiper
         navigation={true}
         loop={true}
