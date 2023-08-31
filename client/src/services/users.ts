@@ -1,5 +1,5 @@
-// import axios from "axios";
-import { Usuario } from "../types/types";
+import axios from "axios";
+// import { Usuario } from "../types/types";
 
 interface LoginResponse {
   message: string;
@@ -20,22 +20,17 @@ const login = async (
   email: string,
   password: string
 ): Promise<LoginResponse | string> => {
-  /* const response = await axios.post(
+  const response = await axios.post(
     "https://thinderpet-api-ild3-dev.fl0.io/api/v1/user/login",
     {
-      email: "juampisaluzzo@hotmail.com",
-      password: "jilaDasd345@",
-    },
-    {
-      headers: {
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imp1YW1waXNhbHV6em9AaG90bWFpbC5jb20iLCJpZCI6IjY0ZWZmYmE2MDdjNmJkYThkMWY4NzdhNyIsImlhdCI6MTY5MzQ1MDY5NSwiZXhwIjoxNjkzNDU0Mjk1fQ.67gEl29TswAEZ_Ps0rJ3wkPoSNdU6hIv5l5F_JAYzOM`,
-      },
+      email,
+      password,
     }
   );
-  console.log(response.status); */
+  console.log(response);
 
-  // const data: LoginResponse = response.data;
-  if (email === "juampisaluzzo@hotmail.com" && password === "jilaDasd345@") {
+  const data: LoginResponse = response.data;
+  /* if (email === "juampisaluzzo@hotmail.com" && password === "jilaDasd345@") {
     const data: Usuario = {
       message: "Successful login.",
       user: {
@@ -55,7 +50,9 @@ const login = async (
     return data;
   } else {
     return "Datos erroneos";
-  }
+  } */
+  localStorage.setItem("token", JSON.stringify(data));
+  return data;
 };
 
 export default login;
