@@ -21,9 +21,19 @@ export const validateRegisterUser = [
     .isEmail()
     .withMessage("Invalid email format.")
     .custom(async (value) => {
-      const user = await UserModel.findOne({ email: value });
-      if (user) throw new Error("email already exist");
-      return false;
+      const userWithEmail = await UserModel.findOne({ email: value });
+      if (userWithEmail) {
+        throw new Error("Email already exists.");
+      }
+    }),
+  body("username")
+    .notEmpty()
+    .withMessage("Username is required.")
+    .custom(async (value) => {
+      const userWithUsername = await UserModel.findOne({ username: value });
+      if (userWithUsername) {
+        throw new Error("Username already exists.");
+      }
     }),
   body("password")
     .isLength({ min: 8 })
@@ -42,7 +52,24 @@ export const validateUpdateUser = [
   param("userId").notEmpty().withMessage("User ID is required."),
   body("firstName").notEmpty().withMessage("First name is required."),
   body("lastName").notEmpty().withMessage("Last name is required."),
-  body("email").isEmail().withMessage("Invalid email format."),
+  body("email")
+    .isEmail()
+    .withMessage("Invalid email format.")
+    .custom(async (value) => {
+      const userWithEmail = await UserModel.findOne({ email: value });
+      if (userWithEmail) {
+        throw new Error("Email already exists.");
+      }
+    }),
+  body("username")
+    .notEmpty()
+    .withMessage("Username is required.")
+    .custom(async (value) => {
+      const userWithUsername = await UserModel.findOne({ username: value });
+      if (userWithUsername) {
+        throw new Error("Username already exists.");
+      }
+    }),
   body("password")
     .isLength({ min: 8 })
     .withMessage("Password must be at least 8 characters.")
