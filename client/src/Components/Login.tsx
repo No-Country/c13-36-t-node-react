@@ -25,13 +25,13 @@ const Login: React.FC<LoginProps> = ({ setusuario }) => {
     setView(!view);
   };
   return (
-    <main className="flex justify-start flex-col items-center p-2 w-[500px] border-2 border-[#000] relative rounded-md max-sm:w-[100%] bg-[#fff] m-8">
+    <header className="flex justify-start flex-col items-center p-2 w-[500px] border-2 border-[#000] relative rounded-md max-sm:w-[100%] max-sm:bg-[#fff] m-8">
       <img
         src={"avatar.png"}
         className="absolute w-24 top-[-50px] border-2 rounded-full"
       ></img>
       <h1 className="text-2xl mt-12 font-bold">Bienvenido a ThinderPet</h1>
-      <form className="flex flex-col gap-3 w-[350px] max-md:w-[100%] px-2">
+      <form className="flex flex-col gap-3 w-[350px] max-md:w-[100%] max-md:px-2">
         <InputWithLabel
           label="Correo electrónico"
           type="email"
@@ -84,7 +84,7 @@ const Login: React.FC<LoginProps> = ({ setusuario }) => {
           <FaTwitter/>
         </div>
       </form>
-    </main>
+    </header>
   );
 };
 
