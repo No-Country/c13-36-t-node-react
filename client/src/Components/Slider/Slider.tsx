@@ -6,32 +6,51 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import BtnSilder from "../BtnSlider/BtnSilder";
+import { useState } from "react";
+import Avatar from "../Avatar/Avatar";
 
-const Slider = () => {
+interface SliderProps {
+  mascotas: string[];
+}
+
+const Slider: React.FC<SliderProps> = ({ mascotas }) => {
   // TO-DO: debe recibir el listado de imagenes por props.
+  const [active, setActive] = useState(0);
+
+  const handleNext = () => {
+    if (active < mascotas.length - 1) {
+      setActive(active + 1);
+    } else setActive(0);
+  };
   const imagenes = [
-    "perrito1.jpg",
-    "perrito2.jpg",
-    "perrito3.jpg",
-    "perrito4.jpg",
+    `/mascotas/${mascotas[active]}/foto1.jpg`,
+    `/mascotas/${mascotas[active]}/foto2.jpg`,
+    `/mascotas/${mascotas[active]}/foto3.jpg`,
+    `/mascotas/${mascotas[active]}/foto4.jpg`,
   ];
   return (
     <>
+      <div className="flex gap-10">
+        <Avatar size="small" hover />
+        <Avatar size="small" hover />
+        <Avatar size="small" hover />
+      </div>
       <Swiper
         navigation={true}
+        loop={true}
         pagination={{ clickable: true, type: "bullets" }}
         modules={[Navigation, Pagination]}
-        className="w-[736px] h-[612px] rounded-md max-md:w-[100%]"
+        className="w-[736px] h-[612px] rounded-md max-md:w-[100%] z-0"
       >
         {imagenes.map((imagen) => (
-          <SwiperSlide>
+          <SwiperSlide key={imagenes.indexOf(imagen)}>
             <img
               className="absolute -rotate-45 right-2 bottom-36"
-              width={450}
+              width={300}
               src="like-stamp-png.png"
             />
             <img className="object-cover w-full h-[80%]" src={imagen} />
-            <div className="bg-[#99A3B0] text-center flex flex-col items-center rounded-b-md h-full border-2" >
+            <div className="bg-[#99A3B0] text-center flex flex-col items-center rounded-b-md h-full">
               <p className="py-2">
                 Perrito guau guau
                 {/*SE MOSTRARA EL NOMBRE DE LA MASCOTA Y SU BIO*/}
@@ -44,7 +63,7 @@ const Slider = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <BtnSilder />
+      <BtnSilder next={handleNext} />
     </>
   );
 };

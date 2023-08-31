@@ -21,7 +21,7 @@ const Avatar: React.FC<AvatarProps> = ({ size, src, onClick, hover }) => {
       }
     >
       <img
-        className="rounded-full w-full h-full cursor-pointer"
+        className="rounded-full w-full h-full cursor-pointer object-cover"
         src={src || "https://picsum.photos/200/300"}
         alt="Avatar"
         onClick={onClick}
