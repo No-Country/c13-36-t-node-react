@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import jwt from "jsonwebtoken";
+import jwt, { decode } from "jsonwebtoken";
 import User from "../models/User.model";
 import type { User as UserType } from "../types/user.types";
 import { SECRET_TOKEN } from "../config";
