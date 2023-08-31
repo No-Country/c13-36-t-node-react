@@ -21,6 +21,7 @@ export default function Create() {
     }
   };
   return (
+
     <main className="flex justify-start items-start flex-col w-[500px] border-2 border-black relative rounded-md max-md:w-[100%] bg-[#fff] mt-10">
       <img
         src={"avatar.png"}
@@ -31,6 +32,7 @@ export default function Create() {
         className="flex flex-col items-start gap-3 w-[350px]"
         onSubmit={handleSubmit}
       >
+
         <InputWithLabel
           label="Usuario"
           type="text"

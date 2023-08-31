@@ -10,8 +10,6 @@ import {
     notfound,
     badRequest
 } from "../handlers/response.handler";
-import { SERVER_URL } from "../config";
-import { count, filteredMatch } from "../utils/queryFilter";
 
 // [POST] create Pet
 export const createPet = async (

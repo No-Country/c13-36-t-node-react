@@ -16,13 +16,13 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
   };
 
   return (
-    <nav className="relative w-full flex place-content-between items-center mb-2">
-      <NavLink to="/main">
+    <nav className="relative w-full flex place-content-between items-center mb-2 py-2 px-4">
+      <NavLink to={"/"}>
         <Avatar size="medium" src="Logo.svg" />
       </NavLink>
       {usuario && (
         <>
-          <div>
+          <div className="max-md:hidden">
             Tus mascotas
             <div className="flex gap-10">
               <Avatar size="small" hover />
@@ -30,7 +30,7 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
               <Avatar size="small" hover />
             </div>
           </div>
-          <Avatar size="medium" src="Vector.png" onClick={handleClick} />
+          <Avatar size="medium" src="Vector.png" onClick={handleClick}/>
         </>
       )}
       <div className="absolute right-0 top-20">
