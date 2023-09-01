@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 import modelOptions from "./modelOptions";
-import { type Breed } from "../types/breed";
+import { type Breed } from "../types/breed&specie.types";
 
 const BreedSchema = new Schema<Breed>(
   {
