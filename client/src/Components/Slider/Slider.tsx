@@ -30,7 +30,7 @@ const Slider: React.FC<SliderProps> = ({ mascotas }) => {
   ];
   return (
     <>
-      <div className="flex gap-10">
+      <div className="flex gap-10 my-4">
         <Avatar size="small" hover />
         <Avatar size="small" hover />
         <Avatar size="small" hover />

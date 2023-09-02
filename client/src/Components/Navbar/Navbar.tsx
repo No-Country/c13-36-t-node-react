@@ -2,11 +2,12 @@ import { NavLink } from "react-router-dom";
 import useModal from "../../Hooks/useModals";
 import Avatar from "../Avatar/Avatar";
 import Menu from "../Menus/Menu";
+import { Usuario } from "../../types/types";
 
 interface NavBarProps {
   // setFormulario: (usuario: boolean) => void;
-  setusuario: (usuario: boolean) => void;
-  usuario: boolean;
+  setusuario: React.Dispatch<React.SetStateAction<Usuario | undefined>>;
+  usuario: Usuario | undefined;
 }
 const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
   const { isShowing, toggle } = useModal();
@@ -21,7 +22,7 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
         <Avatar size="medium" src="logo.png" />
         <h1 className="text-2xl text-white">ThinderPet</h1>
       </NavLink>
-      {usuario && (
+      {usuario !== undefined && (
         <>
           <ul className="max-md:hidden flex gap-10">
             <li className="text-2xl text-white">Nosotros</li>
