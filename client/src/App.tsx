@@ -50,14 +50,10 @@ function App() {
           <Route
             path="/main"
             element={
-              loged ? (
-                <>
-                  <Navbar setusuario={setUsuario} usuario={usuario} />
-                  <Slider mascotas={mascotas} />
-                </>
-              ) : (
-                <Navigate to="/main" />
-              )
+              <>
+                <Navbar setusuario={setUsuario} usuario={usuario} />
+                <Slider mascotas={mascotas} />
+              </>
             }
           />
           <Route
