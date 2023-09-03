@@ -30,7 +30,7 @@ const Login: React.FC<LoginProps> = ({ setusuario }) => {
     setView(!view);
   };
   return (
-    <header className="flex justify-start flex-col items-center p-2 w-[500px] border-2 border-[#000] relative rounded-md max-sm:w-[100%] max-sm:bg-[#fff] m-8">
+    <main className="flex justify-start flex-col items-center p-2 w-[500px] m-12 border-2 border-[#000] relative rounded-md max-sm:w-[100%] max-sm:bg-[#fff] ">
       <img
         src={"avatar.png"}
         className="absolute w-24 top-[-50px] border-2 rounded-full"
@@ -89,7 +89,7 @@ const Login: React.FC<LoginProps> = ({ setusuario }) => {
           <FaTwitter />
         </div>
       </form>
-    </header>
+    </main>
   );
 };
 
