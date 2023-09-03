@@ -33,7 +33,14 @@ function App() {
     <main className="flex flex-col w-full items-center">
       <Router>
         <Routes>
-          <Route path="/" element={<Landing />} />
+          <Route
+            path="/"
+            element={
+              <>
+                <Navbar setusuario={setUsuario} usuario={usuario} /> <Landing />
+              </>
+            }
+          />
           <Route
             path="/login"
             element={
