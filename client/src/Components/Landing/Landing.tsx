@@ -6,7 +6,7 @@ const Landing = () => {
 
   return (
     <>
-      <section className="flex items-center my-20 gap-x-44 max-md:gap-x-4  ">
+      <section className="flex items-center my-16 gap-x-44 max-md:gap-x-4  ">
         <div className="border-2 h-full">
           <img src={"dogLanding.png"} className="w-60"/>
           <p className="bg-[#F65E7E] text-2xl font-bold">Lola</p>
