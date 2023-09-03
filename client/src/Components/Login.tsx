@@ -13,17 +13,30 @@ interface LoginProps {
 const Login: React.FC<LoginProps> = ({ setusuario }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const navigate = useNavigate();
+  const [permitSubmit, setPermitSubmit] = useState(true);
+  const [mailError, setMailError] = useState("");
+  const [passError, setPassError] = useState("");
   const [view, setView] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    const response = await login(email, password);
-    if (typeof response === "string") {
-      alert("datos erroneos");
-    } else {
-      setusuario(response);
+    if (permitSubmit) {
+      setLoading(true);
+      const response = await login(email, password);
+      if (typeof response === "string") {
+        console.log(response);
+
+        if (response === "User not found.") {
+          setMailError("El usuario no existe");
+        } else {
+          setPassError("Contraseña incorrecta");
+        }
+      } else {
+        setusuario(response);
+      }
     }
+    setLoading(false);
   };
 
   const viewPassword = () => {
@@ -47,7 +60,11 @@ const Login: React.FC<LoginProps> = ({ setusuario }) => {
           name="emailUser"
           iconClass="fa-envelope"
           onChange={setEmail}
+          setMailError={setMailError}
+          setPermitSubmit={setPermitSubmit}
+          mailError={mailError}
         />
+        {mailError && <p className="text-red-500">{mailError}</p>}
         <InputWithLabel
           label="Contraseña"
           type={view ? "text" : "password"}
@@ -56,13 +73,21 @@ const Login: React.FC<LoginProps> = ({ setusuario }) => {
           iconClass={view ? "fa-eye" : "fa-lock"}
           viewPassword={viewPassword}
           onChange={setPassword}
+          setPassError={setPassError}
+          setPermitSubmit={setPermitSubmit}
+          passError={passError}
         />
+        {passError && <p className="text-red-500">{passError}</p>}
         <button
           onClick={handleLogin}
           value="Login"
           className="bg-[#54A4A5] w-40 text-white px-4 py-2 rounded-xl m-auto"
         >
-          Iniciar Sesión
+          {loading ? (
+            <i className="fa-solid fa-spinner rotate-center"></i>
+          ) : (
+            "Iniciar Sesión"
+          )}
         </button>
       </form>
       <NavLink
