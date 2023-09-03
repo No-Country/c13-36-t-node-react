@@ -28,20 +28,17 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
         <Avatar size="medium" src="logo.png" />
         <h1 className="text-2xl text-white font-bold">ThinderPet</h1>
       </NavLink>
-      <ul className={`flex gap-10 max-md:absolute max-md:flex-col max-md:bg-[#B186F1] max-md:top-[6rem] max-md:right-0 max-md:w-60 max-md:h-fit max-md:p-8 max-md:items-center ${viewMenu ? "block":"hidden"}`}>
-        <li className="text-2xl text-white cursor-pointer"><a href="#nosotros">Nosotros</a></li>
-        <li className="text-2xl text-white cursor-pointer">Ayuda</li>
-        <select className="bg-[#B186F1] text-white text-2xl max-md:border-2 max-md:border-black">
+      <ul className={`flex gap-10 justify-center items-center max-md:absolute max-md:flex-col max-md:bg-[#B186F1] max-md:top-[6.5rem] max-md:right-0 max-md:w-60 max-md:p-8 max-md:rounded-xl max-md:${viewMenu ? "flex":"hidden"}`}>
+        <li className="text-2xl text-white cursor-pointer "><a href="#nosotros">Nosotros</a></li>
+        <li className="text-2xl text-white cursor-pointer ">Ayuda</li>
+        <select className="bg-[#B186F1] text-white text-2xl max-md:border-2 max-md:border-black p-0">
           <option>Español</option>
           <option>English</option>
         </select>
-        <NavLink to={"/login"} className="flex items-center">
+        <NavLink to={"/login"} className="">
         <button className="bg-[#F65E7E] font-bold p-2 rounded-lg hover:scale-105 hover:ease-in duration-300">Iniciar Sesión</button>
-      </NavLink>
+        </NavLink>
       </ul>
-      <NavLink to={"/login"} className="flex items-center">
-        <button className="bg-[#F65E7E] font-bold p-2 rounded-lg hover:scale-105 hover:ease-in duration-300 max-md:hidden">Iniciar Sesión</button>
-      </NavLink>
       <button onClick={hadleClickMenu} className="hidden max-md:block">
         {viewMenu
         ? <AiOutlineCloseCircle className="w-10 h-10 cursor-pointer "/>
