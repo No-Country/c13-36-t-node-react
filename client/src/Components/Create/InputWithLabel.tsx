@@ -69,7 +69,6 @@ function InputWithLabel({
           name={name}
           minLength={4}
           maxLength={30}
-          required
           onChange={handleChange}
           onBlur={handleValidation}
         />
