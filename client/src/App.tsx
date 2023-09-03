@@ -15,6 +15,7 @@ import Navbar from "./Components/Navbar/Navbar";
 import Reset from "./Components/Reset/Reset";
 import Create from "./Components/Create/Create";
 import { Usuario } from "./types/types";
+import UserProfile from "./Components/UserProfile/UserProfile";
 
 register();
 
@@ -83,7 +84,16 @@ function App() {
             element={
               <>
                 <Navbar setusuario={setUsuario} usuario={usuario} />
-                <Create></Create>
+                <Create />
+              </>
+            }
+          />
+          <Route
+            path="/userprofile"
+            element={
+              <>
+                <Navbar setusuario={setUsuario} usuario={usuario} />
+                <UserProfile />
               </>
             }
           />
