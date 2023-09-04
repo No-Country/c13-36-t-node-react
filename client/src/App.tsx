@@ -16,6 +16,8 @@ import Reset from "./Components/Reset/Reset";
 import Create from "./Components/Create/Create";
 import { Usuario } from "./types/types";
 import UserProfile from "./Components/UserProfile/UserProfile";
+import Footer from "./Components/Footer/Footer";
+import Profile from "./Components/ProfileUser/Profile";
 
 register();
 
@@ -34,7 +36,16 @@ function App() {
     <main className="flex flex-col w-full items-center">
       <Router>
         <Routes>
-          <Route path="/" element={<Landing />} />
+          <Route
+            path="/"
+            element={
+              <>
+                <Navbar setusuario={setUsuario} usuario={usuario} />
+                <Landing />
+                <Footer></Footer>
+              </>
+            }
+          />
           <Route
             path="/login"
             element={
@@ -42,6 +53,7 @@ function App() {
                 <>
                   <Navbar setusuario={setUsuario} usuario={usuario} />
                   <Login setusuario={setUsuario} />
+                  <Footer></Footer>
                 </>
               ) : (
                 <Navigate to="/main" />
@@ -51,14 +63,10 @@ function App() {
           <Route
             path="/main"
             element={
-              loged ? (
-                <>
-                  <Navbar setusuario={setUsuario} usuario={usuario} />
-                  <Slider mascotas={mascotas} />
-                </>
-              ) : (
-                <Navigate to="/main" />
-              )
+              <>
+                <Navbar setusuario={setUsuario} usuario={usuario} />
+                <Slider mascotas={mascotas} />
+              </>
             }
           />
           <Route
@@ -103,6 +111,15 @@ function App() {
               <>
                 <Navbar setusuario={setUsuario} usuario={usuario} />
                 <PetForm />
+              </>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <>
+                <Navbar setusuario={setUsuario} usuario={usuario} />
+                <Profile />
               </>
             }
           />

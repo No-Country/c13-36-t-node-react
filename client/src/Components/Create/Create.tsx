@@ -97,60 +97,88 @@ export default function Create() {
       >
         <InputWithLabel
           label="Nombre de Usuario"
+          autoComplete="Off"
           type="text"
           placeholder="nombreDeUsuario"
           name="username"
           iconClass="fa-user"
           onChange={handleUsernameChange}
+          setPermitSubmit={function (): void {
+            throw new Error("Function not implemented.");
+          }}
         />
         <InputWithLabel
           label="Nombre"
           type="text"
           placeholder="John"
+          autoComplete="Off"
           name="firstName"
           iconClass="fa-user"
           onChange={handleFirstNameChange}
+          setPermitSubmit={function (): void {
+            throw new Error("Function not implemented.");
+          }}
         />
         <InputWithLabel
           label="Apellido"
           type="text"
           placeholder="Doe"
+          autoComplete="Off"
           name="lastName"
           iconClass="fa-user"
           onChange={handleLastNameChange}
+          setPermitSubmit={function (): void {
+            throw new Error("Function not implemented.");
+          }}
         />
         <InputWithLabel
           label="Correo electrónico"
           type="email"
           placeholder="user123@thinderpet.com"
+          autoComplete="Off"
           name="email"
           iconClass="fa-envelope"
           onChange={handleEmailChange}
+          setPermitSubmit={function (): void {
+            throw new Error("Function not implemented.");
+          }}
         />
         <InputWithLabel
           label="Contraseña"
           type={view ? "text" : "password"}
           placeholder="•••••••••"
+          autoComplete="Off"
           name="password"
           iconClass={view ? "fa-eye" : "fa-lock"}
           viewPassword={viewPassword}
           onChange={handlePasswordChange}
+          setPermitSubmit={function (): void {
+            throw new Error("Function not implemented.");
+          }}
         />
         <InputWithLabel
           label="Telefono"
           type="text"
           placeholder="1161914321"
+          autoComplete="Off"
           name="phone"
           iconClass="fa-phone"
           onChange={handlePhoneChange}
+          setPermitSubmit={function (): void {
+            throw new Error("Function not implemented.");
+          }}
         />
         <InputWithLabel
           label="Donde Vives"
           type="text"
           placeholder="Argentina"
+          autoComplete="Off"
           name="country"
           iconClass="fa-location-dot"
           onChange={handleLocalizationChange}
+          setPermitSubmit={function (): void {
+            throw new Error("Function not implemented.");
+          }}
         />
         <div className="flex flex-col m-auto gap-4">
           <button
