@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 import modelOptions from "./modelOptions";
-import { type User } from "../types/user";
+import { type User } from "../types/user.types";
 
 const UserSchema = new Schema<User>(
   {
@@ -21,7 +21,7 @@ const UserSchema = new Schema<User>(
       type: String,
       required: true,
     },
-    locatization: {
+    localization: {
       type: Object,
     },
     phone: {

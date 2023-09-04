@@ -28,6 +28,14 @@ const Menu: React.FC<MenuProps> = ({ setusuario, toggle }) => {
             >
               {label}
             </li>
+          ) : label === "Perfil de usuario" ? (
+            <li
+              key={index}
+              className="bg-neutral-200 min-w-[150px] shadow-md shadow-neutral-500 rounded-full px-4 py-2 hover:bg-neutral-100 cursor-pointer hover:border-black hover:border"
+              onClick={() => navigate("/userprofile")}
+            >
+              {label}
+            </li>
           ) : label === "Mis mascotas" ? (
             <li
               key={index}

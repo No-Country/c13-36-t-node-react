@@ -4,12 +4,13 @@ interface InputProps {
   placeholder: string;
   name: string;
   iconClass: string;
+  autoComplete: string;
   mailError?: string;
   passError?: string;
-  onChange: React.Dispatch<React.SetStateAction<string>>;
   setPermitSubmit: React.Dispatch<React.SetStateAction<boolean>>;
   setMailError?: React.Dispatch<React.SetStateAction<string>>;
   setPassError?: React.Dispatch<React.SetStateAction<string>>;
+  onChange: (value: string, fieldName: string) => void;
   viewPassword?: () => void;
 }
 
@@ -28,7 +29,7 @@ function InputWithLabel({
   setMailError,
 }: InputProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(e.target.value);
+    onChange(e.target.value, name);
   };
   const handleValidation = (e: React.FocusEvent<HTMLInputElement>) => {
     if (setPassError) {
@@ -51,6 +52,7 @@ function InputWithLabel({
       }
     }
   };
+  
   return (
     <>
       <label className="font-semibold ml-1 mt-1 text-left" htmlFor={name}>
@@ -60,6 +62,7 @@ function InputWithLabel({
         <input
           type={type}
           placeholder={placeholder}
+          autoComplete="Off"
           className={`bg-[#D9D9D9] px-4 py-2 rounded-lg w-[100%] valid:border-2 border-green-400 ${
             (mailError && mailError?.length > 0) ||
             (passError && passError?.length > 0)
