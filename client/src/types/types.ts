@@ -12,3 +12,13 @@ export type Usuario = {
     id: string;
   };
 };
+
+export type UsuarioRegistro = {
+  username: "string";
+  firstName: "string";
+  lastName: "string";
+  password: "string";
+  email: "string";
+  localization: "string";
+  phone: "string";
+};

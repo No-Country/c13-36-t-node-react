@@ -22,37 +22,15 @@ function InputWithLabel({
   iconClass,
   viewPassword,
   onChange,
-  setPermitSubmit,
-  setPassError,
-  passError,
   mailError,
-  setMailError,
+  passError,
 }: InputProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(e.target.value, name);
-  };
-  const handleValidation = (e: React.FocusEvent<HTMLInputElement>) => {
-    if (setPassError) {
-      if (e.target.value.length < 8) {
-        setPassError("Ingrese una contraseña válida(mayor a 8 caracteres)");
-        setPermitSubmit(false);
-      } else {
-        setPassError("");
-        setPermitSubmit(true);
-      }
-    }
-    if (setMailError) {
-      const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-      if (!emailPattern.test(e.target.value)) {
-        setMailError("Ingrese un correo Válido");
-        setPermitSubmit(false);
-      } else {
-        setMailError("");
-        setPermitSubmit(true);
-      }
+    if (onChange) {
+      onChange(e.target.value, name);
     }
   };
-  
+
   return (
     <>
       <label className="font-semibold ml-1 mt-1 text-left" htmlFor={name}>
@@ -72,8 +50,8 @@ function InputWithLabel({
           name={name}
           minLength={4}
           maxLength={30}
+          required
           onChange={handleChange}
-          onBlur={handleValidation}
         />
         <i
           className={`fa-solid ${iconClass} absolute right-3 top-[10px] hover:cursor-pointer`}

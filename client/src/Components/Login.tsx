@@ -84,6 +84,7 @@ const Login: React.FC<LoginProps> = ({ setusuario }) => {
           onClick={handleLogin}
           value="Login"
           className="bg-[#54A4A5] w-40 text-white px-4 py-2 rounded-xl m-auto"
+          disabled={loading}
         >
           {loading ? (
             <i className="fa-solid fa-spinner rotate-center"></i>

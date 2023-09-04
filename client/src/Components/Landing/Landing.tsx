@@ -1,7 +1,19 @@
+import { useState } from "react";
 import { AiFillHeart } from "react-icons/ai";
 import { FaArrowUp } from "react-icons/fa";
 
 const Landing = () => {
+  const [visible, setVisible] = useState(false);
+  const toggleVisible = () => {
+    const scrolled = document.documentElement.scrollTop;
+    if (scrolled > 300) {
+      setVisible(true);
+    } else if (scrolled <= 300) {
+      setVisible(false);
+    }
+  };
+
+  window.addEventListener("scroll", toggleVisible);
   return (
     <>
       <section className="flex items-center my-16 gap-x-44 max-md:gap-x-4  ">
@@ -43,9 +55,11 @@ const Landing = () => {
         </div>
         <img src={"equipoTrabajo.png"} className="w-80"></img>
       </section>
-      <a href="#">
-        <FaArrowUp className="border border-black rounded-full p-1 w-8 h-8 cursor-pointer fixed bottom-20 right-20  max-md:bottom-10 max-md:right-4" />
-      </a>
+      {visible && (
+        <a href="#">
+          <FaArrowUp className="border border-black rounded-full p-1 w-8 h-8 cursor-pointer fixed bottom-20 right-20  max-md:bottom-10 max-md:right-4" />
+        </a>
+      )}
       <section className="px-36 my-5 w-full flex justify-center items-center  max-md:flex-col-reverse max-md:px-10">
         <img src="politicaTrabajo.png" className="w-80"></img>
         <div className="">

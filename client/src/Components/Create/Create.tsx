@@ -68,22 +68,6 @@ export default function Create() {
       setDataUser(response);
     }
   };
-
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   try {
-  //     // actualizar los campos en dataUser
-  //     setDataUser({
-  //       ...dataUser,
-  //     });
-  //     const response = await register(dataUser);
-  //     console.log("Respuesta del servidor:", response);
-  //     console.log("Usuario registrado:", response);
-  //   } catch (error) {
-  //     console.error("Error al registrar el usuario:", error);
-  //   }
-  // };
-
   return (
     <main className="flex justify-start flex-col items-center w-[500px] border-2 border-black relative rounded-md max-md:w-[100%] bg-[#fff] mt-10">
       <img
@@ -92,38 +76,36 @@ export default function Create() {
       ></img>
       <h1 className="text-2xl mt-12 font-bold">Registrarme</h1>
       <form
-        className="flex flex-col items-start gap-3 w-[350px]"
+        className="flex flex-col items-start gap-3 w-full"
         onSubmit={handleSubmit}
       >
         <InputWithLabel
+          autoComplete=""
           label="Nombre de Usuario"
-          autoComplete="Off"
           type="text"
           placeholder="nombreDeUsuario"
           name="username"
           iconClass="fa-user"
           onChange={handleUsernameChange}
-          setPermitSubmit={function (): void {
-            throw new Error("Function not implemented.");
-          }}
+          setPermitSubmit={function (): void {}}
         />
         <InputWithLabel
           label="Nombre"
           type="text"
           placeholder="John"
-          autoComplete="Off"
           name="firstName"
           iconClass="fa-user"
+          autoComplete=""
           onChange={handleFirstNameChange}
           setPermitSubmit={function (): void {
             throw new Error("Function not implemented.");
           }}
         />
         <InputWithLabel
+          autoComplete=""
           label="Apellido"
           type="text"
           placeholder="Doe"
-          autoComplete="Off"
           name="lastName"
           iconClass="fa-user"
           onChange={handleLastNameChange}
@@ -152,9 +134,7 @@ export default function Create() {
           iconClass={view ? "fa-eye" : "fa-lock"}
           viewPassword={viewPassword}
           onChange={handlePasswordChange}
-          setPermitSubmit={function (): void {
-            throw new Error("Function not implemented.");
-          }}
+          setPermitSubmit={function (): void {}}
         />
         <InputWithLabel
           label="Telefono"
@@ -164,9 +144,7 @@ export default function Create() {
           name="phone"
           iconClass="fa-phone"
           onChange={handlePhoneChange}
-          setPermitSubmit={function (): void {
-            throw new Error("Function not implemented.");
-          }}
+          setPermitSubmit={function (): void {}}
         />
         <InputWithLabel
           label="Donde Vives"
@@ -176,10 +154,9 @@ export default function Create() {
           name="country"
           iconClass="fa-location-dot"
           onChange={handleLocalizationChange}
-          setPermitSubmit={function (): void {
-            throw new Error("Function not implemented.");
-          }}
+          setPermitSubmit={function (): void {}}
         />
+
         <div className="flex flex-col m-auto gap-4">
           <button
             value="Login"

@@ -1,5 +1,4 @@
-import axios, { AxiosResponse } from "axios";
-// import { Usuario } from "../types/types";
+import axios from "axios";
 
 interface LoginResponse {
   message: string;
@@ -36,7 +35,6 @@ export const login = async (
   localStorage.setItem("token", JSON.stringify(data));
   return data;
 };
-
 interface User {
   username: string;
   firstName: string;
@@ -47,14 +45,9 @@ interface User {
   localization: string;
 }
 
-interface ApiResponse {
-  status: number;
-  data: User;
-}
-
 export async function register(data: User): Promise<User> {
   try {
-    const response: AxiosResponse<ApiResponse> = await axios.post(
+    const response = await axios.post(
       "https://thinderpet-api-ild3-dev.fl0.io/api/v1/user/register",
       {
         username: data.username,
@@ -67,8 +60,8 @@ export async function register(data: User): Promise<User> {
       },
       {
         headers: {
-          Authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjQ4YjM0OGUyMDQ1NjgzNGEwMjU5MDNiIiwiaWF0IjoxNjkyOTg4NzI2LCJleHAiOjE2OTM1MDcxMjZ9.uJ2uhszxtTF9yBmnhKGHZA88M7pwgp6buUbrtv5TTVE",
+          "Content-Type": "application/json",
+          Authorization: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjQ4YjM0OGUyMDQ1NjgzNGEwMjU5MDNiIiwiaWF0IjoxNjkyOTg4NzI2LCJleHAiOjE2OTM1MDcxMjZ9.uJ2uhszxtTF9yBmnhKGHZA88M7pwgp6buUbrtv5TTVE`,
         },
       }
     );
