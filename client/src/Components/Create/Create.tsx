@@ -1,6 +1,17 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import InputWithLabel from "./InputWithLabel";
+import { register } from "../../services/users";
+
+interface User {
+  username: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  phone: string;
+  localization: string;
+}
 
 export default function Create() {
   const [view, setView] = useState(false);
@@ -69,11 +80,38 @@ export default function Create() {
         onSubmit={handleSubmit}
       >
         <InputWithLabel
-          label="Usuario"
+          autoComplete=""
+          label="Nombre de Usuario"
           type="text"
-          placeholder="JohnDoe"
-          name="nameUser"
+          placeholder="nombreDeUsuario"
+          name="username"
           iconClass="fa-user"
+          onChange={handleUsernameChange}
+          setPermitSubmit={function (): void {}}
+        />
+        <InputWithLabel
+          label="Nombre"
+          type="text"
+          placeholder="John"
+          name="firstName"
+          iconClass="fa-user"
+          autoComplete=""
+          onChange={handleFirstNameChange}
+          setPermitSubmit={function (): void {
+            throw new Error("Function not implemented.");
+          }}
+        />
+        <InputWithLabel
+          autoComplete=""
+          label="Apellido"
+          type="text"
+          placeholder="Doe"
+          name="lastName"
+          iconClass="fa-user"
+          onChange={handleLastNameChange}
+          setPermitSubmit={function (): void {
+            throw new Error("Function not implemented.");
+          }}
         />
         <InputWithLabel
           label="Correo electrónico"
@@ -95,6 +133,8 @@ export default function Create() {
           name="password"
           iconClass={view ? "fa-eye" : "fa-lock"}
           viewPassword={viewPassword}
+          onChange={handlePasswordChange}
+          setPermitSubmit={function (): void {}}
         />
         <InputWithLabel
           label="Telefono"
@@ -103,6 +143,8 @@ export default function Create() {
           autoComplete="Off"
           name="phone"
           iconClass="fa-phone"
+          onChange={handlePhoneChange}
+          setPermitSubmit={function (): void {}}
         />
         <InputWithLabel
           label="Donde Vives"
@@ -111,6 +153,8 @@ export default function Create() {
           autoComplete="Off"
           name="country"
           iconClass="fa-location-dot"
+          onChange={handleLocalizationChange}
+          setPermitSubmit={function (): void {}}
         />
 
         <div className="flex flex-col m-auto gap-4">
