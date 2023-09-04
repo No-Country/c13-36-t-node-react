@@ -1,18 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import InputWithLabel from "./InputWithLabel";
-import { register } from "../../services/users";
-
-interface User {
-  username: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  phone: string;
-  localization: string;
-}
 
 export default function Create() {
   const [view, setView] = useState(false);
@@ -69,22 +57,6 @@ export default function Create() {
       setDataUser(response);
     }
   };
-
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   try {
-  //     // actualizar los campos en dataUser
-  //     setDataUser({
-  //       ...dataUser,
-  //     });
-  //     const response = await register(dataUser);
-  //     console.log("Respuesta del servidor:", response);
-  //     console.log("Usuario registrado:", response);
-  //   } catch (error) {
-  //     console.error("Error al registrar el usuario:", error);
-  //   }
-  // };
-
   return (
     <main className="flex justify-start flex-col items-center w-[500px] border-2 border-black relative rounded-md max-md:w-[100%] bg-[#fff] mt-10">
       <img
@@ -93,65 +65,52 @@ export default function Create() {
       ></img>
       <h1 className="text-2xl mt-12 font-bold">Registrarme</h1>
       <form
-        className="flex flex-col items-start gap-3 w-[350px]"
+        className="flex flex-col items-start gap-3 w-full"
         onSubmit={handleSubmit}
       >
         <InputWithLabel
-          label="Nombre de Usuario"
+          label="Usuario"
           type="text"
-          placeholder="nombreDeUsuario"
-          name="username"
+          placeholder="JohnDoe"
+          name="nameUser"
           iconClass="fa-user"
-          onChange={handleUsernameChange}
-        />
-        <InputWithLabel
-          label="Nombre"
-          type="text"
-          placeholder="John"
-          name="firstName"
-          iconClass="fa-user"
-          onChange={handleFirstNameChange}
-        />
-        <InputWithLabel
-          label="Apellido"
-          type="text"
-          placeholder="Doe"
-          name="lastName"
-          iconClass="fa-user"
-          onChange={handleLastNameChange}
         />
         <InputWithLabel
           label="Correo electrónico"
           type="email"
           placeholder="user123@thinderpet.com"
+          autoComplete="Off"
           name="email"
           iconClass="fa-envelope"
           onChange={handleEmailChange}
+          setPermitSubmit={function (): void {
+            throw new Error("Function not implemented.");
+          }}
         />
         <InputWithLabel
           label="Contraseña"
           type={view ? "text" : "password"}
           placeholder="•••••••••"
+          autoComplete="Off"
           name="password"
           iconClass={view ? "fa-eye" : "fa-lock"}
           viewPassword={viewPassword}
-          onChange={handlePasswordChange}
         />
         <InputWithLabel
           label="Telefono"
           type="text"
           placeholder="1161914321"
+          autoComplete="Off"
           name="phone"
           iconClass="fa-phone"
-          onChange={handlePhoneChange}
         />
         <InputWithLabel
           label="Donde Vives"
           type="text"
           placeholder="Argentina"
+          autoComplete="Off"
           name="country"
           iconClass="fa-location-dot"
-          onChange={handleLocalizationChange}
         />
 
         <div className="flex flex-col m-auto gap-4">

@@ -4,7 +4,17 @@ interface InputProps {
   placeholder: string;
   name: string;
   iconClass: string;
+<<<<<<< HEAD
   onChange?: (value: string, fieldName: string) => void;
+=======
+  autoComplete: string;
+  mailError?: string;
+  passError?: string;
+  setPermitSubmit: React.Dispatch<React.SetStateAction<boolean>>;
+  setMailError?: React.Dispatch<React.SetStateAction<string>>;
+  setPassError?: React.Dispatch<React.SetStateAction<string>>;
+  onChange: (value: string, fieldName: string) => void;
+>>>>>>> 9de61d5638e23eb578060d9c8bfc391d33f28db7
   viewPassword?: () => void;
 }
 
@@ -18,10 +28,35 @@ function InputWithLabel({
   onChange,
 }: InputProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+<<<<<<< HEAD
     if (onChange) {
       onChange(e.target.value, name);
+=======
+    onChange(e.target.value, name);
+  };
+  const handleValidation = (e: React.FocusEvent<HTMLInputElement>) => {
+    if (setPassError) {
+      if (e.target.value.length < 8) {
+        setPassError("Ingrese una contraseña válida(mayor a 8 caracteres)");
+        setPermitSubmit(false);
+      } else {
+        setPassError("");
+        setPermitSubmit(true);
+      }
+    }
+    if (setMailError) {
+      const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+      if (!emailPattern.test(e.target.value)) {
+        setMailError("Ingrese un correo Válido");
+        setPermitSubmit(false);
+      } else {
+        setMailError("");
+        setPermitSubmit(true);
+      }
+>>>>>>> 9de61d5638e23eb578060d9c8bfc391d33f28db7
     }
   };
+  
   return (
     <>
       <label className="font-semibold ml-1 mt-1 text-left" htmlFor={name}>
@@ -31,7 +66,17 @@ function InputWithLabel({
         <input
           type={type}
           placeholder={placeholder}
+<<<<<<< HEAD
           className="bg-[#D9D9D9] px-4 py-2 rounded-lg w-[100%] valid:border-2 border-green-400"
+=======
+          autoComplete="Off"
+          className={`bg-[#D9D9D9] px-4 py-2 rounded-lg w-[100%] valid:border-2 border-green-400 ${
+            (mailError && mailError?.length > 0) ||
+            (passError && passError?.length > 0)
+              ? "border-2 border-red-400"
+              : ""
+          }`}
+>>>>>>> 9de61d5638e23eb578060d9c8bfc391d33f28db7
           name={name}
           minLength={4}
           maxLength={30}

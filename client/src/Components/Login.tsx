@@ -2,7 +2,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import InputWithLabel from "./Create/InputWithLabel";
-import login from "../services/users";
+import { login } from "../services/users";
 import { Usuario } from "../types/types";
 
 interface LoginProps {
@@ -57,6 +57,7 @@ const Login: React.FC<LoginProps> = ({ setusuario }) => {
           label="Correo electrónico"
           type="email"
           placeholder="user123@thinderpet.com"
+          autoComplete="Off"
           name="emailUser"
           iconClass="fa-envelope"
           onChange={setEmail}
@@ -69,6 +70,7 @@ const Login: React.FC<LoginProps> = ({ setusuario }) => {
           label="Contraseña"
           type={view ? "text" : "password"}
           placeholder="•••••••••"
+          autoComplete="Off"
           name="password"
           iconClass={view ? "fa-eye" : "fa-lock"}
           viewPassword={viewPassword}
