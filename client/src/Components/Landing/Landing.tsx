@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { AiFillHeart } from "react-icons/ai";
 import { FaArrowUp } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
 
 const Landing = () => {
   const [visible, setVisible] = useState(false);
@@ -37,14 +36,6 @@ const Landing = () => {
           <p className="bg-[#F65E7E] text-2xl font-bold">Lorenzo</p>
         </div>
       </section>
-      <NavLink
-        to={"/login"}
-        className="flex items-center max-md:my-4 max-md:block"
-      >
-        <button className="bg-[#F65E7E] font-bold p-2 rounded-lg hover:scale-105 hover:ease-in duration-300">
-          Iniciar Sesión
-        </button>
-      </NavLink>
       <section className="px-36 my-20 w-full flex justify-center items-center max-md:flex-col max-md:px-10 max-md:my-4">
         <div className="flex flex-col w-50 max-md:w-[100%]">
           <h1 className="font-sans font-bold text-3xl my-2" id="nosotros">
