@@ -36,16 +36,13 @@ function App() {
     <main className="flex flex-col w-full items-center">
       <Router>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <Navbar setusuario={setUsuario} usuario={usuario} />
-                <Landing />
-                <Footer></Footer>
-              </>
-            }
-          />
+          <Route path="/" element={
+          <>
+            <Navbar setusuario={setUsuario} usuario={usuario} />
+            <Landing />
+            <Footer></Footer>
+          </>
+          } />
           <Route
             path="/login"
             element={
@@ -84,6 +81,7 @@ function App() {
               <>
                 <Navbar setusuario={setUsuario} usuario={usuario} />
                 <PetForm />
+                
               </>
             }
           />
