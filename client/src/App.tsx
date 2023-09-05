@@ -50,7 +50,6 @@ function App() {
             element={
               !loged ? (
                 <>
-                  <Navbar setusuario={setUsuario} usuario={usuario} />
                   <Login setusuario={setUsuario} />
                   <Footer></Footer>
                 </>
