@@ -7,10 +7,10 @@ export default function Footer() {
   return (
     <footer className="bg-[#CB6CE6] w-full p-10  flex flex-col justify-center items-center">
     <img src={"logoFooter.png"} alt="footer-logo-landing-page" className="w-20"/>
-    <ul className="flex gap-x-8 my-4 text-[#fff] font-bold decoration-gray-100 max-sm:flex-col max-sm:leading-10">
+    <ul className="flex gap-x-8 my-4 text-[#fff] font-bold decoration-gray-100 max-md:flex-col max-md:leading-10">
       {opciones.map((opcion)=>{
         return(
-          <li className="cursor-pointer">{opcion}</li>
+          <li className="cursor-pointer max-md:w">{opcion}</li>
         )
       })
       }

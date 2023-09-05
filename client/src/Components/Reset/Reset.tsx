@@ -11,8 +11,8 @@ const Reset = () => {
   }
 
   return (
-    <main className="flex justify-center items-center flex-col p-8 w-[500px] border-2 border-black relative rounded-md max-md:w-[100%] p-[1rem] bg-[#fff]">
-    <img src={"dogConfuse.png"} className="w-44 h-40 "></img>
+    <main className="flex justify-center items-center flex-col bg-[#fff] p-8 w-[500px] border-2 border-black relative rounded-md max-md:w-[100%] max-md:p-2">
+    <img src={"dogConfuse.png"} className="w-40 h-40 "></img>
     <h1 className="text-2xl my-5 font-bold font-sans">¿Olvidaste tu contraseña?</h1>
     <form className="flex flex-col items-center gap-2" onSubmit={handleResetPassword}>
       <div className="flex flex-col w-[100%]">

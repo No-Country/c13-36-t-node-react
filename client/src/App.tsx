@@ -106,7 +106,7 @@ function App() {
             }
           />
           <Route
-            path="/profile"
+            path="/perfil"
             element={
               <>
                 <Navbar setusuario={setUsuario} usuario={usuario} />

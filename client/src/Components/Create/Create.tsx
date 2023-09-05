@@ -21,10 +21,10 @@ export default function Create() {
     }
   };
   return (
-    <main className="flex justify-start items-start flex-col items-center w-[500px] border-2 border-black relative rounded-md max-md:w-[100%] bg-[#fff] mt-10 p-4">
+    <main className="flex justify-start flex-col items-center w-[500px] border-2 bg-[#fff] border-black relative rounded-md max-md:w-[100%] max-md:mt-10 max-md:p-4">
       <img src={"avatar.png"} className="absolute w-24 top-[-50px] border-2 rounded-full"></img>
       <h1 className="text-2xl mt-12 font-bold">Registrarme</h1>
-      <form className="flex flex-col items-start gap-3 w-full" onSubmit={handleSubmit}>
+      <form className="flex flex-col items-start gap-3 w-full py-4" onSubmit={handleSubmit}>
         <InputWithLabel
           label='Usuario' 
           type='text' 
@@ -68,24 +68,22 @@ export default function Create() {
           name="countryUser"
           iconClass="fa-location-dot"
         />
-        <div className="flex flex-col m-auto gap-4">
           <button
             value="Login"
-            className="bg-[#54A4A5] text-white px-4 py-2 rounded-xl"
+            className="bg-[#54A4A5] text-white px-4 py-2 m-auto rounded-xl"
           >
             Registrarme
           </button>
-          <NavLink to={"/login"}>
-            <button className="bg-red-400 text-white px-4 py-2 mb-4 rounded-xl">
-              <i
-                className="fa-solid fa-arrow-left mr-2"
-                style={{ color: "#fff" }}
-              ></i>
-              Atras
-            </button>
-          </NavLink>
-        </div>
       </form>
+      <NavLink to={"/login"}>
+        <button className="bg-red-400 text-white px-4 py-2 mb-4 rounded-xl">
+          <i
+            className="fa-solid fa-arrow-left mr-2"
+            style={{ color: "#fff" }}
+          ></i>
+          Atras
+        </button>
+      </NavLink>
     </main>
   );
 }
