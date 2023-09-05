@@ -1,4 +1,5 @@
 import axios from "axios";
+import { PetResponse } from "../types/types";
 
 interface LoginResponse {
   message: string;
@@ -35,7 +36,7 @@ export const login = async (
   localStorage.setItem("token", JSON.stringify(data));
   return data;
 };
-interface User {
+export interface User {
   username: string;
   firstName: string;
   lastName: string;
@@ -43,6 +44,8 @@ interface User {
   password: string;
   phone: string;
   localization: string;
+  latitud: number;
+  longitud: number;
 }
 
 export async function register(data: User): Promise<User> {
@@ -57,6 +60,8 @@ export async function register(data: User): Promise<User> {
         password: data.password,
         phone: data.phone,
         localization: data.localization,
+        latitud: data.latitud,
+        longitud: data.longitud,
       },
       {
         headers: {
@@ -84,3 +89,11 @@ export async function register(data: User): Promise<User> {
     }
   }
 }
+
+export const getPets = async (id: string): Promise<PetResponse[] | string> => {
+  const response = await axios.get(
+    `https://thinderpet-api-ild3-dev.fl0.io/api/v1/pet/${id}`
+  );
+  console.log(response);
+  return response.data;
+};

@@ -1,17 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import InputWithLabel from "./InputWithLabel";
-import { register } from "../../services/users";
-
-interface User {
-  username: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  phone: string;
-  localization: string;
-}
+import { User, register } from "../../services/users";
 
 export default function Create() {
   const [view, setView] = useState(false);
@@ -23,6 +13,20 @@ export default function Create() {
     password: "",
     phone: "",
     localization: "",
+    longitud: 0,
+    latitud: 0,
+  });
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setDataUser({
+          ...dataUser,
+          longitud: position.coords.longitude,
+          latitud: position.coords.latitude,
+        });
+      });
+    }
   });
 
   const viewPassword = () => {

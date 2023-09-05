@@ -22,7 +22,7 @@ register();
 
 function App() {
   const [usuario, setUsuario] = useState<Usuario | undefined>();
-  const mascotas = ["chihuahua", "frances", "golden", "pastor"];
+  const mascotas = ["chihuahua", "frances", "golden", "pastor"]; //reemplazar por el array de mascotas que tengo que traer del back.
   const loged = localStorage.getItem("token");
   useEffect(() => {
     if (loged) {

@@ -1,14 +1,7 @@
 import { useState } from "react";
 import Avatar from "../Avatar/Avatar";
 import InputWithLabel from "../Create/InputWithLabel";
-
-interface Pet {
-  name: string;
-  gender: string;
-  age: string;
-  description: string;
-  breed: string;
-}
+import { Pet } from "../../types/types";
 
 const PetForm = () => {
   const [dataPet, setDataPet] = useState<Pet>({
@@ -35,6 +28,7 @@ const PetForm = () => {
   const handlePetbreedChange = (value: string) => {
     setDataPet({ ...dataPet, breed: value });
   };
+
   return (
     <div className="flex justify-center content-center  pb-2">
       <form action="">
