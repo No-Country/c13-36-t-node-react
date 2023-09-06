@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import InputWithLabel from "./InputWithLabel";
 import { User, register, getLocation } from "../../services/users";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Create() {
   const [view, setView] = useState(false);
@@ -61,6 +63,8 @@ export default function Create() {
   const handleLocalizationChange = (value: string) => {
     // setDataUser({ ...dataUser, localization: { value: value } });
     getLocation(value).then((response) => {
+      console.log(response);
+
       setDataUser({
         ...dataUser,
         localization: response.formatted_address,
@@ -77,12 +81,14 @@ export default function Create() {
       alert("datos erroneos");
     } else {
       setDataUser(response);
+      toast.success("Usuario creado con éxito");
     }
   };
   return (
     <main className="w-full">
+      <ToastContainer />
       <div className="grid grid-cols-2 min-h-screen mobile:flex mobile:h-full mobile:justify-center  ">
-        <div className="relative bg-[#E0838E] w-11/12 mobile:hidden mobile:w-0 mobile:bg-none ">
+        <div className="relative bg-[#e0838eb9] w-11/12 mobile:hidden mobile:w-0 mobile:bg-none ">
           <img
             className="absolute bottom-0 right-0 w-full"
             src="happy-dog.png"
@@ -186,7 +192,7 @@ export default function Create() {
                 Registrarme
               </button>
               <NavLink to={"/login"}>
-                <button className="bg-red-400 text-white px-4 py-2 my-4 rounded-xl">
+                <button className="bg-[#e0838e] hover:bg-[#e0838eb9] text-white px-4 py-2 my-4 rounded-xl">
                   <i
                     className="fa-solid fa-arrow-left mr-2"
                     style={{ color: "#fff" }}

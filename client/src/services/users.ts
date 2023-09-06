@@ -59,8 +59,8 @@ export async function register(data: User): Promise<User> {
         password: data.password,
         phone: data.phone,
         localization: data.localization,
-        latitud: data.latitud,
-        longitud: data.longitud,
+        /* latitud: data.latitud,
+        longitud: data.longitud, */
       },
       {
         headers: {
