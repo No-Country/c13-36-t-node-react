@@ -32,7 +32,7 @@ function App() {
   }, [loged]);
 
   return (
-    <main className="flex flex-col w-full items-center">
+    <main className="flex flex-col w-full">
       <Router>
         <Routes>
           <Route
@@ -50,6 +50,7 @@ function App() {
             element={
               !loged ? (
                 <>
+                  <Navbar setusuario={setUsuario} usuario={usuario} />
                   <Login setusuario={setUsuario} />
                   <Footer></Footer>
                 </>
@@ -91,6 +92,7 @@ function App() {
               <>
                 <Navbar setusuario={setUsuario} usuario={usuario} />
                 <Create />
+                <Footer />
               </>
             }
           />
