@@ -16,32 +16,44 @@ const Landing = () => {
   window.addEventListener("scroll", toggleVisible);
   return (
     <>
-      <section className="flex flex-row gap-20 justify-center pt-48 bg-[#99A3B0] w-full min-h-screen">
-        <div className="">
-          <img src={"dogLanding.png"} className="w-80" />
-          <p className="bg-[#77D3EC] text-2xl font-bold">Lola</p>
+      <section className=" bg-[#99A3B0] w-full h-full py-[25vh] sm:pt-48">
+        <div className="grid grid-cols-3 px-4  gap-4 sm:flex sm:flex-row sm:gap-20 sm:justify-center sm:px-6 ">
+          <div className="">
+            <img src={"dogLanding.png"} className="w-[35vw] lg:w-80" />
+            <p className="bg-[#77D3EC] text-[4.5vw] sm:text-xl lg:text-2xl font-bold">
+              Lola
+            </p>
+          </div>
+          <div>
+            <AiFillHeart
+              size={150}
+              color="red"
+              className="m-auto heartbeat w-20 sm:w-52 lg:mt-36"
+            />
+          </div>
+          <div className="">
+            <img src={"dogLanding2.png"} className="w-[35vw] lg:w-80" />
+            <p className="bg-[#77D3EC] text-[4.5vw] sm:text-xl lg:text-2xl font-bold">
+              Lorenzo
+            </p>
+          </div>
         </div>
-        <div>
-          <AiFillHeart
-            size={150}
-            color="red"
-            className="m-auto heartbeat max-md:w-20"
-          />
-          <h1 className="text-5xl w-80 font-sans font-bold max-md:text-2xl">
+        <div className="flex flex-auto justify-center text-center px-8 mt-16 lg:flex lg:flex-auto lg:text-center lg:w-full">
+          <h1 className="text-lg sm:text-4xl lg:text-5xl font-sans font-bold max-md:text-2xl">
             Te ayudamos a buscar una pareja para tus mascotas
           </h1>
         </div>
-        <div className="">
-          <img src={"dogLanding2.png"} className="w-80" />
-          <p className="bg-[#77D3EC] text-2xl font-bold">Lorenzo</p>
-        </div>
       </section>
-      <section className="px-36 w-full flex justify-center items-center max-md:flex-col max-md:px-10 max-md:my-4">
-        <div className="flex flex-col w-50 max-md:w-[100%]">
-          <h1 className="font-sans font-bold text-4xl my-16" id="nosotros">
+
+      <section className="sm:px-6 lg:px-36 sm:w-full sm:flex sm:justify-center sm:items-center sm:flex-col px-1 sm:my-4">
+        <div className="flex flex-col w-50 sm:w-[100%]">
+          <h1
+            className="font-sans font-bold text-2xl sm:text-3xl lg:text-4xl my-16"
+            id="nosotros"
+          >
             Sobre Nosotros
           </h1>
-          <p className="leading-8 text-justify font-sans max-md:text-md font-semibold px-8">
+          <p className="leading-8 text-justify font-sans text-sm sm:text-lg lg:text-xl font-semibold px-8">
             En nuestro acogedor rincón en línea, celebramos la chispa única que
             surge entre las mascotas. Somos una plataforma diseñada
             exclusivamente para ayudar a las mascotas a encontrar compañeros de
@@ -57,23 +69,27 @@ const Landing = () => {
             heredar. Estamos comprometidos a hacer que la experiencia sea lo más
             transparente y satisfactoria para todos nuestros usuarios.
           </p>
-          <p className="font-bold font-sans text-2xl px-24 py-10 text-[#E0838E]">
+          <p className="font-bold font-sans text-lg px-8 py-5 sm:text-2xl lg:text-3xl sm:px-10 lg:px-24 sm:py-10 text-[#E0838E]">
             Únete a nuestra comunidad y sé parte de una experiencia donde el
             amor, diversión y respeto entre mascotas son el centro de atención.
           </p>
         </div>
-        <img src={"equipoTrabajo.png"} className="w-80"></img>
+        <img
+          src={"equipoTrabajo.png"}
+          className="w-80 sm:w-[50vw] lg:w-[30vw]"
+        ></img>
       </section>
       {visible && (
         <a href="#">
-          <FaArrowUp className="border border-black rounded-full p-1 w-8 h-8 cursor-pointer fixed bottom-20 right-20  max-md:bottom-10 max-md:right-4" />
+          <FaArrowUp className="border border-black rounded-full p-1 w-8 h-8 cursor-pointer fixed bottom-10 sm:bottom-20 right-3 sm:right-20 max-md:right-4" />
         </a>
       )}
-      <section className="px-36 my-5 w-full flex justify-center items-center  max-md:flex-col-reverse max-md:px-10">
-        <img src="politicaTrabajo.png" className="w-80"></img>
+      <section className="px-6 lg:px-36 my-10 lg:w-full flex justify-center items-center flex-col  sm:flex-row lg:flex-row max-md:px-10">
         <div className="">
-          <h1 className="font-sans font-bold text-3xl my-10">Políticas</h1>
-          <p className="leading-8 text-center max-md:text-md">
+          <h1 className="font-sans font-bold text-2xl sm:text-3xl lg:text-4xl my-10">
+            Políticas
+          </h1>
+          <p className="leading-7 lg:leading-10 text-center text-sm sm:text-lg lg:text-xl">
             <b>DEJAMOS ASENTADO QUE NO FOMENTAMOS LA REPRODUCCION COMERCIAL</b>
             <br />
             En caso de que tenga conocimiento de cualquier caso que vaya en
@@ -84,6 +100,10 @@ const Landing = () => {
             animales
           </p>
         </div>
+        <img
+          src="politicaTrabajo.png"
+          className="w-80 sm:w-[30vw] lg:w-[20vw]"
+        ></img>
       </section>
     </>
   );
