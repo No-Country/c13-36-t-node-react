@@ -152,3 +152,25 @@ export const getPets = async (req: Request, res: Response) => {
     }
 };
 
+export const getUserPets = async ({ params }: Request, res: Response) => {
+    try {
+        const pets = await PetModel.find({ ownerId: params.ownerId })
+            .select(["-createdAt", "-updatedAt"])
+            .populate({
+                path: "breedId",
+                select: ["-createdAt", "-updatedAt"],
+                populate: {
+                    path: "specieId",
+                    select: ["-createdAt", "-updatedAt"]
+                }
+            });
+
+        if (pets.length === 0) return notfound(res);
+
+        return ok(res, pets);
+    } catch (e) {
+        console.log(e);
+        error(res);
+    }
+};
+

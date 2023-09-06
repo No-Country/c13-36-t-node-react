@@ -9,7 +9,8 @@ import {
     deletePet,
     getPet,
     updatePet,
-    getPets
+    getPets,
+    getUserPets
 } from "../controllers/pet.controller";
 import UserModel from "../models/User.model";
 import {
@@ -96,6 +97,7 @@ router.put(
 router.get("/:petId", [auth], getPet);
 
 //[GET] Pet from a ownderId
+router.get("/petsfromowner/:ownerId", [auth], getUserPets)
 
 //[GET] Pets sorted only by localization
 router.get("/thinder/:petId", [auth], getPets)
