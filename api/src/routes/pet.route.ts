@@ -13,17 +13,13 @@ import {
     getUserPets
 } from "../controllers/pet.controller";
 import UserModel from "../models/User.model";
-import {
-    genderValidation,
-    nameValidation
-} from "../helpers/PetValidator";
+import { genderValidation, nameValidation } from "../helpers/PetValidator";
 
 const router = Router();
 
 router.post(
     "/",
     [
-
         auth,
 
         ...nameValidation(false),
@@ -52,8 +48,10 @@ router.post(
             }),
 
         body("age")
-            .exists().withMessage("age is required")
-            .isNumeric().withMessage("age require a numeric value"),
+            .exists()
+            .withMessage("age is required")
+            .isNumeric()
+            .withMessage("age require a numeric value"),
 
         validate
     ],
