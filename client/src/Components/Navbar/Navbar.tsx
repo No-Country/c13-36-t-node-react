@@ -22,15 +22,15 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
     setViewMenu(!viewMenu);
   };
   return (
-    <nav className="relative  w-full flex bg-[#E0838E] place-content-between items-center py-2 px-4 top-0 z-10">
+    <nav className="relative w-full flex bg-[#E0838E] place-content-between items-center py-2 px-4 top-0 z-10">
       <NavLink to={"/"} className="flex items-center">
         <Avatar size="medium" src="logo.png" />
-        <h1 className="text-2xl text-white font-bold">ThinderPet</h1>
+        <h1 className="text-xl sm:text-2xl text-white font-bold">ThinderPet</h1>
       </NavLink>
 
       {usuario !== undefined ? (
         <>
-          <ul className="max-md:hidden flex gap-10">
+          <ul className="hidden sm:flex gap-10">
             <li className="text-2xl text-white cursor-pointer ">
               <a href="/#nosotros">Nosotros</a>
             </li>
@@ -40,7 +40,7 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
                 Ver Mascotas
               </li>
             </NavLink>
-            <select className="border-white border-2 text-black">
+            <select className="border-white border-2 text-white bg-[#E0838E] text-xl py-1 px-4">
               <option>Español</option>
               <option>English</option>
             </select>
@@ -54,30 +54,36 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
       ) : (
         <>
           <ul
-            className={`flex gap-10 justify-center items-center max-md:absolute max-md:flex-col max-md:border-2 max-md:border-white max-md:top-[6.5rem] max-md:right-0 max-md:w-60 max-md:p-8 max-md:rounded-xl max-md:${
-              viewMenu ? "flex" : "hidden"
-            }`}
+            className={`sm:flex sm:gap-10 sm:justify-center sm:items-center  ${
+              viewMenu
+                ? "absolute flex-col border-2 border-white top-[6.5rem] right-1 w-auto px-2 py-3 rounded-xl"
+                : "hidden"
+            } `}
           >
-            <li className="text-2xl text-white cursor-pointer ">
+            <li className="text-base sm:text-2xl text-white cursor-pointer mb-1">
               <a href="#nosotros">Nosotros</a>
             </li>{" "}
             {/* RECORDATORIO QUE NO ENVIE A LA PAGINA PRINCIPAL Y QUE SE SCROLLE CUANDO HAGA CLICK */}
-            <li className="text-2xl text-white cursor-pointer ">Ayuda</li>
-            <select className="border-white border-2 bg-[#E0838E]  text-white text-2xl max-md:border-2 max-md:border-black px-2">
+            <li className=" text-base sm:text-2xl text-white cursor-pointer mb-1">
+              Ayuda
+            </li>
+            <select className="border-white border-2 bg-[#E0838E]  text-white text-base sm:text-2xl sm:border-2 sm:border-white px-2 mb-1">
               <option>Español</option>
               <option>English</option>
             </select>
-            <NavLink to={"/login"} className="">
-              <button className="bg-white font-bold px-4 py-2 rounded-lg hover:scale-105 hover:ease-in duration-300">
-                Iniciar Sesión
-              </button>
-            </NavLink>
+            <div>
+              <NavLink to={"/login"} className="">
+                <button className="bg-white font-bold px-2 py-1 sm:px-4 sm:py-2 rounded-lg hover:scale-105 hover:ease-in duration-300 text-base sm:text-xl">
+                  Iniciar Sesión
+                </button>
+              </NavLink>
+            </div>
           </ul>
-          <button onClick={hadleClickMenu} className="hidden max-md:block">
+          <button onClick={hadleClickMenu} className="block sm:hidden">
             {viewMenu ? (
-              <AiOutlineCloseCircle className="w-10 h-10 cursor-pointer " />
+              <AiOutlineCloseCircle className="w-10 h-10 cursor-pointer text-white" />
             ) : (
-              <AiOutlineMenu className="w-10 h-10 cursor-pointer " />
+              <AiOutlineMenu className="w-10 h-10 cursor-pointer text-white" />
             )}
           </button>
         </>
