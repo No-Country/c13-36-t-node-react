@@ -91,3 +91,7 @@ export const deletePet = async (req: Request, res: Response) => {
     }
 };
 
+export const getPets = () => {
+
+}
+

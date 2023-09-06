@@ -8,7 +8,8 @@ import {
     createPet,
     deletePet,
     getPet,
-    updatePet
+    updatePet,
+    getPets
 } from "../controllers/pet.controller";
 import UserModel from "../models/User.model";
 import {
@@ -93,6 +94,13 @@ router.put(
 
 // [GET] Pet
 router.get("/:petId", [auth], getPet);
+
+//[GET] Pet from a ownderId
+
+//[GET] Pets sorted only by localization
+router.get("/:petId", [auth], getPets)
+
+//[GET] Pets sorted by breed and localization
 
 // [DELETE] Pet
 router.delete("/:petId", [auth], deletePet);
