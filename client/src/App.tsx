@@ -99,7 +99,7 @@ function App() {
             element={
               <>
                 <Navbar setusuario={setUsuario} usuario={usuario} />
-                <UserProfile />
+                {loged && <UserProfile usuario={JSON.parse(loged).user} />}
               </>
             }
           />

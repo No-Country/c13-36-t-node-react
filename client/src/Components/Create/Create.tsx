@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import InputWithLabel from "./InputWithLabel";
-import { User, register } from "../../services/users";
+import { User, register, getLocation } from "../../services/users";
 
 export default function Create() {
   const [view, setView] = useState(false);
@@ -60,7 +60,14 @@ export default function Create() {
 
   const handleLocalizationChange = (value: string) => {
     // setDataUser({ ...dataUser, localization: { value: value } });
-    setDataUser({ ...dataUser, localization: value });
+    getLocation(value).then((response) => {
+      setDataUser({
+        ...dataUser,
+        localization: response.formatted_address,
+        longitud: response.geometry.location.lng,
+        latitud: response.geometry.location.lat,
+      });
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -153,7 +160,7 @@ export default function Create() {
         <InputWithLabel
           label="Donde Vives"
           type="text"
-          placeholder="Argentina"
+          placeholder="Ciudad, Estado, Pais"
           autoComplete="Off"
           name="country"
           iconClass="fa-location-dot"
