@@ -66,12 +66,13 @@ export const validateRegisterUser = [
   body("localization")
     .notEmpty()
     .withMessage("Localization is required.")
-    .isLength({ min: 8 })
-    .withMessage("Password mut be at least 8 characters.")
+    .isLength({ min: 4 })
+    .withMessage("localization mut be at least 4 characters.")
     .isString()
     .withMessage("Localization must be string"),
   body("latitud")
-    .notEmpty().withMessage("Latitud is required")
+    .notEmpty()
+    .withMessage("Latitud is required")
     .isNumeric()
     .withMessage("Latitud must be a number"),
   body("longitud")
@@ -131,8 +132,8 @@ export const validateUpdateUser = [
     .optional(),
   body("localization")
     .optional()
-    .isLength({ min: 8 })
-    .withMessage("Password mut be at least 8 characters.")
+    .isLength({ min: 4 })
+    .withMessage("localization mut be at least 4 characters.")
     .isString().withMessage("Localization must be string"),
   body("latitud")
     .optional()

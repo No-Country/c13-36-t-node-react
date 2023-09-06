@@ -98,9 +98,7 @@ router.get("/:petId", [auth], getPet);
 //[GET] Pet from a ownderId
 
 //[GET] Pets sorted only by localization
-router.get("/:petId", [auth], getPets)
-
-//[GET] Pets sorted by breed and localization
+router.get("/thinder/:petId", [auth], getPets)
 
 // [DELETE] Pet
 router.delete("/:petId", [auth], deletePet);
