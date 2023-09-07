@@ -33,6 +33,10 @@ const UserSchema = new Schema<User>(
       type: Number,
       required: true,
     },
+    image: {
+      secure_url: String,
+      public_id: String,
+    },
   },
   modelOptions
 );
