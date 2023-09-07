@@ -12,9 +12,9 @@ const Match: React.FC<MatchProps> = ({ handleMatch }) => {
       <Confetti
         width={1920}
         height={1080}
-        className="bg-grey-800/70 backdrop-blur-sm"
+        className="bg-grey-800/70 backdrop-blur-xl"
       />
-      <div className="p-10 rounded-2xl w-[736px] h-[500px] absolute top-96 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-300/40 z-50 m-auto backdrop-blur-xl">
+      <div className="p-10 rounded-2xl w-[736px] h-[500px] absolute top-96 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-200/70 z-50 m-auto backdrop-blur-2xl">
         <div
           className="absolute top-3 right-6 cursor-pointer"
           onClick={handleMatch}
