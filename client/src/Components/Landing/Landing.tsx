@@ -45,7 +45,7 @@ const Landing = () => {
         </div>
       </section>
 
-      <section className="sm:px-6 lg:px-36 sm:w-full sm:flex sm:justify-center sm:items-center sm:flex-col px-1 sm:my-4">
+      <section className="px-6 lg:px-36 my-10 lg:w-full flex justify-center items-center flex-col  sm:flex-row lg:flex-row max-md:px-10">
         <div className="flex flex-col w-50 sm:w-[100%]">
           <h1
             className="font-sans font-bold text-2xl sm:text-3xl lg:text-4xl my-16"
@@ -53,7 +53,7 @@ const Landing = () => {
           >
             Sobre Nosotros
           </h1>
-          <p className="leading-8 text-justify font-sans text-sm sm:text-lg lg:text-xl font-semibold px-8">
+          <p className="font-sans leading-7 lg:leading-10 text-justify text-sm sm:text-lg lg:text-xl">
             En nuestro acogedor rincón en línea, celebramos la chispa única que
             surge entre las mascotas. Somos una plataforma diseñada
             exclusivamente para ayudar a las mascotas a encontrar compañeros de
@@ -69,16 +69,16 @@ const Landing = () => {
             heredar. Estamos comprometidos a hacer que la experiencia sea lo más
             transparente y satisfactoria para todos nuestros usuarios.
           </p>
-          <p className="font-bold font-sans text-lg px-8 py-5 sm:text-2xl lg:text-3xl sm:px-10 lg:px-24 sm:py-10 text-[#E0838E]">
-            Únete a nuestra comunidad y sé parte de una experiencia donde el
-            amor, diversión y respeto entre mascotas son el centro de atención.
-          </p>
         </div>
         <img
           src={"equipoTrabajo.png"}
-          className="w-80 sm:w-[50vw] lg:w-[30vw]"
+          className="w-80 sm:w-[50vw] lg:w-[30vw] mobile:m-auto"
         ></img>
       </section>
+      <p className="font-bold font-sans text-2xl px-8 py-5 sm:text-2xl lg:text-3xl sm:px-10 lg:px-24 sm:py-10 text-[#E0838E]">
+        Únete a nuestra comunidad y sé parte de una experiencia donde el
+        amor, diversión y respeto entre mascotas son el centro de atención.
+      </p>
       {visible && (
         <a href="#">
           <FaArrowUp className="border border-black rounded-full p-1 w-8 h-8 cursor-pointer fixed bottom-10 sm:bottom-20 right-3 sm:right-20 max-md:right-4" />
@@ -86,11 +86,11 @@ const Landing = () => {
       )}
       <section className="px-6 lg:px-36 my-10 lg:w-full flex justify-center items-center flex-col  sm:flex-row lg:flex-row max-md:px-10">
         <div className="">
-          <h1 className="font-sans font-bold text-2xl sm:text-3xl lg:text-4xl my-10">
+          <h1 className="font-sans font-bold text-2xl sm:text-3xl lg:text-4xl my-10 mobile:my-4">
             Políticas
           </h1>
-          <p className="leading-7 lg:leading-10 text-center text-sm sm:text-lg lg:text-xl">
-            <b>DEJAMOS ASENTADO QUE NO FOMENTAMOS LA REPRODUCCION COMERCIAL</b>
+          <b>DEJAMOS ASENTADO QUE NO FOMENTAMOS LA REPRODUCCION COMERCIAL</b>
+          <p className="font-sans leading-7 lg:leading-10 text-justify text-sm sm:text-lg lg:text-xl">
             <br />
             En caso de que tenga conocimiento de cualquier caso que vaya en
             contra de esta política, le instamos a que nos informe de inmediato

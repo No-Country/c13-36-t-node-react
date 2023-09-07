@@ -55,14 +55,13 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
           <ul
             className={`sm:flex sm:gap-10 sm:justify-center sm:items-center  ${
               viewMenu
-                ? "absolute flex-col border-2 border-white top-[6.5rem] right-1 w-auto px-2 py-3 rounded-xl"
-                : "hidden"
+                ? "absolute flex-col border-2 border-white top-[6.5rem] right-1 w-auto px-2 py-3 rounded-xl bg-[#E0838E] leading-10"
+                : "hidden" 
             } `}
           >
             <li className="text-base sm:text-2xl text-white cursor-pointer mb-1">
               <a href="#nosotros">Nosotros</a>
             </li>{" "}
-            {/* RECORDATORIO QUE NO ENVIE A LA PAGINA PRINCIPAL Y QUE SE SCROLLE CUANDO HAGA CLICK */}
             <li className=" text-base sm:text-2xl text-white cursor-pointer mb-1">
               Ayuda
             </li>
