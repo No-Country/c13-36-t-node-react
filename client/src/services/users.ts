@@ -1,5 +1,4 @@
 import axios from "axios";
-import { PetResponse } from "../types/types";
 
 interface LoginResponse {
   message: string;
@@ -60,8 +59,8 @@ export async function register(data: User): Promise<User> {
         password: data.password,
         phone: data.phone,
         localization: data.localization,
-        latitud: data.latitud,
-        longitud: data.longitud,
+        /* latitud: data.latitud,
+        longitud: data.longitud, */
       },
       {
         headers: {
@@ -90,27 +89,11 @@ export async function register(data: User): Promise<User> {
   }
 }
 
-export const getPets = async (id: string): Promise<PetResponse[] | string> => {
+export async function getLocation(ubicacion: string) {
   const response = await axios.get(
-    `https://thinderpet-api-ild3-dev.fl0.io/api/v1/pet/${id}`
+    `https://maps.googleapis.com/maps/api/geocode/json?address=${ubicacion}&key=${
+      import.meta.env.VITE_API_KEY
+    }`
   );
-  console.log(response);
-  return response.data;
-};
-
-export async function viewDataUser(userId: string, tokenUser: string) {
-  try {
-    const response = await axios.get(
-      `https://thinderpet-api-ild3-dev.fl0.io/api/v1/user/${userId}`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `${tokenUser}`,
-        },
-      }
-    );
-    const userData = response.data;
-    return userData
-  } catch (error) {
-  }
+  return response.data.results[0];
 }

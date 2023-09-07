@@ -49,7 +49,7 @@ function InputWithLabel({
           }`}
           name={name}
           minLength={4}
-          maxLength={30}
+          maxLength={50}
           required
           onChange={handleChange}
         />

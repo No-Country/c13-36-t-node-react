@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import InputWithLabel from "./InputWithLabel";
-import { User, register } from "../../services/users";
+import { User, register, getLocation } from "../../services/users";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Create() {
   const [view, setView] = useState(false);
@@ -60,7 +62,16 @@ export default function Create() {
 
   const handleLocalizationChange = (value: string) => {
     // setDataUser({ ...dataUser, localization: { value: value } });
-    setDataUser({ ...dataUser, localization: value });
+    getLocation(value).then((response) => {
+      console.log(response);
+
+      setDataUser({
+        ...dataUser,
+        localization: response.formatted_address,
+        longitud: response.geometry.location.lng,
+        latitud: response.geometry.location.lat,
+      });
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -70,112 +81,129 @@ export default function Create() {
       alert("datos erroneos");
     } else {
       setDataUser(response);
+      toast.success("Usuario creado con éxito");
     }
   };
   return (
-    <main className="flex justify-start flex-col items-center w-[500px] border-2 border-black relative rounded-md max-md:w-[100%] bg-[#fff] mt-10">
-      <img
-        src={"avatar.png"}
-        className="absolute w-24 top-[-50px] border-2 rounded-full"
-      ></img>
-      <h1 className="text-2xl mt-12 font-bold">Registrarme</h1>
-      <form
-        className="flex flex-col items-start gap-3 w-full"
-        onSubmit={handleSubmit}
-      >
-        <InputWithLabel
-          autoComplete=""
-          label="Nombre de Usuario"
-          type="text"
-          placeholder="nombreDeUsuario"
-          name="username"
-          iconClass="fa-user"
-          onChange={handleUsernameChange}
-          setPermitSubmit={function (): void {}}
-        />
-        <InputWithLabel
-          label="Nombre"
-          type="text"
-          placeholder="John"
-          name="firstName"
-          iconClass="fa-user"
-          autoComplete=""
-          onChange={handleFirstNameChange}
-          setPermitSubmit={function (): void {
-            throw new Error("Function not implemented.");
-          }}
-        />
-        <InputWithLabel
-          autoComplete=""
-          label="Apellido"
-          type="text"
-          placeholder="Doe"
-          name="lastName"
-          iconClass="fa-user"
-          onChange={handleLastNameChange}
-          setPermitSubmit={function (): void {
-            throw new Error("Function not implemented.");
-          }}
-        />
-        <InputWithLabel
-          label="Correo electrónico"
-          type="email"
-          placeholder="user123@thinderpet.com"
-          autoComplete="Off"
-          name="email"
-          iconClass="fa-envelope"
-          onChange={handleEmailChange}
-          setPermitSubmit={function (): void {
-            throw new Error("Function not implemented.");
-          }}
-        />
-        <InputWithLabel
-          label="Contraseña"
-          type={view ? "text" : "password"}
-          placeholder="•••••••••"
-          autoComplete="Off"
-          name="password"
-          iconClass={view ? "fa-eye" : "fa-lock"}
-          viewPassword={viewPassword}
-          onChange={handlePasswordChange}
-          setPermitSubmit={function (): void {}}
-        />
-        <InputWithLabel
-          label="Telefono"
-          type="text"
-          placeholder="1161914321"
-          autoComplete="Off"
-          name="phone"
-          iconClass="fa-phone"
-          onChange={handlePhoneChange}
-          setPermitSubmit={function (): void {}}
-        />
-        <InputWithLabel
-          label="Donde Vives"
-          type="text"
-          placeholder="Argentina"
-          autoComplete="Off"
-          name="country"
-          iconClass="fa-location-dot"
-          onChange={handleLocalizationChange}
-          setPermitSubmit={function (): void {}}
-        />
-          <button
-            value="Login"
-            className="bg-[#54A4A5] text-white px-4 py-2 m-auto rounded-xl"
+    <main className="w-full">
+      <ToastContainer />
+      <div className="grid grid-cols-2 min-h-screen mobile:flex mobile:h-full mobile:justify-center  ">
+        <div className="relative bg-[#e0838eb9] w-11/12 mobile:hidden mobile:w-0 mobile:bg-none ">
+          <img
+            className="absolute bottom-0 right-0 w-full"
+            src="happy-dog.png"
+            alt="happydog"
+          />
+        </div>
+        <div className="flex justify-center flex-col items-center sm:w-[500px] px-10 border-2 border-black relative rounded-md mx-auto bg-[#fff] my-20">
+          <img
+            src={"avatar.png"}
+            className="absolute w-24 top-[-50px] border-2 rounded-full"
+          ></img>
+          <h1 className="text-2xl mt-12 font-bold">Registrarme</h1>
+          <form
+            className="flex flex-col items-start gap-3 w-full"
+            onSubmit={handleSubmit}
           >
-            Registrarme
-          </button>
-      </form>
-      <NavLink to={"/login"}>
-        <button className="bg-red-400 text-white px-4 py-2 mb-4 rounded-xl">
-          <i
-            className="fa-solid fa-arrow-left mr-2"
-            style={{ color: "#fff" }}
-          ></i>
-          Atras
-        </button>
-      </NavLink>
+            <InputWithLabel
+              autoComplete=""
+              label="Nombre de Usuario"
+              type="text"
+              placeholder="nombreDeUsuario"
+              name="username"
+              iconClass="fa-user"
+              onChange={handleUsernameChange}
+              setPermitSubmit={function (): void {}}
+            />
+            <InputWithLabel
+              label="Nombre"
+              type="text"
+              placeholder="John"
+              name="firstName"
+              iconClass="fa-user"
+              autoComplete=""
+              onChange={handleFirstNameChange}
+              setPermitSubmit={function (): void {
+                throw new Error("Function not implemented.");
+              }}
+            />
+            <InputWithLabel
+              autoComplete=""
+              label="Apellido"
+              type="text"
+              placeholder="Doe"
+              name="lastName"
+              iconClass="fa-user"
+              onChange={handleLastNameChange}
+              setPermitSubmit={function (): void {
+                throw new Error("Function not implemented.");
+              }}
+            />
+            <InputWithLabel
+              label="Correo electrónico"
+              type="email"
+              placeholder="user123@thinderpet.com"
+              autoComplete="Off"
+              name="email"
+              iconClass="fa-envelope"
+              onChange={handleEmailChange}
+              setPermitSubmit={function (): void {
+                throw new Error("Function not implemented.");
+              }}
+            />
+            <InputWithLabel
+              label="Contraseña"
+              type={view ? "text" : "password"}
+              placeholder="•••••••••"
+              autoComplete="Off"
+              name="password"
+              iconClass={view ? "fa-eye" : "fa-lock"}
+              viewPassword={viewPassword}
+              onChange={handlePasswordChange}
+              setPermitSubmit={function (): void {}}
+            />
+            <InputWithLabel
+              label="Telefono"
+              type="text"
+              placeholder="1161914321"
+              autoComplete="Off"
+              name="phone"
+              iconClass="fa-phone"
+              onChange={handlePhoneChange}
+              setPermitSubmit={function (): void {}}
+            />
+            <InputWithLabel
+              label="Donde Vives"
+              type="text"
+              placeholder="Ciudad, Estado, Pais"
+              autoComplete="Off"
+              name="country"
+              iconClass="fa-location-dot"
+              onChange={handleLocalizationChange}
+              setPermitSubmit={function (): void {}}
+            />
+
+            <div className="flex flex-row-reverse md:flex-col mx-auto my-4 gap-4 items-center">
+              <button
+                value="Login"
+                className="bg-[#77D3EC] text-white px-4 py-2 rounded-xl"
+                type="submit"
+              >
+                Registrarme
+              </button>
+              <NavLink to={"/login"}>
+                <button className="bg-[#e0838e] hover:bg-[#e0838eb9] text-white px-4 py-2 my-4 rounded-xl">
+                  <i
+                    className="fa-solid fa-arrow-left mr-2"
+                    style={{ color: "#fff" }}
+                  ></i>
+                  Atras
+                </button>
+              </NavLink>
+            </div>
+          </form>
+        </div>
+      </div>
     </main>
   );
 }
