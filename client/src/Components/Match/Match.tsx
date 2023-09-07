@@ -15,20 +15,10 @@ const Match: React.FC<MatchProps> = ({ handleMatch }) => {
         height={1080}
         className="bg-grey-800/70 backdrop-blur-xl"
       />
-<<<<<<< HEAD
       <div className="p-10 rounded-2xl w-[736px] h-[500px] absolute top-96 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-300/40 z-50 m-auto backdrop-blur-xl">
         <FaWindowClose 
         className="absolute top-3 right-6 cursor-pointer text-2xl"
         onClick={handleMatch}/>
-=======
-      <div className="p-10 rounded-2xl w-[736px] h-[500px] absolute top-96 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-200/70 z-50 m-auto backdrop-blur-2xl">
-        <div
-          className="absolute top-3 right-6 cursor-pointer"
-          onClick={handleMatch}
-        >
-          X
-        </div>
->>>>>>> eeba4406f685d18721b86a76a0933b31620e0cb3
         <h1 className="uppercase font-bold">Pet Match</h1>
         <div className="px-10 mb-8 flex place-content-around">
           <div className="flex flex-col gap-4">
