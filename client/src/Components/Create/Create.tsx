@@ -1,12 +1,22 @@
-import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import InputWithLabel from "./InputWithLabel";
 import { User, register, getLocation } from "../../services/users";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Create() {
+  const navigate = useNavigate();
   const [view, setView] = useState(false);
+  const [formError, setFormError] = useState({
+    name: false,
+    lastname: false,
+    email: false,
+    password: false,
+    phone: false,
+    localization: false,
+    username: false,
+  });
   const [dataUser, setDataUser] = useState<User>({
     username: "",
     firstName: "",
@@ -19,58 +29,85 @@ export default function Create() {
     latitud: 0,
   });
 
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        setDataUser({
-          ...dataUser,
-          longitud: position.coords.longitude,
-          latitud: position.coords.latitude,
-        });
-      });
-    }
-  });
-
   const viewPassword = () => {
     setView(!view);
   };
 
   const handleUsernameChange = (value: string) => {
-    setDataUser({ ...dataUser, username: value });
+    if (value.length < 4) {
+      setFormError({ ...formError, username: true });
+    } else {
+      setFormError({ ...formError, username: false });
+      setDataUser({ ...dataUser, username: value });
+    }
   };
 
   const handleFirstNameChange = (value: string) => {
-    setDataUser({ ...dataUser, firstName: value });
+    if (value.length < 3) {
+      setFormError({ ...formError, name: true });
+    } else {
+      setFormError({ ...formError, name: false });
+      setDataUser({ ...dataUser, firstName: value });
+    }
   };
   const handleLastNameChange = (value: string) => {
-    setDataUser({ ...dataUser, lastName: value });
+    if (value.length < 4) {
+      setFormError({ ...formError, lastname: true });
+    } else {
+      setFormError({ ...formError, lastname: false });
+      setDataUser({ ...dataUser, lastName: value });
+    }
   };
 
   const handleEmailChange = (value: string) => {
-    setDataUser({ ...dataUser, email: value });
+    if (!value.includes("@") || !value.includes(".") || value.length < 4) {
+      setFormError({ ...formError, email: true });
+    } else {
+      setFormError({ ...formError, email: false });
+      setDataUser({ ...dataUser, email: value });
+    }
   };
 
   const handlePasswordChange = (value: string) => {
-    setDataUser({ ...dataUser, password: value });
+    if (
+      !/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$/.test(
+        value
+      )
+    ) {
+      console.log("error");
+
+      setFormError({ ...formError, password: true });
+    } else {
+      setFormError({ ...formError, password: false });
+      setDataUser({ ...dataUser, password: value });
+    }
   };
 
   const handlePhoneChange = (value: string) => {
     // // Puedes convertir el valor a número si es necesario
     // const phone = parseInt(value, 10);
-    setDataUser({ ...dataUser, phone: value });
+    if (value.length < 10) {
+      setFormError({ ...formError, phone: true });
+    } else {
+      setFormError({ ...formError, phone: false });
+      setDataUser({ ...dataUser, phone: value });
+    }
   };
 
   const handleLocalizationChange = (value: string) => {
     // setDataUser({ ...dataUser, localization: { value: value } });
     getLocation(value).then((response) => {
-      console.log(response);
-
-      setDataUser({
-        ...dataUser,
-        localization: response.formatted_address,
-        longitud: response.geometry.location.lng,
-        latitud: response.geometry.location.lat,
-      });
+      if (response === undefined) {
+        setFormError({ ...formError, localization: true });
+      } else {
+        setFormError({ ...formError, localization: false });
+        setDataUser({
+          ...dataUser,
+          localization: response.formatted_address,
+          longitud: response.geometry.location.lng,
+          latitud: response.geometry.location.lat,
+        });
+      }
     });
   };
 
@@ -78,10 +115,13 @@ export default function Create() {
     e.preventDefault();
     const response = await register(dataUser);
     if (typeof response === "string") {
-      alert("datos erroneos");
+      toast.error("Datos erroneos");
     } else {
       setDataUser(response);
-      toast.success("Usuario creado con éxito");
+      toast.success("Usuario creado con éxito. Redirigiendo al login");
+      setTimeout(() => {
+        navigate("/login");
+      }, 5000);
     }
   };
   return (
@@ -114,7 +154,13 @@ export default function Create() {
               iconClass="fa-user"
               onChange={handleUsernameChange}
               setPermitSubmit={function (): void {}}
+              regitrationError={formError.username}
             />
+            {formError.username && (
+              <p className="text-red-500">
+                Ingrese un nombre de usuario con mas de 4 caracteres
+              </p>
+            )}
             <InputWithLabel
               label="Nombre"
               type="text"
@@ -126,7 +172,13 @@ export default function Create() {
               setPermitSubmit={function (): void {
                 throw new Error("Function not implemented.");
               }}
+              regitrationError={formError.name}
             />
+            {formError.name && (
+              <p className="text-red-500">
+                Ingrese un nombre con mas de 3 caracteres
+              </p>
+            )}
             <InputWithLabel
               autoComplete=""
               label="Apellido"
@@ -138,7 +190,13 @@ export default function Create() {
               setPermitSubmit={function (): void {
                 throw new Error("Function not implemented.");
               }}
+              regitrationError={formError.lastname}
             />
+            {formError.lastname && (
+              <p className="text-red-500">
+                Ingrese un apellido con mas de 4 caracteres
+              </p>
+            )}
             <InputWithLabel
               label="Correo electrónico"
               type="email"
@@ -150,7 +208,11 @@ export default function Create() {
               setPermitSubmit={function (): void {
                 throw new Error("Function not implemented.");
               }}
+              regitrationError={formError.email}
             />
+            {formError.email && (
+              <p className="text-red-500">Ingrese un correo válido</p>
+            )}
             <InputWithLabel
               label="Contraseña"
               type={view ? "text" : "password"}
@@ -161,7 +223,14 @@ export default function Create() {
               viewPassword={viewPassword}
               onChange={handlePasswordChange}
               setPermitSubmit={function (): void {}}
+              regitrationError={formError.password}
             />
+            {formError.password && (
+              <p className="text-red-500">
+                Verifique contraseña (8-16 caracteres, al menos 1 mayúscula, 1
+                número y un caracter especial)
+              </p>
+            )}
             <InputWithLabel
               label="Telefono"
               type="text"
@@ -171,7 +240,13 @@ export default function Create() {
               iconClass="fa-phone"
               onChange={handlePhoneChange}
               setPermitSubmit={function (): void {}}
+              regitrationError={formError.phone}
             />
+            {formError.phone && (
+              <p className="text-red-500">
+                Debe ingresar un número de teléfono válido.
+              </p>
+            )}
             <InputWithLabel
               label="Donde Vives"
               type="text"
@@ -181,16 +256,29 @@ export default function Create() {
               iconClass="fa-location-dot"
               onChange={handleLocalizationChange}
               setPermitSubmit={function (): void {}}
+              regitrationError={formError.localization}
             />
-
+            {formError.localization && (
+              <p className="text-red-500">No es una ubicación válida.</p>
+            )}
             <div className="flex flex-row-reverse md:flex-col mx-auto my-4 gap-4 items-center">
               <button
                 value="Login"
                 className="bg-[#77D3EC] text-white px-4 py-2 rounded-xl"
                 type="submit"
+                disabled={
+                  formError.username ||
+                  formError.email ||
+                  formError.password ||
+                  formError.phone ||
+                  formError.name ||
+                  formError.lastname ||
+                  formError.localization
+                }
               >
                 Registrarme
               </button>
+
               <NavLink to={"/login"}>
                 <button className="bg-[#e0838e] hover:bg-[#e0838eb9] text-white px-4 py-2 my-4 rounded-xl">
                   <i
