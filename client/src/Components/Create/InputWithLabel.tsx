@@ -7,6 +7,7 @@ interface InputProps {
   autoComplete: string;
   mailError?: string;
   passError?: string;
+  regitrationError?: boolean;
   setPermitSubmit: React.Dispatch<React.SetStateAction<boolean>>;
   setMailError?: React.Dispatch<React.SetStateAction<string>>;
   setPassError?: React.Dispatch<React.SetStateAction<string>>;
@@ -24,9 +25,12 @@ function InputWithLabel({
   onChange,
   mailError,
   passError,
+  regitrationError,
 }: InputProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (onChange) {
+      console.log(regitrationError);
+
       onChange(e.target.value, name);
     }
   };
@@ -43,7 +47,8 @@ function InputWithLabel({
           autoComplete="Off"
           className={`bg-[#D9D9D9] px-4 py-2 rounded-lg w-[100%] valid:border-2 border-green-400 ${
             (mailError && mailError?.length > 0) ||
-            (passError && passError?.length > 0)
+            (passError && passError?.length > 0) ||
+            regitrationError
               ? "border-2 border-red-400"
               : ""
           }`}
@@ -51,7 +56,7 @@ function InputWithLabel({
           minLength={4}
           maxLength={30}
           required
-          onChange={handleChange}
+          onBlur={handleChange}
         />
         <i
           className={`fa-solid ${iconClass} absolute right-3 top-[10px] hover:cursor-pointer`}

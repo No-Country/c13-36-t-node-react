@@ -41,3 +41,13 @@ export type Pet = {
   description: string;
   breed: string;
 };
+
+export type RegistersErrors = {
+  name: boolean;
+  lastname: boolean;
+  email: boolean;
+  password: boolean;
+  phone: boolean;
+  localization: boolean;
+  username: boolean;
+};

@@ -4,7 +4,7 @@ export default function Footer() {
   const opciones = ["Nosotros", "Politicas", "Contacto", "Ayuda"];
 
   return (
-    <footer className="bg-[#99A3B0] w-full mobile:w-[100vw] mobile:flex mobile:flex-col mobile:justify-center mobile:items-center mobile:text-center mobile:align-middle p-10 flex flex-row justify-around align-baseline ">
+    <footer className="bg-[#99A3B0] w-full z-10 mobile:w-[100vw] mobile:hidden mobile:justify-center mobile:items-center mobile:text-center mobile:align-middle p-10 flex flex-row justify-around align-baseline ">
       <img
         src={"logoFooter.png"}
         alt="footer-logo-landing-page"
