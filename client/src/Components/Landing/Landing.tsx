@@ -81,7 +81,7 @@ const Landing = () => {
       </p>
       {visible && (
         <a href="#">
-          <FaArrowUp className="border border-black rounded-full p-1 w-8 h-8 cursor-pointer fixed bottom-10 sm:bottom-20 right-3 sm:right-20 max-md:right-4" />
+          <FaArrowUp className="border z-20 border-black rounded-full p-1 w-8 h-8 cursor-pointer fixed bottom-10 sm:bottom-20 right-3 sm:right-20 max-md:right-4" />
         </a>
       )}
       <section className="px-6 lg:px-36 my-10 lg:w-full flex justify-center items-center flex-col  sm:flex-row lg:flex-row max-md:px-10">
