@@ -30,7 +30,7 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
 
       {usuario !== undefined ? (
         <>
-          <ul className="hidden sm:flex gap-10">
+          <ul className="hidden lg:flex gap-10">
             <li className="text-2xl text-white cursor-pointer ">
               <a href="/#nosotros">Nosotros</a>
             </li>
