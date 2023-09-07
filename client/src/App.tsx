@@ -15,14 +15,14 @@ import Navbar from "./Components/Navbar/Navbar";
 import Reset from "./Components/Reset/Reset";
 import Create from "./Components/Create/Create";
 import { Usuario } from "./types/types";
+import UserProfile from "./Components/UserProfile/UserProfile";
 import Footer from "./Components/Footer/Footer";
-import Profile from "./Components/ProfileUser/Profile";
 
 register();
 
 function App() {
   const [usuario, setUsuario] = useState<Usuario | undefined>();
-  const mascotas = ["chihuahua", "frances", "golden", "pastor"];
+  const mascotas = ["chihuahua", "frances", "golden", "pastor"]; //reemplazar por el array de mascotas que tengo que traer del back.
   const loged = localStorage.getItem("token");
   useEffect(() => {
     if (loged) {
@@ -35,23 +35,23 @@ function App() {
     <main className="flex flex-col w-full items-center">
       <Router>
         <Routes>
-          <Route path="/" element={
-          <>
-            <Navbar setusuario={setUsuario} usuario={usuario} />
-            <Landing />
-            <Footer></Footer>
-          </>
-
-          } />
+          <Route
+            path="/"
+            element={
+              <>
+                <Navbar setusuario={setUsuario} usuario={usuario} />
+                <Landing />
+                <Footer></Footer>
+              </>
+            }
+          />
           <Route
             path="/login"
             element={
               !loged ? (
                 <>
-                  <Navbar setusuario={setUsuario} usuario={usuario} />
                   <Login setusuario={setUsuario} />
                   <Footer></Footer>
-
                 </>
               ) : (
                 <Navigate to="/main" />
@@ -82,7 +82,6 @@ function App() {
               <>
                 <Navbar setusuario={setUsuario} usuario={usuario} />
                 <PetForm />
-                
               </>
             }
           />
@@ -91,8 +90,16 @@ function App() {
             element={
               <>
                 <Navbar setusuario={setUsuario} usuario={usuario} />
-                <Create></Create>
-                
+                <Create />
+              </>
+            }
+          />
+          <Route
+            path="/userprofile"
+            element={
+              <>
+                <Navbar setusuario={setUsuario} usuario={usuario} />
+                <UserProfile />
               </>
             }
           />
@@ -102,15 +109,6 @@ function App() {
               <>
                 <Navbar setusuario={setUsuario} usuario={usuario} />
                 <PetForm />
-              </>
-            }
-          />
-          <Route
-            path="/perfil"
-            element={
-              <>
-                <Navbar setusuario={setUsuario} usuario={usuario} />
-                <Profile />
               </>
             }
           />

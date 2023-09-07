@@ -1,9 +1,9 @@
 import { Router } from "express";
 import { body, param } from "express-validator";
 import validate from "../handlers/request.handler";
-import { auth } from "../middlewares/token";
+import { auth } from "../helpers/token";
 import PetModel from "../models/Pet.model";
-import { BreedModel } from "../models/Breed.model";
+import { BreedModel } from "../models/Breed&Specie.model";
 import {
     createPet,
     deletePet,
@@ -14,13 +14,16 @@ import UserModel from "../models/User.model";
 import {
     genderValidation,
     nameValidation
-} from "../middlewares/pet.middleware";
+} from "../helpers/PetValidator";
 
 const router = Router();
 
 router.post(
     "/",
     [
+
+        auth,
+
         ...nameValidation(false),
         ...genderValidation(false),
 
@@ -37,14 +40,18 @@ router.post(
 
         body("ownerId")
             .exists()
-            .withMessage("userId is required")
+            .withMessage("ownerId is required")
             .isLength({ min: 16 })
-            .withMessage("userId minimun 16 characters")
+            .withMessage("ownerId minimun 16 characters")
             .custom(async (value) => {
                 const user = await UserModel.findById(value);
-                if (!user) throw new Error("userId doesn't exist");
+                if (!user) throw new Error("ownerId doesn't exist");
                 return false;
             }),
+
+        body("age")
+            .exists().withMessage("age is required")
+            .isNumeric().withMessage("age require a numeric value"),
 
         validate
     ],
@@ -88,6 +95,6 @@ router.put(
 router.get("/:petId", auth, getPet);
 
 // [DELETE] Pet
-router.delete("/:petId", [auth], deletePet);
+router.delete("/:petId", auth, deletePet);
 
 export { router };

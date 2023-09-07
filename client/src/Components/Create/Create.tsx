@@ -1,72 +1,164 @@
-import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
-import InputWithLabel from './InputWithLabel'
+import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
+import InputWithLabel from "./InputWithLabel";
+import { User, register } from "../../services/users";
 
 export default function Create() {
-  const [view, setView] = useState(false)
-  const [dataUser, setDataUser] = useState({})
+  const [view, setView] = useState(false);
+  const [dataUser, setDataUser] = useState<User>({
+    username: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    phone: "",
+    localization: "",
+    longitud: 0,
+    latitud: 0,
+  });
 
-  const viewPassword = () =>{
-      setView(!view)
-  }
-  const handleSubmit = (evt: React.FormEvent<HTMLFormElement | Event>) => {
-    evt.preventDefault();
-  
-    // Verifica si el evento es de tipo HTMLFormElement
-    if (evt.target instanceof HTMLFormElement) {
-      const fields = Object.fromEntries(new FormData(evt.target));
-      setDataUser(fields)
-      
-      console.log(dataUser)
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setDataUser({
+          ...dataUser,
+          longitud: position.coords.longitude,
+          latitud: position.coords.latitude,
+        });
+      });
+    }
+  });
+
+  const viewPassword = () => {
+    setView(!view);
+  };
+
+  const handleUsernameChange = (value: string) => {
+    setDataUser({ ...dataUser, username: value });
+  };
+
+  const handleFirstNameChange = (value: string) => {
+    setDataUser({ ...dataUser, firstName: value });
+  };
+  const handleLastNameChange = (value: string) => {
+    setDataUser({ ...dataUser, lastName: value });
+  };
+
+  const handleEmailChange = (value: string) => {
+    setDataUser({ ...dataUser, email: value });
+  };
+
+  const handlePasswordChange = (value: string) => {
+    setDataUser({ ...dataUser, password: value });
+  };
+
+  const handlePhoneChange = (value: string) => {
+    // // Puedes convertir el valor a número si es necesario
+    // const phone = parseInt(value, 10);
+    setDataUser({ ...dataUser, phone: value });
+  };
+
+  const handleLocalizationChange = (value: string) => {
+    // setDataUser({ ...dataUser, localization: { value: value } });
+    setDataUser({ ...dataUser, localization: value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const response = await register(dataUser);
+    if (typeof response === "string") {
+      alert("datos erroneos");
+    } else {
+      setDataUser(response);
     }
   };
   return (
-    <main className="flex justify-start flex-col items-center w-[500px] border-2 bg-[#fff] border-black relative rounded-md max-md:w-[100%] max-md:mt-10 max-md:p-4">
-      <img src={"avatar.png"} className="absolute w-24 top-[-50px] border-2 rounded-full"></img>
+    <main className="flex justify-start flex-col items-center w-[500px] border-2 border-black relative rounded-md max-md:w-[100%] bg-[#fff] mt-10">
+      <img
+        src={"avatar.png"}
+        className="absolute w-24 top-[-50px] border-2 rounded-full"
+      ></img>
       <h1 className="text-2xl mt-12 font-bold">Registrarme</h1>
-      <form className="flex flex-col items-start gap-3 w-full py-4" onSubmit={handleSubmit}>
+      <form
+        className="flex flex-col items-start gap-3 w-full"
+        onSubmit={handleSubmit}
+      >
         <InputWithLabel
-          label='Usuario' 
-          type='text' 
-          placeholder='JohnDoe' 
-          name='nameUser' 
-          iconClass='fa-user'
-          />
+          autoComplete=""
+          label="Nombre de Usuario"
+          type="text"
+          placeholder="nombreDeUsuario"
+          name="username"
+          iconClass="fa-user"
+          onChange={handleUsernameChange}
+          setPermitSubmit={function (): void {}}
+        />
+        <InputWithLabel
+          label="Nombre"
+          type="text"
+          placeholder="John"
+          name="firstName"
+          iconClass="fa-user"
+          autoComplete=""
+          onChange={handleFirstNameChange}
+          setPermitSubmit={function (): void {
+            throw new Error("Function not implemented.");
+          }}
+        />
+        <InputWithLabel
+          autoComplete=""
+          label="Apellido"
+          type="text"
+          placeholder="Doe"
+          name="lastName"
+          iconClass="fa-user"
+          onChange={handleLastNameChange}
+          setPermitSubmit={function (): void {
+            throw new Error("Function not implemented.");
+          }}
+        />
         <InputWithLabel
           label="Correo electrónico"
           type="email"
           placeholder="user123@thinderpet.com"
-          name="emailUser"
+          autoComplete="Off"
+          name="email"
           iconClass="fa-envelope"
-        />
-        <InputWithLabel
-          label="Repetir Correo electrónico"
-          type="text"
-          placeholder="user123@thinderpet.com"
-          name="emailUserRepeat"
-          iconClass="fa-envelope"
+          onChange={handleEmailChange}
+          setPermitSubmit={function (): void {
+            throw new Error("Function not implemented.");
+          }}
         />
         <InputWithLabel
           label="Contraseña"
           type={view ? "text" : "password"}
           placeholder="•••••••••"
+          autoComplete="Off"
           name="password"
           iconClass={view ? "fa-eye" : "fa-lock"}
           viewPassword={viewPassword}
+          onChange={handlePasswordChange}
+          setPermitSubmit={function (): void {}}
         />
         <InputWithLabel
           label="Telefono"
-          type="number"
+          type="text"
           placeholder="1161914321"
-          name="phoneUser"
+          autoComplete="Off"
+          name="phone"
           iconClass="fa-phone"
+          onChange={handlePhoneChange}
+          setPermitSubmit={function (): void {}}
         />
         <InputWithLabel
           label="Donde Vives"
           type="text"
           placeholder="Argentina"
-          name="countryUser"
+          autoComplete="Off"
+          name="country"
           iconClass="fa-location-dot"
+          onChange={handleLocalizationChange}
+          setPermitSubmit={function (): void {}}
         />
           <button
             value="Login"

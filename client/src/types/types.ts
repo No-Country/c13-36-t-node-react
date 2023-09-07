@@ -12,3 +12,32 @@ export type Usuario = {
     id: string;
   };
 };
+
+export type UsuarioRegistro = {
+  username: "string";
+  firstName: "string";
+  lastName: "string";
+  password: "string";
+  email: "string";
+  localization: "string";
+  latitud: number;
+  longitud: number;
+  phone: "string";
+};
+
+export type PetResponse = {
+  name: string;
+  gender: string;
+  breedId: string;
+  ownerId: string;
+  age: number;
+  description: string;
+};
+
+export type Pet = {
+  name: string;
+  gender: string;
+  age: string;
+  description: string;
+  breed: string;
+};
