@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Pet } from "../types/types";
+import { Pet, PetResponse } from "../types/types";
 
 export async function createPet(data: Pet, id: string): Promise<Pet> {
   const response = await axios.post(
@@ -15,3 +15,10 @@ export async function createPet(data: Pet, id: string): Promise<Pet> {
   );
   return response.data;
 }
+export const getPets = async (id: string): Promise<PetResponse[] | string> => {
+  const response = await axios.get(
+    `https://thinderpet-api-ild3-dev.fl0.io/api/v1/pet/${id}`
+  );
+  console.log(response);
+  return response.data;
+};

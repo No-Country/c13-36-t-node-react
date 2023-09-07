@@ -43,12 +43,16 @@ const Login: React.FC<LoginProps> = ({ setusuario }) => {
     setView(!view);
   };
   return (
-    <main className="min-h-screen w-full">
-      <div className="grid grid-cols-2 h-screen mobile:flex mobile:h-full mobile:justify-center  ">
-        <div className="bg-[#E0838E] w-11/12 mobile:hidden mobile:w-0 mobile:bg-none">
-          {" "}
+    <main className="w-full">
+      <div className="grid grid-cols-2 min-h-screen mobile:flex mobile:h-full mobile:justify-center  ">
+        <div className="bg-[#E0838E] w-11/12 mobile:hidden mobile:w-0 mobile:bg-none relative">
+          <img
+            className="absolute bottom-0 right-0 w-full"
+            src="happy-dog.png"
+            alt="happydog"
+          />
         </div>
-        <div className="flex justify-center items-center mt-24 mb-24 flex-col px-5 py-16 w-[500px] mobile:w-[95vw] mobile:px-2 border-2 border-[#000] relative  rounded-md">
+        <div className="flex justify-center items-center my-24 flex-col px-5 py-16 w-[500px] mobile:w-[95vw] mobile:px-2 border-2 border-[#000] relative mx-auto rounded-md">
           <img
             src={"avatar.png"}
             className="absolute w-24 top-[-50px] border-2 rounded-full"

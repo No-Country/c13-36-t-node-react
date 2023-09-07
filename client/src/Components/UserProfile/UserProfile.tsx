@@ -1,7 +1,14 @@
 import { NavLink } from "react-router-dom";
 import { AiOutlinePlusCircle } from "react-icons/ai";
+import { User } from "../../services/users";
 
-const UserProfile = () => {
+interface UserProfileProps {
+  usuario: User;
+}
+
+const UserProfile: React.FC<UserProfileProps> = ({ usuario }) => {
+  console.log(usuario);
+
   return (
     <div className="mt-20 font-sans">
       <div className="grid grid-cols-2 gap-60">
@@ -14,16 +21,19 @@ const UserProfile = () => {
           <form action="">
             <div className="flex flex-col text-start">
               <span className="font-semibold mt-6">Nombre de usuario:</span>
-              <h3 className="font-semibold text-slate-500 mt-2">Juan Pérez</h3>
+              <h3 className="font-semibold text-slate-500 mt-2">
+                {usuario.username}
+              </h3>
               <span className="font-semibold mt-6">Correo electrónico:</span>
               <h3 className="font-semibold mt-2 text-slate-500">
-                juanperez@gmail.com
+                {usuario.email}
               </h3>
               <span className="font-semibold mt-6">Teléfono: </span>
               <input
                 type="text"
                 placeholder="1245-4572-358"
                 className="font-semibold mt-2 px-2 rounded-lg py-2 mb-16"
+                value={usuario.phone}
               />
             </div>
           </form>
