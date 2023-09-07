@@ -115,9 +115,8 @@ export default function Create() {
     e.preventDefault();
     const response = await register(dataUser);
     if (typeof response === "string") {
-      toast.error("Datos erroneos");
+      toast.error(`${response}`);
     } else {
-      setDataUser(response);
       toast.success("Usuario creado con éxito. Redirigiendo al login");
       setTimeout(() => {
         navigate("/login");

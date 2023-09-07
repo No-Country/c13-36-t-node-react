@@ -47,9 +47,9 @@ export interface User {
   longitud: number;
 }
 
-export async function register(data: User): Promise<User> {
-  try {
-    const response = await axios.post(
+export async function register(data: User): Promise<User | string> {
+  const response = await axios
+    .post(
       "https://thinderpet-api-ild3-dev.fl0.io/api/v1/user/register",
       {
         username: data.username,
@@ -68,25 +68,16 @@ export async function register(data: User): Promise<User> {
           Authorization: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjQ4YjM0OGUyMDQ1NjgzNGEwMjU5MDNiIiwiaWF0IjoxNjkyOTg4NzI2LCJleHAiOjE2OTM1MDcxMjZ9.uJ2uhszxtTF9yBmnhKGHZA88M7pwgp6buUbrtv5TTVE`,
         },
       }
-    );
-    console.log(response);
-    if (response.status === 201) {
-      // El usuario se creó correctamente
-      return response.data.data; // Devuelve los datos
-    } else {
-      // Se produjo un error al crear el usuario
-      console.log(Error);
-      throw new Error(response.statusText);
-    }
-  } catch (error) {
-    if (error instanceof Error) {
-      // Manejar el error como una instancia
-      throw new Error(`Error en la solicitud: ${error.message}`);
-    } else {
-      // Manejar otros tipos de errores
-      throw new Error(`Error en la solicitud: ${error}`);
-    }
+    )
+    .catch((error) => {
+      console.log(error.response.data.errors[0].msg);
+
+      return error.response.data.errors[0].msg;
+    });
+  if (typeof response === "string") {
+    return response;
   }
+  return response.data;
 }
 
 export async function getLocation(ubicacion: string) {
