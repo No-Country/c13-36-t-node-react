@@ -9,6 +9,10 @@ export interface Pet {
   age: number;
   photos: Object;
   description: string;
+  image?: {
+    secure_url: string;
+    public_id: string;
+  };
 }
 
 /* USER RESPONSE TYPE */

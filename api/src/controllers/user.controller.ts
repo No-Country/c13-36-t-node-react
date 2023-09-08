@@ -148,6 +148,10 @@ export const deleteUser = async (req: Request, res: Response) => {
       return res.status(404).json({ message: "User not found." });
     }
 
+    if (user.image && user.image.public_id) {
+      await deleteImage(user.image.public_id);
+    }
+
     await user.deleteOne();
 
     res.status(200).json({ message: "User deleted successfully." });
