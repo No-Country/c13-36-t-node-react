@@ -31,10 +31,13 @@ const PetSchema = new Schema<Pet>(
       type: Schema.Types.String,
       required: false,
     },
-    image: {
-      secure_url: String,
-      public_id: String,
-    },
+    image: [
+      {
+        _id: false,
+        secure_url: String,
+        public_id: String,
+      },
+    ],
   },
   modelOptions
 );

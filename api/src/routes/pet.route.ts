@@ -96,7 +96,7 @@ router.get("/:petId", auth, getPet);
 router.delete("/:petId", auth, deletePet);
 
 router.post(
-  "/upload-image/:petId",
+  "/upload-pet/:petId",
   [auth, uploads.array("avatar")],
   uploadImages
 );

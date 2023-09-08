@@ -86,9 +86,14 @@ export const deletePet = async (req: Request, res: Response) => {
     const pet = await PetModel.findById(petId);
     if (!pet) return badRequest(res, `Pet not exist`);
 
-    if (pet.image && pet.image.public_id) {
-      await deleteImage(pet.image.public_id);
+    if (pet.image && pet.image.length > 0) {
+      for (const imageObj of pet.image) {
+        if (imageObj.public_id) {
+          await deleteImage(imageObj.public_id);
+        }
+      }
     }
+    pet.image = [];
 
     const deletedPet = await PetModel.findByIdAndDelete(petId);
 
@@ -112,29 +117,37 @@ export const uploadImages = async (req: Request, res: Response) => {
       return res.status(404).json({ message: "Pet not found." });
     }
 
-    if (!req.file) {
+    if (!req.files || req.files.length === 0) {
       return res
-        .status(404)
-        .json({ message: "No se proporcionó ninguna imagen." });
+        .status(400)
+        .json({ message: "No se proporcionaron imágenes." });
     }
 
-    // Sube la imagen a Cloudinary y obtén la URL y otros datos relevantes
-    const result = await await uploadImage(req.file.path);
+    const imageInfoArray: {
+      secure_url: string;
+      public_id: string;
+    }[] = [];
 
-    const imageUrl = result.secure_url;
-    const publicId = result.public_id;
+    // Itera sobre los archivos subidos y realiza las acciones necesarias para cada uno
+    for (const file of req.files as Express.Multer.File[]) {
+      const result = await uploadImage(file.path); // Sube la imagen a Cloudinary
 
-    await fs.unlink(req.file.path);
+      const imageUrl = result.secure_url;
+      const publicId = result.public_id;
 
-    // Actualiza el campo 'image' del usuario en la base de datos con la URL de la imagen y otros datos relevantes
+      await fs.promises.unlink(file.path);
+
+      imageInfoArray.push({ secure_url: imageUrl, public_id: publicId });
+    }
+
+    // Actualiza el campo 'image'
     await PetModel.findByIdAndUpdate(petId, {
-      "image.secure_url": imageUrl,
-      "image.public_id": publicId,
+      $push: { image: { $each: imageInfoArray } },
     });
 
-    return res.status(200).json({ secure_url: imageUrl, public_id: publicId });
+    return res.status(200).json({ imageInfoArray });
   } catch (error) {
-    console.error("Error durante la subida de la imagen:", error);
+    console.error("Error durante la subida de las imágenes:", error);
     res.status(500).json({ message: "Error del servidor." });
   }
 };
