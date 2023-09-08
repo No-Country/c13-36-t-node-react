@@ -43,13 +43,12 @@ export const likePet = async (req: Request, res: Response) => {
             liked: true,
         });
 
-
         if (mutualLike) {
             // realizar acciones adicionales aquí, como notificar a los usuarios.
 
             res.json({ message: "Match!" });
         } else {
-            res.json({ message: "Like dado con éxito." });
+            res.json({ message: "Like succesfully." });
         }
     } catch (err) {
         console.log(err);
@@ -62,15 +61,27 @@ export const verifyMatches = async (req: Request, res: Response) => {
 
     try {
         // Buscar todos los registros de "like" donde el usuario dueño de la mascota sea el actual
-        const matches = await LikeModel.find({
+        const likes = await LikeModel.find({
             userId: userId, // El usuario dueño de la mascota
             liked: true,
         }).populate("petTargetId", "name");
 
-        if (matches.length > 0) {
-            // Si se encontraron coincidencias, devuelve las mascotas coincidentes
-            const matchedPets = matches.map((match) => match.petTargetId);
-            res.json({ message: "Mascotas con match", matchedPets });
+        if (likes.length > 0) {
+            //por cada like dado por el usuario
+            const matches = likes.map(async (like) => {
+
+                //verifico si existe el like contrario, lo que indicaria un match
+                const reverseLike = await LikeModel.findOne({
+                    ownerPetTargetId: userId, // El dueño objetivo es este usuario
+                    userId: like.ownerPetTargetId, // El usuario objetivo hizo el este like
+                    petTargetId: like.petId, //la mascota objetivo es la mascota del usuario
+                    petId: like.petTargetId, //la mascota del like es la mascota objetivo
+                    liked: true,
+                }).populate("petTargetId", "name");
+
+                if (reverseLike) return reverseLike;
+            });
+            res.json({ message: "Mascotas con match", likedPets: matches });
         } else {
             // Si no se encontraron coincidencias, devuelve un mensaje
             res.json({ message: "No hay coincidencias para tus mascotas." });
