@@ -12,5 +12,3 @@ export interface User {
   latitud: number;
   longitud: number;
 }
-
-/* USER RESPONSE TYPE */
