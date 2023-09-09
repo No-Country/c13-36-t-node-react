@@ -7,6 +7,8 @@ import landing_es from "./locales/landing/landing_es.json";
 import landing_en from "./locales/landing/landing_en.json";
 import footer_es from "./locales/footer/footer_es.json";
 import footer_en from "./locales/footer/footer_en.json";
+import login_es from "./locales/login/login_es.json";
+import login_en from "./locales/login/login_en.json";
 
 console.log(i18n.language);
 i18n
@@ -23,11 +25,13 @@ i18n
         navbar: es,
         landing: landing_es,
         footer: footer_es,
+        login: login_es,
       },
       en: {
         navbar: en,
         landing: landing_en,
         footer: footer_en,
+        login: login_en,
       },
     },
   });
