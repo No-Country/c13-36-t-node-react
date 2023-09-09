@@ -19,9 +19,7 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
 
   const handleLanguageChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const selectedLanguage = e.target.value;
-    console.log("Selected Language:", selectedLanguage);
     i18n.changeLanguage(selectedLanguage);
-    console.log(selectedLanguage);
   };
 
   const handleClick = () => {
