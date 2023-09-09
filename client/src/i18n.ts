@@ -11,6 +11,8 @@ import login_es from "./locales/login/login_es.json";
 import login_en from "./locales/login/login_en.json";
 import menu_es from "./locales/menu/menu_es.json";
 import menu_en from "./locales/menu/menu_en.json";
+import reset_es from "./locales/reset/reset_es.json";
+import reset_en from "./locales/reset/reset_en.json";
 
 console.log(i18n.language);
 i18n
@@ -29,6 +31,7 @@ i18n
         footer: footer_es,
         login: login_es,
         menu: menu_es,
+        reset: reset_es,
       },
       en: {
         navbar: en,
@@ -36,6 +39,7 @@ i18n
         footer: footer_en,
         login: login_en,
         menu: menu_en,
+        reset: reset_en,
       },
     },
   });
