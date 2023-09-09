@@ -4,7 +4,8 @@ import Avatar from "../Avatar/Avatar";
 import Menu from "../Menus/Menu";
 import { Usuario } from "../../types/types";
 import { AiOutlineCloseCircle, AiOutlineMenu } from "react-icons/ai";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface NavBarProps {
   // setFormulario: (usuario: boolean) => void;
@@ -14,6 +15,12 @@ interface NavBarProps {
 const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
   const { isShowing, toggle } = useModal();
   const [viewMenu, setViewMenu] = useState(false);
+  const { t, i18n } = useTranslation("navbar");
+
+  const handleLanguageChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const selectedLanguage = e.target.value;
+    i18n.changeLanguage(selectedLanguage);
+  };
 
   const handleClick = () => {
     toggle();
@@ -31,17 +38,21 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
         <>
           <ul className="hidden lg:flex gap-10">
             <li className="text-2xl text-white cursor-pointer ">
-              <a href="/#nosotros">Nosotros</a>
+              <a href="/#nosotros">{t("about")}</a>
             </li>
-            <li className="text-2xl text-white cursor-pointer ">Ayuda</li>
+            <li className="text-2xl text-white cursor-pointer ">{t("help")}</li>
             <NavLink to={"/main"}>
               <li className="text-2xl text-white cursor-pointer ">
-                Ver Mascotas
+                {t("pets")}
               </li>
             </NavLink>
-            <select className="border-white border-2 text-white bg-[#E0838E] text-xl py-1 px-4">
-              <option>Español</option>
-              <option>English</option>
+            <select
+              className="border-white border-2 text-white bg-[#E0838E] text-xl py-1 px-4"
+              value={i18n.language}
+              onChange={handleLanguageChange}
+            >
+              <option value="es">{t("spanish")}</option>
+              <option value="en">{t("english")}</option>
             </select>
           </ul>
           <Avatar
@@ -56,23 +67,27 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
             className={`sm:flex sm:gap-10 sm:justify-center sm:items-center  ${
               viewMenu
                 ? "absolute flex-col border-2 border-white top-[6.5rem] right-1 w-auto px-2 py-3 rounded-xl bg-[#E0838E] leading-10"
-                : "hidden" 
+                : "hidden"
             } `}
           >
             <li className="text-base sm:text-2xl text-white cursor-pointer mb-1">
-              <a href="#nosotros">Nosotros</a>
+              <a href="#nosotros">{t("about")}</a>
             </li>{" "}
             <li className=" text-base sm:text-2xl text-white cursor-pointer mb-1">
-              Ayuda
+              {t("help")}
             </li>
-            <select className="border-white border-2 bg-[#E0838E]  text-white text-base sm:text-2xl sm:border-2 sm:border-white px-2 mb-1">
-              <option>Español</option>
-              <option>English</option>
+            <select
+              className="border-white border-2 bg-[#E0838E]  text-white text-base sm:text-2xl sm:border-2 sm:border-white px-2 mb-1"
+              value={i18n.language}
+              onChange={handleLanguageChange}
+            >
+              <option value="es">{t("spanish")}</option>
+              <option value="en">{t("english")}</option>
             </select>
             <div>
               <NavLink to={"/login"} className="">
                 <button className="bg-white font-bold px-2 py-1 sm:px-4 sm:py-2 rounded-lg hover:scale-105 hover:ease-in duration-300 text-base sm:text-xl">
-                  Iniciar Sesión
+                  {t("login")}
                 </button>
               </NavLink>
             </div>

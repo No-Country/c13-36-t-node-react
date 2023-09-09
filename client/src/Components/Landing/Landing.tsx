@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { AiFillHeart } from "react-icons/ai";
 import { FaArrowUp } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const Landing = () => {
+  const { t } = useTranslation("landing");
   const [visible, setVisible] = useState(false);
   const toggleVisible = () => {
     const scrolled = document.documentElement.scrollTop;
@@ -40,7 +42,7 @@ const Landing = () => {
         </div>
         <div className="flex flex-auto justify-center text-center px-8 mt-16 lg:flex lg:flex-auto lg:text-center lg:w-full">
           <h1 className="text-lg sm:text-4xl lg:text-5xl font-sans font-bold max-md:text-2xl">
-            Te ayudamos a buscar una pareja para tus mascotas
+            {t("helpFindMate")}
           </h1>
         </div>
       </section>
@@ -51,23 +53,13 @@ const Landing = () => {
             className="font-sans font-bold text-2xl sm:text-3xl lg:text-4xl my-16"
             id="nosotros"
           >
-            Sobre Nosotros
+            {t("aboutUs")}
           </h1>
           <p className="font-sans leading-7 lg:leading-10 text-justify text-sm sm:text-lg lg:text-xl">
-            En nuestro acogedor rincón en línea, celebramos la chispa única que
-            surge entre las mascotas. Somos una plataforma diseñada
-            exclusivamente para ayudar a las mascotas a encontrar compañeros de
-            juegos y amor. Nuestra misión es crear momentos de alegría y
-            conexiones genuinas entre peludos de todo tipo, desde juguetones
-            cachorros hasta encantadores mininos y otros amigos de cuatro patas.
+            {t("aboutUsContent")}
             <br />
-            En <b className="text-[#E0838E]">ThinderPet</b>, creamos un espacio
-            seguro donde los corazones peludos pueden latir al mismo ritmo.
-            Facilitamos la selección de padres adecuados, y también instamos a
-            los usuarios a proporcionar información sobre las posibles
-            enfermedades o rasgos de carácter que la futura mascota podría
-            heredar. Estamos comprometidos a hacer que la experiencia sea lo más
-            transparente y satisfactoria para todos nuestros usuarios.
+            {t("at")}
+            <b className="text-[#E0838E]">ThinderPet</b>,{t("aboutUsContent2")}
           </p>
         </div>
         <img
@@ -76,8 +68,7 @@ const Landing = () => {
         ></img>
       </section>
       <p className="font-bold font-sans text-2xl px-8 py-5 sm:text-2xl lg:text-3xl sm:px-10 lg:px-24 sm:py-10 text-[#E0838E]">
-        Únete a nuestra comunidad y sé parte de una experiencia donde el
-        amor, diversión y respeto entre mascotas son el centro de atención.
+        {t("joinCommunity")}
       </p>
       {visible && (
         <a href="#">
@@ -87,17 +78,13 @@ const Landing = () => {
       <section className="px-6 lg:px-36 my-10 lg:w-full flex justify-center items-center flex-col  sm:flex-row lg:flex-row max-md:px-10">
         <div className="">
           <h1 className="font-sans font-bold text-2xl sm:text-3xl lg:text-4xl my-10 mobile:my-4">
-            Políticas
+            {t("policies")}
           </h1>
-          <b>DEJAMOS ASENTADO QUE NO FOMENTAMOS LA REPRODUCCION COMERCIAL</b>
+          <b>{t("commercialReproduction")}</b>
           <p className="font-sans leading-7 lg:leading-10 text-justify text-sm sm:text-lg lg:text-xl">
             <br />
-            En caso de que tenga conocimiento de cualquier caso que vaya en
-            contra de esta política, le instamos a que nos informe de inmediato
-            a través del siguiente correo electrónico:{" "}
-            <b>proteccion.animal@gmail.com.</b> Su ayuda es fundamental para
-            mantener nuestros principios y valores en la protección de los
-            animales
+            {t("reportPolicyViolation")} <b>{t("email")}</b>{" "}
+            {t("reportPolicyViolation2")}
           </p>
         </div>
         <img

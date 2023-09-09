@@ -1,0 +1,12 @@
+{
+  "login": "Iniciar Sesión",
+  "welcome": "Bienvenido a ThinderPet",
+  "emailLabel": "Correo electrónico",
+  "emailPlaceholder": "usuario123@thinderpet.com",
+  "passwordLabel": "Contraseña",
+  "forgotPassword": "¿Olvidaste tu contraseña?",
+  "backButton": "Atrás",
+  "registerLink": "Si no tienes una cuenta, regístrate aquí",
+  "userNotFound": "Usuario no encontrado",
+  "incorrectPassword": "Contraseña incorrecta"
+}
