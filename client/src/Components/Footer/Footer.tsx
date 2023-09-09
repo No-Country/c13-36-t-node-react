@@ -11,8 +11,12 @@ export default function Footer() {
         className="w-20"
       />
       <ul className="flex gap-x-8 my-4 text-[#fff] font-bold decoration-gray-100 max-sm:flex-col max-sm:leading-10 mobile:flex mobile:flex-col">
-        {opciones.map((opcion) => {
-          return <li className="cursor-pointer">{opcion}</li>;
+        {opciones.map((opcion, index) => {
+          return (
+            <li key={index} className="cursor-pointer">
+              {opcion}
+            </li>
+          );
         })}
       </ul>
       <div className=" text-[#fff] flex my-4 justify-center gap-4 text-2xl">
