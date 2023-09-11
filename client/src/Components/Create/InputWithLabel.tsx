@@ -1,16 +1,14 @@
 interface InputProps {
+  mailError?: string;
+  passError?: string;
   label: string;
   type: string;
   placeholder: string;
   name: string;
+  list?: string;
   iconClass: string;
   autoComplete: string;
-  mailError?: string;
-  passError?: string;
   regitrationError?: boolean;
-  setPermitSubmit: React.Dispatch<React.SetStateAction<boolean>>;
-  setMailError?: React.Dispatch<React.SetStateAction<string>>;
-  setPassError?: React.Dispatch<React.SetStateAction<string>>;
   onChange: (value: string, fieldName: string) => void;
   viewPassword?: () => void;
 }
@@ -23,14 +21,13 @@ function InputWithLabel({
   iconClass,
   viewPassword,
   onChange,
+  list,
   mailError,
   passError,
   regitrationError,
 }: InputProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (onChange) {
-      console.log(regitrationError);
-
       onChange(e.target.value, name);
     }
   };
@@ -43,6 +40,7 @@ function InputWithLabel({
       <div className="relative w-[100%]">
         <input
           type={type}
+          list={list}
           placeholder={placeholder}
           autoComplete="Off"
           className={`bg-[#D9D9D9] px-4 py-2 rounded-lg w-[100%] valid:border-2 border-green-400 ${
@@ -53,9 +51,9 @@ function InputWithLabel({
               : ""
           }`}
           name={name}
-          minLength={4}
           maxLength={30}
           required
+          onChange={handleChange}
           onBlur={handleChange}
         />
         <i

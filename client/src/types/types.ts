@@ -51,3 +51,7 @@ export type RegistersErrors = {
   localization: boolean;
   username: boolean;
 };
+export type Breed = {
+  _id: object;
+  breed: string;
+};
