@@ -1,17 +1,78 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { User } from "../../services/users";
+import { FaSave, FaTrash } from "react-icons/fa";
+import Modals from "./Modals";
+import { useState } from "react";
+import axios from "axios";
+import { Usuario } from "../../types/types";
 
 interface UserProfileProps {
   usuario: User;
 }
 
-const UserProfile: React.FC<UserProfileProps> = ({ usuario }) => {
-  console.log(usuario);
+interface UserData {
+  message: string;
+  token: string;
+  user: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    localization: string;
+    phone: number;
+    createdAt: string;
+    updatedAt: string;
+    id: string;
+  };
+}
+interface MenuProps {
+  setusuario: React.Dispatch<React.SetStateAction<Usuario | undefined>>;
+  usuario: Usuario | undefined;
+}
 
+const UserProfile: React.FC<UserProfileProps & MenuProps> = ({ usuario, setusuario}) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const data = localStorage.getItem("token")
+  const navigate = useNavigate();
+
+  const deleteUser = async () => {
+    const parsedData: UserData = data ? JSON.parse(data) : null;
+    if (parsedData) {
+      try {
+        const response = await axios.delete(
+          `https://thinderpet-api-ild3-dev.fl0.io/api/v1/user/delete/${parsedData.user.id}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `${parsedData.token}`,
+            },
+          }
+        );
+  
+        navigate("/");
+        setusuario(undefined);
+        localStorage.removeItem("token");
+        console.log("La cuenta fue eliminada ", response);
+      } catch (error) {
+        console.log("Error en la eliminación:", error);
+      }
+    } else {
+      alert("No se encontró un token en el almacenamiento local.");
+    }
+  };
+  
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   return (
-    <section className="p-4 font-sans border-2 flex justify-around mobile:flex-col">
-      <div className="flex flex-col bg-[#99a3b0c2] w-96 p-8 rounded-lg text-left border-2 mobile:w-full">
+    <section className=" py-8 font-sans flex justify-around mobile:flex-col mobile:px-4">
+      <div className="flex flex-col bg-[#99a3b0c2] w-96 p-8 rounded-lg text-left mobile:w-full">
         <h1 className="mb-2 font-bold text-2xl">Perfil de {usuario.firstName}</h1>
         <img src={"Vector.png"} className="w-16"></img>
         <p className="my-2 text-slate-800">Editar foto</p>
@@ -37,7 +98,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ usuario }) => {
           />
         </form>
       </div>
-      <div className="w-80 mobile:w-full">
+      <div className="w-96 mobile:w-full">
         <h1 className="my-10 font-bold text-3xl">Mis mascotas</h1>
         <p className="font-bold text-sm">
           Para poder continuar ingrese el perfil de su mascota
@@ -50,15 +111,14 @@ const UserProfile: React.FC<UserProfileProps> = ({ usuario }) => {
             </button>
           </NavLink>
         </div>
-        <div className="flex flex-row justify-between mt-48 mobile:mt-16">
-          <NavLink
-            to={"/main"}
-            className="border-2 border-[#209FD6] text-center p-2 rounded-xl text-black "
-          >
-            Eliminar Cuenta
-          </NavLink>
-          <button className=" bg-[#77D3EC] rounded-xl p-2 text-black">
-            Guardar Cambios
+        <div className="flex flex-row justify-between mt-48  mobile:mt-16">
+          <button className="flex items-center gap-x-2 border-2 border-[#209FD6] text-center p-2 rounded-xl text-black hover:scale-105 transition-all" onClick={openModal}>
+            <FaTrash/> Eliminar Cuenta
+          </button>
+          <Modals isOpen={isModalOpen} closeModal={closeModal} handleDelete={deleteUser}/>
+          <button className="flex items-center gap-x-2 bg-[#77D3EC] rounded-xl p-2 text-black transition-all hover:scale-105">
+            <FaSave/>
+            Guardar Cambios 
           </button>
         </div>
       </div>
