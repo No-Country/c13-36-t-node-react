@@ -52,6 +52,6 @@ export type RegistersErrors = {
   username: boolean;
 };
 export type Breed = {
-  _id: object;
+  _id: { $oid: string };
   breed: string;
 };

@@ -205,14 +205,14 @@ const PetForm = () => {
               type="text"
               list="razas"
               placeholder="Caniche"
-              autoComplete="Off"
+              autoComplete="on"
               name="breed"
               iconClass="fa-paw"
               onChange={handlePetbreedChange}
             />
             <datalist id="razas" className="">
               {breeds.map((raza, index) => (
-                <option key={index} value={raza.breed}></option>
+                <option key={index} value={raza._id.$oid} label={raza.breed} />
               ))}
             </datalist>
             <InputWithLabel

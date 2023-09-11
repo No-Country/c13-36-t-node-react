@@ -10,7 +10,7 @@ export async function createPet(
     `https://thinderpet-api-ild3-dev.fl0.io/api/v1/pet`,
     {
       name: data.name,
-      breedId: "64f78545dab0467f1b798e9e",
+      breedId: data.breed,
       gender: data.gender,
       ownerId: id,
       desciption: data.description,

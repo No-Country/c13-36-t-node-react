@@ -7,7 +7,7 @@ interface InputProps {
   name: string;
   list?: string;
   iconClass: string;
-  autoComplete: string;
+  autoComplete?: string;
   regitrationError?: boolean;
   onChange: (value: string, fieldName: string) => void;
   viewPassword?: () => void;
@@ -25,6 +25,7 @@ function InputWithLabel({
   mailError,
   passError,
   regitrationError,
+  autoComplete,
 }: InputProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (onChange) {
@@ -42,7 +43,7 @@ function InputWithLabel({
           type={type}
           list={list}
           placeholder={placeholder}
-          autoComplete="Off"
+          autoComplete={autoComplete}
           className={`bg-[#D9D9D9] px-4 py-2 rounded-lg w-[100%] valid:border-2 border-green-400 ${
             (mailError && mailError?.length > 0) ||
             (passError && passError?.length > 0) ||
