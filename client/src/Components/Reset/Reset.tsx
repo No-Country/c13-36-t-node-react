@@ -32,9 +32,6 @@ const Reset = () => {
               name="emailUser"
               onChange={setEmail}
               iconClass="fa-envelope"
-              setPermitSubmit={function (): void {
-                throw new Error("Function not implemented.");
-              }}
             />
             <div className="flex flex-row justify-between">
               <NavLink to={"/reset"} className="text-[#979797] text-sm mr-5">
