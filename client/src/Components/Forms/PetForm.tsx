@@ -175,13 +175,12 @@ const PetForm = () => {
   };
 
   return (
-    <div className="flex justify-center content-center  pb-2">
-      <ToastContainer />
-      <form onSubmit={handlePetCreate}>
-        <h1 className="font-bold text-4xl my-2">Perfil de Shaby</h1>
-        <div className="grid grid-cols-2 gap-x-60 max-md:flex flex-col gap-2 px-4">
-          <div className="max-md:w-[100%] flex flex-col">
-            <Avatar size={"large"} />
+    <div className="flex justify-center border-2 content-center p-8 mobile:flex-col">
+      <form onSubmit={handlePetCreate>
+        <h1 className="font-bold text-4xl ">Perfil de Shaby</h1>
+        <div className="grid grid-cols-2 gap-x-60 max-md:flex flex-col gap-2 px-4 mobile:grid-cols-1">
+          <div className="max-md:w-[100%] flex flex-col mobile:w-full">
+            <Avatar size={"medium"} />
             <InputWithLabel
               label="Nombre"
               type="text"
@@ -239,13 +238,11 @@ const PetForm = () => {
               onChange={handlePetdescriptionChange}
             />
           </div>
-          <div className="grid grid-cols-2 gap-10 mt-16 max-md:grid max-md:grid-rows-2 , max-md:grid-flow-col max-md:gap-10 max-md:mt-4">
-            <img className="w-48 h-48 max-md:w-full " src="perrito1.jpg" />
-            <img className="w-48 h-48 max-md:w-full " src="perrito2.jpg" />
-            <img className="w-48 h-48 max-md:w-full" src="perrito3.jpg" />
-            <button className="bg-[#D9D9D9] text-white font-extrabold text-9xl transition-transform relative overflow-hidden max-md:w-full">
-              +
-            </button>
+          <div className="grid grid-cols-2 border-2 m-auto gap-10 my-10 max-sm:gap-4 mobile:my-8">
+            <img className="w-40 h-40 max-sm:w-28 max-sm:h-28" src="perrito1.jpg" />
+            <img className="w-40 h-40 max-sm:w-28 max-sm:h-28" src="perrito2.jpg" />
+            <img className="w-40 h-40 max-sm:w-28 max-sm:h-28" src="perrito3.jpg" />
+            <button type="button" className=" min-w-40 min-h-40 border-2 bg-gray-300 text-[3rem] border-black mobile:min-w-28 mobile:min-h-28 flex items-center justify-center">+</button>
           </div>
         </div>
         <button className="w-40 border-2 bg-gray-300 font-bold p-2 rounded-lg mt-10">

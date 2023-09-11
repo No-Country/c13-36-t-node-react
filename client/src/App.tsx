@@ -74,6 +74,7 @@ function App() {
               <>
                 <Navbar setusuario={setUsuario} usuario={usuario} />
                 <Reset />
+                <Footer/>
               </>
             }
           />

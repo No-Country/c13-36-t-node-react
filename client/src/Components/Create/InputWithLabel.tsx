@@ -51,7 +51,8 @@ function InputWithLabel({
               : ""
           }`}
           name={name}
-          maxLength={30}
+          minLength={1}
+          maxLength={50}
           required
           onChange={handleChange}
           onBlur={handleChange}

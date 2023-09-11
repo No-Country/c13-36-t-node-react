@@ -4,6 +4,7 @@ import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import InputWithLabel from "./Create/InputWithLabel";
 import { login } from "../services/users";
 import { Usuario } from "../types/types";
+import { useTranslation } from "react-i18next";
 
 interface LoginProps {
   // setFormulario: (usuario: boolean) => void;
@@ -11,6 +12,7 @@ interface LoginProps {
 }
 
 const Login: React.FC<LoginProps> = ({ setusuario }) => {
+  const { t } = useTranslation("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [permitSubmit, setPermitSubmit] = useState(false);
@@ -30,9 +32,9 @@ const Login: React.FC<LoginProps> = ({ setusuario }) => {
         setMailError("");
         setPassError("");
         if (response === "User not found.") {
-          setMailError("El usuario no existe");
+          setMailError(t("userNotFound"));
         } else {
-          setPassError("Contraseña incorrecta");
+          setPassError(t("incorrectPassword"));
         }
       } else {
         setusuario(response);
@@ -66,15 +68,15 @@ const Login: React.FC<LoginProps> = ({ setusuario }) => {
             src={"avatar.png"}
             className="absolute w-24 top-[-50px] border-2 rounded-full"
           ></img>
-          <h1 className="text-2xl mt-12 font-bold">Bienvenido a ThinderPet</h1>
+          <h1 className="text-2xl mt-12 font-bold">{t("welcome")}</h1>
           <form
             onSubmit={handleLogin}
             className="flex flex-col  my-4 text-left gap-3 w-[350px] max-md:w-[100%] mobile:w-[80vw] max-md:px-2"
           >
             <InputWithLabel
-              label="Correo electrónico"
+              label={t("emailLabel")}
               type="email"
-              placeholder="user123@thinderpet.com"
+              placeholder={t("emailPlaceholder")}
               autoComplete="Off"
               name="emailUser"
               iconClass="fa-envelope"
@@ -83,7 +85,7 @@ const Login: React.FC<LoginProps> = ({ setusuario }) => {
             />
             {mailError && <p className="text-red-500">{mailError}</p>}
             <InputWithLabel
-              label="Contraseña"
+              label={t("passwordLabel")}
               type={view ? "text" : "password"}
               placeholder="•••••••••"
               autoComplete="Off"
@@ -102,7 +104,7 @@ const Login: React.FC<LoginProps> = ({ setusuario }) => {
               {loading ? (
                 <i className="fa-solid fa-spinner rotate-center"></i>
               ) : (
-                "Iniciar Sesión"
+                t("login")
               )}
             </button>
           </form>
@@ -110,7 +112,7 @@ const Login: React.FC<LoginProps> = ({ setusuario }) => {
             to={"/reset"}
             className="font-semibold text-sm hover:underline-offset-1 my-2"
           >
-            ¿Olvidaste tu contraseña?
+            {t("forgotPassword")}
           </NavLink>
           <div className="flex flex-col m-auto gap-4">
             <NavLink to={"/"}>
@@ -119,13 +121,13 @@ const Login: React.FC<LoginProps> = ({ setusuario }) => {
                   className="fa-solid fa-arrow-left mr-2"
                   style={{ color: "#fff" }}
                 ></i>
-                Atras
+                {t("backButton")}
               </button>
             </NavLink>
           </div>
           <NavLink to={"/create"} className="my-2">
             <p className="border-b-2 border-gray-300 my-2">
-              Si no tienes cuenta, registrate aquí
+              {t("registerLink")}
             </p>
           </NavLink>
           <div className="flex justify-center gap-4 text-2xl">
