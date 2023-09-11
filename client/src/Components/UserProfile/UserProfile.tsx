@@ -5,7 +5,6 @@ import { FaSave, FaTrash } from "react-icons/fa";
 import Modals from "./Modals";
 import { useState } from "react";
 import axios from "axios";
-import { Usuario } from "../../types/types";
 
 interface UserProfileProps {
   usuario: User;
@@ -26,12 +25,8 @@ interface UserData {
     id: string;
   };
 }
-interface MenuProps {
-  setusuario: React.Dispatch<React.SetStateAction<Usuario | undefined>>;
-  usuario: Usuario | undefined;
-}
 
-const UserProfile: React.FC<UserProfileProps & MenuProps> = ({ usuario, setusuario}) => {
+const UserProfile: React.FC<UserProfileProps> = ({ usuario}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const data = localStorage.getItem("token")
   const navigate = useNavigate();
@@ -51,7 +46,6 @@ const UserProfile: React.FC<UserProfileProps & MenuProps> = ({ usuario, setusuar
         );
   
         navigate("/");
-        setusuario(undefined);
         localStorage.removeItem("token");
         console.log("La cuenta fue eliminada ", response);
       } catch (error) {
