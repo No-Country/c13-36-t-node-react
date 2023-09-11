@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Avatar from "../Avatar/Avatar";
 import InputWithLabel from "../Create/InputWithLabel";
-import { Pet } from "../../types/types";
+import { Breed, Pet } from "../../types/types";
+import { createPet } from "../../services/pets";
+import { ToastContainer, toast } from "react-toastify";
 
 const PetForm = () => {
+  const [userId, setUserId] = useState<string>("");
+  const [breeds, setBreeds] = useState<Breed[]>([]);
+  const [token, setToken] = useState<string>("");
   const [dataPet, setDataPet] = useState<Pet>({
     name: "",
     gender: "",
@@ -11,6 +16,137 @@ const PetForm = () => {
     description: "",
     breed: "",
   });
+  const user = JSON.parse(localStorage.getItem("token") || "");
+
+  useEffect(() => {
+    setBreeds([
+      {
+        _id: {
+          $oid: "64f78545dab0467f1b574e9e",
+        },
+        breed: "Chihuahua",
+      },
+      {
+        _id: {
+          $oid: "64f78545dab0467f1b798e9e",
+        },
+        breed: "Golden Retriever",
+      },
+      {
+        _id: {
+          $oid: "64f78545dab0467f88798e9e",
+        },
+        breed: "Bulldog Francés",
+      },
+      {
+        _id: {
+          $oid: "64f78545dabaf67f1b798e9e",
+        },
+        breed: "Bulldog",
+      },
+      {
+        _id: {
+          $oid: "64f78545dabaf67f1b798e9f",
+        },
+        breed: "Persian Cat",
+      },
+      {
+        _id: {
+          $oid: "64f78545dab0467f1b798ea0",
+        },
+        breed: "Boxer",
+      },
+      {
+        _id: {
+          $oid: "64f78545dab0467f88798ea0",
+        },
+        breed: "Yorkshire Terrier",
+      },
+      {
+        _id: {
+          $oid: "64f78545dabaf67f1b798ea0",
+        },
+        breed: "Siberian Husky",
+      },
+      {
+        _id: {
+          $oid: "64f78545dab0467f1b798ea1",
+        },
+        breed: "Rottweiler",
+      },
+      {
+        _id: {
+          $oid: "64f78545dab0467f1b574ea1",
+        },
+        breed: "Scottish Fold Cat",
+      },
+      {
+        _id: {
+          $oid: "64f78545dab0467f88798ea1",
+        },
+        breed: "Ragdoll Cat",
+      },
+      {
+        _id: {
+          $oid: "64f78545dab0467f1b798ea2",
+        },
+        breed: "Beagle",
+      },
+      {
+        _id: {
+          $oid: "64f78545dab0467f1b574ea2",
+        },
+        breed: "Labrador Retriever",
+      },
+      {
+        _id: {
+          $oid: "64f78545dab0467f88798ea2",
+        },
+        breed: "German Shepherd",
+      },
+      {
+        _id: {
+          $oid: "64f78545dabaf67f1b798ea2",
+        },
+        breed: "Birman Cat",
+      },
+      {
+        _id: {
+          $oid: "64f78545dab0467f1b798e9f",
+        },
+        breed: "Poodle",
+      },
+      {
+        _id: {
+          $oid: "64f78545dab0467f1b574e9f",
+        },
+        breed: "Siamese Cat",
+      },
+      {
+        _id: {
+          $oid: "64f78545dab0467f88798e9f",
+        },
+        breed: "Maine Coon",
+      },
+      {
+        _id: {
+          $oid: "64f78545dab0467f1b574ea0",
+        },
+        breed: "Dachshund",
+      },
+      {
+        _id: {
+          $oid: "64f78545dabaf67f1b798ea1",
+        },
+        breed: "Bengal Cat",
+      },
+    ]);
+
+    if (user.user.id.length > 0) {
+      setUserId(user.user.id);
+      setToken(user.token);
+    }
+  }, [user, breeds]);
 
   const handlePetnameChange = (value: string) => {
     setDataPet({ ...dataPet, name: value });
@@ -28,10 +164,19 @@ const PetForm = () => {
   const handlePetbreedChange = (value: string) => {
     setDataPet({ ...dataPet, breed: value });
   };
+  const handlePetCreate = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const response = await createPet(dataPet, userId, token);
+    if (response.name) {
+      toast.success("Mascota creada!");
+    } else {
+      toast.error("Revise los campos");
+    }
+  };
 
   return (
     <div className="flex justify-center border-2 content-center p-8 mobile:flex-col">
-      <form action="">
+      <form onSubmit={handlePetCreate>
         <h1 className="font-bold text-4xl ">Perfil de Shaby</h1>
         <div className="grid grid-cols-2 gap-x-60 max-md:flex flex-col gap-2 px-4 mobile:grid-cols-1">
           <div className="max-md:w-[100%] flex flex-col mobile:w-full">
@@ -44,9 +189,6 @@ const PetForm = () => {
               name="name"
               iconClass="fa-dog"
               onChange={handlePetnameChange}
-              setPermitSubmit={function (): void {
-                throw new Error("Function not implemented.");
-              }}
             />
             <InputWithLabel
               label="Edad"
@@ -56,34 +198,36 @@ const PetForm = () => {
               name="age"
               iconClass="fa-calendar"
               onChange={handlePetageChange}
-              setPermitSubmit={function (): void {
-                throw new Error("Function not implemented.");
-              }}
             />
             <InputWithLabel
               label="Raza"
               type="text"
+              list="razas"
               placeholder="Caniche"
               autoComplete="Off"
               name="breed"
               iconClass="fa-paw"
               onChange={handlePetbreedChange}
-              setPermitSubmit={function (): void {
-                throw new Error("Function not implemented.");
-              }}
             />
+            <datalist id="razas" className="">
+              {breeds.map((raza, index) => (
+                <option key={index} value={raza.breed}></option>
+              ))}
+            </datalist>
             <InputWithLabel
               label="Género"
               type="text"
+              list="genero"
               placeholder="M"
               autoComplete="Off"
               name="gender"
               iconClass="fa-venus-mars"
               onChange={handlePetgenderChange}
-              setPermitSubmit={function (): void {
-                throw new Error("Function not implemented.");
-              }}
             />
+            <datalist id="genero">
+              <option key="M">Macho</option>
+              <option key="H">Hembra</option>
+            </datalist>
             <InputWithLabel
               label="Descripción"
               type="text"
@@ -92,9 +236,6 @@ const PetForm = () => {
               name="description"
               iconClass="fa-venus-mars"
               onChange={handlePetdescriptionChange}
-              setPermitSubmit={function (): void {
-                throw new Error("Function not implemented.");
-              }}
             />
           </div>
           <div className="grid grid-cols-2 border-2 m-auto gap-10 my-10 max-sm:gap-4 mobile:my-8">
