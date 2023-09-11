@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router, query } from "express";
 import LikeModel from "../models/like.model";
 import { body } from "express-validator";
 import { auth } from "../helpers/token";
@@ -8,16 +8,16 @@ import { verify } from "jsonwebtoken";
 
 const router = Router()
 
-router.post("/like",
+router.post("/",
     [
         auth,
 
         body("petId")
             .notEmpty()
-            .withMessage("pet owner id is required")
+            .withMessage("petId is required")
             .custom(async (petId) => {
                 const pet = await PetModel.findById(petId);
-                if (!pet) throw new Error("owner's pet doesn't exist");
+                if (!pet) throw new Error("pet doesn't exist");
                 return false;
             }),
 
@@ -32,11 +32,9 @@ router.post("/like",
 
     ], likePet);
 
-router.get("/verifymatch/:userId",
+router.get("/verifymatches/:userId",
     [
         auth
-
-
     ], verifyMatches)
 
 export { router }
