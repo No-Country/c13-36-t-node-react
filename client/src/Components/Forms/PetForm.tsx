@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import Avatar from "../Avatar/Avatar";
 import InputWithLabel from "../Create/InputWithLabel";
 import { Breed, Pet } from "../../types/types";
+import { useTranslation } from "react-i18next";
 import { createPet } from "../../services/pets";
 import { ToastContainer, toast } from "react-toastify";
 
 const PetForm = () => {
+  const { t } = useTranslation("petform");
   const [userId, setUserId] = useState<string>("");
   const [breeds, setBreeds] = useState<Breed[]>([]);
   const [token, setToken] = useState<string>("");
@@ -178,12 +180,12 @@ const PetForm = () => {
     <div className="flex justify-center border-2 content-center p-8 mobile:flex-col">
       <ToastContainer />
       <form onSubmit={handlePetCreate}>
-        <h1 className="font-bold text-4xl ">Perfil de Shaby</h1>
+        <h1 className="font-bold text-4xl ">{t("profile")}</h1>
         <div className="grid grid-cols-2 gap-x-60 max-md:flex flex-col gap-2 px-4 mobile:grid-cols-1">
           <div className="max-md:w-[100%] flex flex-col mobile:w-full">
             <Avatar size={"medium"} />
             <InputWithLabel
-              label="Nombre"
+              label={t("name")}
               type="text"
               placeholder="Shaby"
               autoComplete="Off"
@@ -192,7 +194,7 @@ const PetForm = () => {
               onChange={handlePetnameChange}
             />
             <InputWithLabel
-              label="Edad"
+              label={t("age")}
               type="text"
               placeholder="4"
               autoComplete="Off"
@@ -201,10 +203,9 @@ const PetForm = () => {
               onChange={handlePetageChange}
             />
             <InputWithLabel
-              label="Raza"
+              label={t("breed")}
               type="text"
-              list="razas"
-              placeholder="Caniche"
+              placeholder={t("breedPlaceholder")}
               autoComplete="Off"
               name="breed"
               iconClass="fa-paw"
@@ -216,7 +217,7 @@ const PetForm = () => {
               ))}
             </datalist>
             <InputWithLabel
-              label="Género"
+              label={t("gender")}
               type="text"
               list="genero"
               placeholder="M"
@@ -230,9 +231,9 @@ const PetForm = () => {
               <option key="H">Hembra</option>
             </datalist>
             <InputWithLabel
-              label="Descripción"
+              label={t("description")}
               type="text"
-              placeholder="Comparte con la comunidad cómo es tu mascota."
+              placeholder={t("descriptionPlaceholder")}
               autoComplete="Off"
               name="description"
               iconClass="fa-venus-mars"
@@ -261,7 +262,7 @@ const PetForm = () => {
           </div>
         </div>
         <button className="w-40 border-2 bg-gray-300 font-bold p-2 rounded-lg mt-10">
-          Guardar Cambios
+          {t("saveChanges")}
         </button>
       </form>
     </div>
