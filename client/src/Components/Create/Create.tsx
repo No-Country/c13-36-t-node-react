@@ -155,7 +155,6 @@ export default function Create() {
               name="username"
               iconClass="fa-user"
               onChange={handleUsernameChange}
-              setPermitSubmit={function (): void {}}
               regitrationError={formError.username}
             />
             {formError.username && (
@@ -169,9 +168,6 @@ export default function Create() {
               iconClass="fa-user"
               autoComplete=""
               onChange={handleFirstNameChange}
-              setPermitSubmit={function (): void {
-                throw new Error("Function not implemented.");
-              }}
               regitrationError={formError.name}
             />
             {formError.name && <p className="text-red-500">{t("nameError")}</p>}
@@ -183,9 +179,6 @@ export default function Create() {
               name="lastName"
               iconClass="fa-user"
               onChange={handleLastNameChange}
-              setPermitSubmit={function (): void {
-                throw new Error("Function not implemented.");
-              }}
               regitrationError={formError.lastname}
             />
             {formError.lastname && (
@@ -199,9 +192,6 @@ export default function Create() {
               name="email"
               iconClass="fa-envelope"
               onChange={handleEmailChange}
-              setPermitSubmit={function (): void {
-                throw new Error("Function not implemented.");
-              }}
               regitrationError={formError.email}
             />
             {formError.email && (
@@ -216,7 +206,6 @@ export default function Create() {
               iconClass={view ? "fa-eye" : "fa-lock"}
               viewPassword={viewPassword}
               onChange={handlePasswordChange}
-              setPermitSubmit={function (): void {}}
               regitrationError={formError.password}
             />
             {formError.password && (
@@ -230,7 +219,6 @@ export default function Create() {
               name="phone"
               iconClass="fa-phone"
               onChange={handlePhoneChange}
-              setPermitSubmit={function (): void {}}
               regitrationError={formError.phone}
             />
             {formError.phone && (
@@ -244,7 +232,6 @@ export default function Create() {
               name="country"
               iconClass="fa-location-dot"
               onChange={handleLocalizationChange}
-              setPermitSubmit={function (): void {}}
               regitrationError={formError.localization}
             />
             {formError.localization && (
