@@ -40,7 +40,7 @@ const UserSchema = new Schema<User>(
     longitud: {
       type: Number,
       required: true,
-    }
+    },
     image: {
       secure_url: String,
       public_id: String,
