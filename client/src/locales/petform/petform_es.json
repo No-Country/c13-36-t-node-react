@@ -1,0 +1,11 @@
+{
+  "profile": "Perfil de Mascota",
+  "name": "Nombre",
+  "age": "Edad",
+  "breed": "Raza",
+  "breedPlaceholder": "Caniche",
+  "gender": "Género",
+  "description": "Descripción",
+  "descriptionPlaceholder": "Comparte con la comunidad cómo es tu mascota.",
+  "saveChanges": "Guardar Cambios"
+}
