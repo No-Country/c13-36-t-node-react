@@ -19,6 +19,8 @@ import petform_es from "./locales/petform/petform_es.json";
 import petform_en from "./locales/petform/petform_en.json";
 import match_es from "./locales/match/match_es.json";
 import match_en from "./locales/match/match_en.json";
+import userprofile_es from "./locales/userprofile/userprofile_es.json";
+import userprofile_en from "./locales/userprofile/userprofile_en.json";
 
 console.log(i18n.language);
 i18n
@@ -41,6 +43,7 @@ i18n
         create: create_es,
         petform: petform_es,
         match: match_es,
+        userprofile: userprofile_es,
       },
       en: {
         navbar: en,
@@ -52,6 +55,7 @@ i18n
         create: create_en,
         petform: petform_en,
         match: match_en,
+        userprofile: userprofile_en,
       },
     },
   });
