@@ -17,6 +17,7 @@ import Create from "./Components/Create/Create";
 import { Usuario } from "./types/types";
 import UserProfile from "./Components/UserProfile/UserProfile";
 import Footer from "./Components/Footer/Footer";
+import NotFound from "./Components/NotFound/NotFound";
 
 register();
 
@@ -69,7 +70,7 @@ function App() {
             }
           />
           <Route
-            path="/reset"
+            path="/reset-password"
             element={
               <>
                 <Navbar setusuario={setUsuario} usuario={usuario} />
@@ -124,6 +125,7 @@ function App() {
               </>
             }
           />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </main>

@@ -4,8 +4,10 @@ import InputWithLabel from "./InputWithLabel";
 import { User, register, getLocation } from "../../services/users";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useTranslation } from "react-i18next";
 
 export default function Create() {
+  const { t } = useTranslation("create");
   const navigate = useNavigate();
   const [view, setView] = useState(false);
   const [formError, setFormError] = useState({
@@ -115,9 +117,10 @@ export default function Create() {
     e.preventDefault();
     const response = await register(dataUser);
     if (typeof response === "string") {
-      toast.error(`${response}`);
+      toast.error(t("registrationError"));
     } else {
-      toast.success("Usuario creado con éxito. Redirigiendo al login");
+      setDataUser(response);
+      toast.success(t("registerSuccess"));
       setTimeout(() => {
         navigate("/login");
       }, 5000);
@@ -139,60 +142,52 @@ export default function Create() {
             src={"avatar.png"}
             className="absolute w-24 top-[-50px] border-2 rounded-full"
           ></img>
-          <h1 className="text-2xl mt-12 font-bold">Registrarme</h1>
+          <h1 className="text-2xl mt-12 font-bold">{t("register")}</h1>
           <form
             className="flex flex-col items-start gap-3 w-full"
             onSubmit={handleSubmit}
           >
             <InputWithLabel
               autoComplete=""
-              label="Nombre de Usuario"
+              label={t("username")}
               type="text"
-              placeholder="nombreDeUsuario"
+              placeholder={t("usernamePlaceholder")}
               name="username"
               iconClass="fa-user"
               onChange={handleUsernameChange}
               regitrationError={formError.username}
             />
             {formError.username && (
-              <p className="text-red-500">
-                Ingrese un nombre de usuario con mas de 4 caracteres
-              </p>
+              <p className="text-red-500">{t("usernameError")}</p>
             )}
             <InputWithLabel
-              label="Nombre"
+              label={t("firstName")}
               type="text"
-              placeholder="John"
+              placeholder={t("firstNamePlaceholder")}
               name="firstName"
               iconClass="fa-user"
               autoComplete=""
               onChange={handleFirstNameChange}
               regitrationError={formError.name}
             />
-            {formError.name && (
-              <p className="text-red-500">
-                Ingrese un nombre con mas de 3 caracteres
-              </p>
-            )}
+            {formError.name && <p className="text-red-500">{t("nameError")}</p>}
             <InputWithLabel
               autoComplete=""
-              label="Apellido"
+              label={t("lastName")}
               type="text"
-              placeholder="Doe"
+              placeholder={t("lastNamePlaceholder")}
               name="lastName"
               iconClass="fa-user"
               onChange={handleLastNameChange}
               regitrationError={formError.lastname}
             />
             {formError.lastname && (
-              <p className="text-red-500">
-                Ingrese un apellido con mas de 4 caracteres
-              </p>
+              <p className="text-red-500">{t("lastNameError")}</p>
             )}
             <InputWithLabel
-              label="Correo electrónico"
+              label={t("email")}
               type="email"
-              placeholder="user123@thinderpet.com"
+              placeholder={t("emailPlaceholder")}
               autoComplete="Off"
               name="email"
               iconClass="fa-envelope"
@@ -200,10 +195,10 @@ export default function Create() {
               regitrationError={formError.email}
             />
             {formError.email && (
-              <p className="text-red-500">Ingrese un correo válido</p>
+              <p className="text-red-500">{t("emailError")}</p>
             )}
             <InputWithLabel
-              label="Contraseña"
+              label={t("password")}
               type={view ? "text" : "password"}
               placeholder="•••••••••"
               autoComplete="Off"
@@ -214,13 +209,10 @@ export default function Create() {
               regitrationError={formError.password}
             />
             {formError.password && (
-              <p className="text-red-500">
-                Verifique contraseña (8-16 caracteres, al menos 1 mayúscula, 1
-                número y un caracter especial)
-              </p>
+              <p className="text-red-500">{t("passwordError")}</p>
             )}
             <InputWithLabel
-              label="Telefono"
+              label={t("phone")}
               type="text"
               placeholder="1161914321"
               autoComplete="Off"
@@ -230,14 +222,12 @@ export default function Create() {
               regitrationError={formError.phone}
             />
             {formError.phone && (
-              <p className="text-red-500">
-                Debe ingresar un número de teléfono válido.
-              </p>
+              <p className="text-red-500">{t("phoneError")}</p>
             )}
             <InputWithLabel
-              label="Donde Vives"
+              label={t("localization")}
               type="text"
-              placeholder="Ciudad, Estado, Pais"
+              placeholder={t("localizationPlaceholder")}
               autoComplete="Off"
               name="country"
               iconClass="fa-location-dot"
@@ -245,7 +235,7 @@ export default function Create() {
               regitrationError={formError.localization}
             />
             {formError.localization && (
-              <p className="text-red-500">No es una ubicación válida.</p>
+              <p className="text-red-500">{t("locationError")}</p>
             )}
             <div className="flex flex-row-reverse md:flex-col mx-auto my-4 gap-4 items-center">
               <button
@@ -262,7 +252,7 @@ export default function Create() {
                   formError.localization
                 }
               >
-                Registrarme
+                {t("register")}
               </button>
 
               <NavLink to={"/login"}>
@@ -271,7 +261,7 @@ export default function Create() {
                     className="fa-solid fa-arrow-left mr-2"
                     style={{ color: "#fff" }}
                   ></i>
-                  Atras
+                  {t("back")}
                 </button>
               </NavLink>
             </div>

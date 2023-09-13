@@ -1,0 +1,13 @@
+{
+  "profile": "Perfil de ",
+  "editPhoto": "Editar foto",
+  "username": "Nombre de usuario:",
+  "firstNameLastName": "Nombre y apellido:",
+  "email": "Correo electrónico:",
+  "phone": "Teléfono:",
+  "addPet": "Agregar nueva mascota",
+  "mypets": "Mis mascotas",
+  "deleteAccount": "Eliminar Cuenta",
+  "saveChanges": "Guardar Cambios",
+  "continue": "Para poder continuar ingrese el perfil de su mascota"
+}

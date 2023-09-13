@@ -31,8 +31,10 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
   return (
     <nav className="relative w-full flex bg-[#E0838E] place-content-between items-center py-2 px-4 top-0 z-10">
       <NavLink to={"/"} className="flex items-center">
-        <Avatar size="medium" src="/public/logo.png" />
-        <h1 className="text-xl sm:text-2xl text-white font-bold">ThinderPet</h1>
+        <Avatar size="small" src="logo.png" />
+        <h1 className="text-xl sm:text-2xl text-white font-bold ml-2">
+          ThinderPet
+        </h1>
       </NavLink>
       {usuario !== undefined ? (
         <>

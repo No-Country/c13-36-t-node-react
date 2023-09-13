@@ -3,11 +3,13 @@ import Avatar from "../Avatar/Avatar";
 import InputWithLabel from "../Create/InputWithLabel";
 import { Breed, Pet, Specie } from "../../types/types";
 import { createPet, getBreeds, getPet, getSpecies } from "../../services/pets";
+import { useTranslation } from "react-i18next";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router";
 
 const PetForm = () => {
   const { id } = useParams();
+  const { t } = useTranslation("petform");
   const [userId, setUserId] = useState<string>("");
   /* const breeds = [
     {
@@ -218,14 +220,14 @@ const PetForm = () => {
       <ToastContainer />
       <form onSubmit={handlePetCreate}>
         <h1 className="font-bold text-4xl ">
-          Perfil de {dataPet.name ? dataPet.name : " tu mascota"}
+          {t("profile")} {dataPet.name ? dataPet.name : " tu mascota"}
         </h1>
         <div className="grid grid-cols-2 gap-x-60 max-md:flex flex-col gap-2 px-4 mobile:grid-cols-1">
           <div className="max-md:w-[100%] flex flex-col mobile:w-full">
             <Avatar size={"medium"} />
             <InputWithLabel
               value={dataPet.name}
-              label="Nombre"
+              label={t("name")}
               type="text"
               placeholder="Shaby"
               autoComplete="Off"
@@ -235,7 +237,7 @@ const PetForm = () => {
             />
             <InputWithLabel
               value={edad}
-              label="Edad"
+              label={t("age")}
               type="text"
               placeholder="4"
               autoComplete="Off"
@@ -243,6 +245,7 @@ const PetForm = () => {
               iconClass="fa-calendar"
               onChange={handlePetageChange}
             />
+
             <label className="font-semibold ml-1 mt-1 text-left" htmlFor="raza">
               Especie
             </label>
@@ -264,7 +267,7 @@ const PetForm = () => {
               ></i>
             </div>
             <label className="font-semibold ml-1 mt-1 text-left" htmlFor="raza">
-              Raza
+              label={t("breed")}
             </label>
             <div className="relative w-[100%] align-middle">
               <select
@@ -299,8 +302,8 @@ const PetForm = () => {
               ))}
             </datalist> */}
             <InputWithLabel
-              label="Género"
               value={dataPet.gender}
+              label={t("gender")}
               type="text"
               list="genero"
               placeholder="M"
@@ -314,10 +317,10 @@ const PetForm = () => {
               <option key="H" value="hembra" />
             </datalist>
             <InputWithLabel
-              label="Descripción"
               value={dataPet.description}
+              label={t("description")}
               type="text"
-              placeholder="Comparte con la comunidad cómo es tu mascota."
+              placeholder={t("descriptionPlaceholder")}
               autoComplete="Off"
               name="description"
               iconClass="fa-venus-mars"
@@ -349,7 +352,7 @@ const PetForm = () => {
           className="w-40 border-2 bg-gray-300 font-bold p-2 rounded-lg mt-10 hover:bg-[#E1828E]"
           disabled={creating}
         >
-          Guardar Cambios
+          {t("saveChanges")}
         </button>
       </form>
     </div>
