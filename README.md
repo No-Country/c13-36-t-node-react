@@ -48,13 +48,14 @@ Si alguna vez decides que ThinderPet ya no es para ti, puedes eliminar tu cuenta
 - [@Ash](https://github.com/Ash19-88)
 - [@Mauricio](https://github.com/De1t4)
 - [@Emmanuel](https://github.com/EmmanuelML78)
+- [@Agostina](https://www.behance.net/agostina_sanchez)
 
 
 
 
 ## Tech Stack
 
-**Client:** React, TailwindCSS
+**Client:** React, TailwindCSS, Vite
 
 **Server:** Node, Express, MongoDB, 
 
@@ -71,7 +72,7 @@ Clone the project
 ### API (Backend)
 
 - [Node.js](https://nodejs.org/) (v14.x o superior)
-- [PostgreSQL](https://www.postgresql.org/)
+- [MongoDB](https://www.mongodb.com/es) (Mongoose)
 
 Go to the directory
 `cd api`
@@ -79,8 +80,11 @@ Go to the directory
 Install dependencies
 `npm install`
 
-Start the server
-`npm run dev`
+To build
+`npm run build`
+
+To start
+`npm start`
 
 Server available on http://localhost:3001.
 
