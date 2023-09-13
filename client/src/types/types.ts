@@ -51,6 +51,7 @@ export type PetResponse = {
 };
 
 export type Pet = {
+  id?: string;
   name: string;
   gender: string;
   age: number;

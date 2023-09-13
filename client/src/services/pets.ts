@@ -56,6 +56,15 @@ export const getPet = async (
   }
 };
 
+export const getPetsByUser = async (id: string, token: string) => {
+  const response = await axios.get(
+    `https://thinderpet-api-ild3-dev.fl0.io/api/v1/pet/petsfromowner/${id}`,
+    { headers: { Authorization: `${token}` } }
+  );
+  console.log(response.data);
+  return response.data;
+};
+
 export const getBreeds = async (
   breed: string,
   token: string

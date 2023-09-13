@@ -224,7 +224,14 @@ const PetForm = () => {
         </h1>
         <div className="grid grid-cols-2 gap-x-60 max-md:flex flex-col gap-2 px-4 mobile:grid-cols-1">
           <div className="max-md:w-[100%] flex flex-col mobile:w-full">
-            <Avatar size={"medium"} />
+            <Avatar
+              size={"medium"}
+              src={
+                dataPet
+                  ? `https://api.multiavatar.com/${dataPet.name}.png`
+                  : `https://api.multiavatar.com/avatar.png`
+              }
+            />
             <InputWithLabel
               value={dataPet.name}
               label={t("name")}
