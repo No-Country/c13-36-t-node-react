@@ -74,7 +74,7 @@ function App() {
               <>
                 <Navbar setusuario={setUsuario} usuario={usuario} />
                 <Reset />
-                <Footer/>
+                <Footer />
               </>
             }
           />
@@ -108,6 +108,15 @@ function App() {
           />
           <Route
             path="/mascotas"
+            element={
+              <>
+                <Navbar setusuario={setUsuario} usuario={usuario} />
+                <PetForm />
+              </>
+            }
+          />
+          <Route
+            path="/mascotas/:id"
             element={
               <>
                 <Navbar setusuario={setUsuario} usuario={usuario} />

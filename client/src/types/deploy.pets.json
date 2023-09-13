@@ -1,0 +1,82 @@
+[{
+  "_id": {
+    "$oid": "64f7888a647cd5ec1a067a3e"
+  },
+  "name": "rayitoo",
+  "gender": "hembra",
+  "breedId": {
+    "$oid": "64f78545dab0467f1b798e9e"
+  },
+  "ownerId": {
+    "$oid": "64effba607c6bda8d1f877a7"
+  },
+  "age": 10,
+  "description": "hola soy la rayito",
+  "createdAt": {
+    "$date": "2023-09-05T19:59:06.935Z"
+  },
+  "updatedAt": {
+    "$date": "2023-09-05T19:59:06.935Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "64ff7258487f44cda50f746b"
+  },
+  "name": "Pancho",
+  "gender": "macho",
+  "breedId": {
+    "$oid": "64f78545dab0467f1b798e9e"
+  },
+  "ownerId": {
+    "$oid": "64effba607c6bda8d1f877a7"
+  },
+  "age": 2,
+  "createdAt": {
+    "$date": "2023-09-11T20:02:32.724Z"
+  },
+  "updatedAt": {
+    "$date": "2023-09-11T20:02:32.724Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "64ff7500487f44cda50f7471"
+  },
+  "name": "lola",
+  "gender": "hembra",
+  "breedId": {
+    "$oid": "64f78545dab0467f1b798e9e"
+  },
+  "ownerId": {
+    "$oid": "64effba607c6bda8d1f877a7"
+  },
+  "age": 3,
+  "createdAt": {
+    "$date": "2023-09-11T20:13:52.014Z"
+  },
+  "updatedAt": {
+    "$date": "2023-09-11T20:13:52.014Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "64ffa956bcd4493f6dbd9f83"
+  },
+  "name": "Justin",
+  "gender": "macho",
+  "breedId": {
+    "$oid": "64f78545dab0467f1b574ea1"
+  },
+  "ownerId": {
+    "$oid": "64effba607c6bda8d1f877a7"
+  },
+  "age": 2,
+  "image": [],
+  "createdAt": {
+    "$date": "2023-09-11T23:57:10.274Z"
+  },
+  "updatedAt": {
+    "$date": "2023-09-11T23:57:10.274Z"
+  }
+}]

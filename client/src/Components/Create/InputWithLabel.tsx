@@ -1,6 +1,7 @@
 interface InputProps {
   mailError?: string;
   passError?: string;
+  value?: string;
   label: string;
   type: string;
   placeholder: string;
@@ -16,6 +17,7 @@ interface InputProps {
 function InputWithLabel({
   label,
   type,
+  value,
   placeholder,
   name,
   iconClass,
@@ -40,6 +42,7 @@ function InputWithLabel({
       </label>
       <div className="relative w-[100%]">
         <input
+          defaultValue={value}
           type={type}
           list={list}
           placeholder={placeholder}
