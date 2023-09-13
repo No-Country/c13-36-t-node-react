@@ -88,3 +88,69 @@ export async function getLocation(ubicacion: string) {
   );
   return response.data.results[0];
 }
+
+// Request reset password
+export async function sendPasswordResetRequest(email: string) {
+  try {
+    const response = await axios.post(
+      "https://thinderpet-api-ild3-dev.fl0.io/api/v1/user/forgot-password",
+      { email },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjQ4YjM0OGUyMDQ1NjgzNGEwMjU5MDNiIiwiaWF0IjoxNjkyOTg4NzI2LCJleHAiOjE2OTM1MDcxMjZ9.uJ2uhszxtTF9yBmnhKGHZA88M7pwgp6buUbrtv5TTVE`,
+        },
+      }
+    );
+
+    if (response.status === 200) {
+      return true; //success
+    } else {
+      console.error(
+        "Error al enviar la solicitud de restablecimiento de contraseña:",
+        response.data.message
+      );
+      return false; // error
+    }
+  } catch (error) {
+    console.error("Error en la solicitud:", error);
+    return false; // error
+  }
+}
+
+// Reset password
+export async function resetPassword(
+  userId: string,
+  token: string,
+  newPassword: string,
+  confirmPassword: string
+) {
+  // match passwords
+  if (newPassword !== confirmPassword) {
+    console.error("Las contraseñas no coinciden.");
+    return false; // Error
+  }
+
+  try {
+    const response = await axios.post(
+      `https://thinderpet-api-ild3-dev.fl0.io/api/v1/user/reset-password/${userId}/${token}`,
+      { password: newPassword },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjQ4YjM0OGUyMDQ1NjgzNGEwMjU5MDNiIiwiaWF0IjoxNjkyOTg4NzI2LCJleHAiOjE2OTM1MDcxMjZ9.uJ2uhszxtTF9yBmnhKGHZA88M7pwgp6buUbrtv5TTVE`,
+        },
+      }
+    );
+
+    if (response.status === 200) {
+      return true; // success
+    } else {
+      console.error("Error al restablecer la contraseña.");
+      return false; // error
+    }
+  } catch (error) {
+    console.error("Error en la solicitud:", error);
+    return false; // error
+  }
+}
