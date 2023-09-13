@@ -15,7 +15,7 @@ export async function createPet(
       breedId: data.breed,
       gender: data.gender,
       ownerId: id,
-      desciption: data.description,
+      description: data.description,
       age: data.age,
     },
     {
