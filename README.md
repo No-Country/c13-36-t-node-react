@@ -2,28 +2,35 @@
 <p align="center"><img src="https://thinderpet.vercel.app/logoFooter.png"/>
 </p>
 
-¡Descubre un nuevo mundo de amor por las mascotas con ThinderPet!
+<h3 align="center">¡Descubre un nuevo mundo de amor por las mascotas con ThinderPet!</h3>
 
 Regístrate y únete a la comunidad de amantes de las mascotas. Encuentra y muestra a tus adorables compañeros peludos en nuestra plataforma diseñada pensando en ti.
 
 • Explora mascotas cercanas a tu ubicación para conocer a nuevos amigos peludos.
+
 • Personaliza tu búsqueda con filtros que se adaptan a tus preferencias, desde la distancia hasta el tipo de mascota.
+
 • Sumérgete en los perfiles detallados de las mascotas y descubre sus historias únicas.
+
 • Expresa tus emociones marcando tu interés o desinterés en las mascotas que te roban el corazón.
+
 • Experimenta la emoción de hacer "match" con otros amantes de las mascotas que comparten tu entusiasmo.
+
 • Recibe notificaciones instantáneas cuando conectes con otros dueños de mascotas que comparten tus intereses.
+
 • Conéctate con nuevos amigos peludos a través de nuestra plataforma fácil de usar.
+
 • Mantén tu perfil y la información de tu mascota siempre actualizados y refleja tu verdadera personalidad.
+
 
 <h4>¡Toma el control total! </h4>
 Si alguna vez decides que ThinderPet ya no es para ti, puedes eliminar tu cuenta en un abrir y cerrar de ojos.
+</br>
+</br>
+</br>
 
 
-
-  <p align="center"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=E0838E&width=435&lines=ThinderPet" alt="Typing SVG" /></p>
-
-<p align="center">
-Donde las historias de amistad entre mascotas y personas comienzan y nunca terminan. Únete hoy mismo y comienza tu búsqueda de amor por las mascotas.</p>
+<p align="center" ><b>ThinderPet</b>, donde las historias de amistad entre mascotas y personas comienzan y nunca terminan. Únete hoy mismo y comienza tu búsqueda de amor por las mascotas.</p>
 
 
 
