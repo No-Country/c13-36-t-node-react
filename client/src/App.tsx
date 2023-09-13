@@ -116,6 +116,15 @@ function App() {
               </>
             }
           />
+          <Route
+            path="/mascotas/:id"
+            element={
+              <>
+                <Navbar setusuario={setUsuario} usuario={usuario} />
+                <PetForm />
+              </>
+            }
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
