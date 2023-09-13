@@ -111,7 +111,7 @@ Go to the directory
 Install dependencies
 `npm install`
 
-Start the server
+Start
 `npm run dev`
 
 
