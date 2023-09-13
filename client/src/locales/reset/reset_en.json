@@ -1,9 +1,12 @@
 {
-  "forgotPassword": "Forgot your password?",
+  "forgotPassword": "Forgot Password?",
   "email": "Email",
-  "emailPlaceholder": "user123@thinderpet.com",
+  "emailPlaceholder": "Enter your email",
   "chooseAnotherMethod": "Choose another method",
-  "needHelp": "Need Help?",
+  "needHelp": "Need help",
   "sendEmail": "Send Email",
-  "back": "Back"
+  "back": "Back",
+  "newPassword": "New Password",
+  "newPasswordPlaceholder": "Enter your new password",
+  "confirmPasswordChange": "Confirm Password Change"
 }

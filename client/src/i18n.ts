@@ -13,6 +13,16 @@ import menu_es from "./locales/menu/menu_es.json";
 import menu_en from "./locales/menu/menu_en.json";
 import reset_es from "./locales/reset/reset_es.json";
 import reset_en from "./locales/reset/reset_en.json";
+import create_es from "./locales/create/create_es.json";
+import create_en from "./locales/create/create_en.json";
+import petform_es from "./locales/petform/petform_es.json";
+import petform_en from "./locales/petform/petform_en.json";
+import match_es from "./locales/match/match_es.json";
+import match_en from "./locales/match/match_en.json";
+import userprofile_es from "./locales/userprofile/userprofile_es.json";
+import userprofile_en from "./locales/userprofile/userprofile_en.json";
+import notfound_es from "./locales/notfound/notfound_es.json";
+import notfound_en from "./locales/notfound/notfound_en.json";
 
 console.log(i18n.language);
 i18n
@@ -32,6 +42,11 @@ i18n
         login: login_es,
         menu: menu_es,
         reset: reset_es,
+        create: create_es,
+        petform: petform_es,
+        match: match_es,
+        userprofile: userprofile_es,
+        notfound: notfound_es,
       },
       en: {
         navbar: en,
@@ -40,6 +55,11 @@ i18n
         login: login_en,
         menu: menu_en,
         reset: reset_en,
+        create: create_en,
+        petform: petform_en,
+        match: match_en,
+        userprofile: userprofile_en,
+        notfound: notfound_en,
       },
     },
   });

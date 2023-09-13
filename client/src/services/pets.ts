@@ -1,5 +1,7 @@
 import axios from "axios";
-import { Breed, Pet, PetResponse } from "../types/types";
+import { Breed, Pet, PetResponse, Specie } from "../types/types";
+import mascotitas from "../types/deploy.pets.json";
+import { AxiosError } from "axios";
 
 export async function createPet(
   data: Pet,
@@ -10,11 +12,11 @@ export async function createPet(
     `https://thinderpet-api-ild3-dev.fl0.io/api/v1/pet`,
     {
       name: data.name,
-      breedId: "64f78545dab0467f1b798e9e",
+      breedId: data.breed,
       gender: data.gender,
       ownerId: id,
       desciption: data.description,
-      age: parseInt(data.age),
+      age: data.age,
     },
     {
       headers: {
@@ -24,136 +26,62 @@ export async function createPet(
   );
   return response.data;
 }
-export const getPets = async (id: string): Promise<PetResponse[] | string> => {
+export const getPet = async (
+  id: string,
+  token: string
+): Promise<PetResponse | string> => {
+  console.log(token);
+
+  try {
+    const response = await axios.get(
+      `https://thinderpet-api-ild3-dev.fl0.io/api/v1/pet/${id}`,
+      {
+        headers: {
+          Authorization: `${token}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    const axiosError = error as AxiosError;
+    if (axiosError !== undefined) {
+      if (axiosError.response?.status === 401) {
+        const mascota = mascotitas.filter(
+          (mascotita) => mascotita._id.$oid === id
+        );
+        console.log(mascota);
+      }
+    }
+    return "hola mundo";
+  }
+};
+
+export const getBreeds = async (
+  breed: string,
+  token: string
+): Promise<Breed[]> => {
   const response = await axios.get(
-    `https://thinderpet-api-ild3-dev.fl0.io/api/v1/pet/${id}`
+    `https://thinderpet-api-ild3-dev.fl0.io/api/v1/breed/${breed}`,
+    { headers: { Authorization: `${token}` } }
   );
-  console.log(response);
   return response.data;
 };
 
-export const getBreeds = async (): Promise<Breed[]> => {
-  const response = [
-    {
-      _id: {
-        $oid: "64f78545dab0467f1b574e9e",
-      },
-      breed: "Chihuahua",
-    },
-    {
-      _id: {
-        $oid: "64f78545dab0467f1b798e9e",
-      },
-      breed: "Golden Retriever",
-    },
-    {
-      _id: {
-        $oid: "64f78545dab0467f88798e9e",
-      },
-      breed: "Bulldog Francés",
-    },
-    {
-      _id: {
-        $oid: "64f78545dabaf67f1b798e9e",
-      },
-      breed: "Bulldog",
-    },
-    {
-      _id: {
-        $oid: "64f78545dabaf67f1b798e9f",
-      },
-      breed: "Persian Cat",
-    },
-    {
-      _id: {
-        $oid: "64f78545dab0467f1b798ea0",
-      },
-      breed: "Boxer",
-    },
-    {
-      _id: {
-        $oid: "64f78545dab0467f88798ea0",
-      },
-      breed: "Yorkshire Terrier",
-    },
-    {
-      _id: {
-        $oid: "64f78545dabaf67f1b798ea0",
-      },
-      breed: "Siberian Husky",
-    },
-    {
-      _id: {
-        $oid: "64f78545dab0467f1b798ea1",
-      },
-      breed: "Rottweiler",
-    },
-    {
-      _id: {
-        $oid: "64f78545dab0467f1b574ea1",
-      },
-      breed: "Scottish Fold Cat",
-    },
-    {
-      _id: {
-        $oid: "64f78545dab0467f88798ea1",
-      },
-      breed: "Ragdoll Cat",
-    },
-    {
-      _id: {
-        $oid: "64f78545dab0467f1b798ea2",
-      },
-      breed: "Beagle",
-    },
-    {
-      _id: {
-        $oid: "64f78545dab0467f1b574ea2",
-      },
-      breed: "Labrador Retriever",
-    },
-    {
-      _id: {
-        $oid: "64f78545dab0467f88798ea2",
-      },
-      breed: "German Shepherd",
-    },
-    {
-      _id: {
-        $oid: "64f78545dabaf67f1b798ea2",
-      },
-      breed: "Birman Cat",
-    },
-    {
-      _id: {
-        $oid: "64f78545dab0467f1b798e9f",
-      },
-      breed: "Poodle",
-    },
-    {
-      _id: {
-        $oid: "64f78545dab0467f1b574e9f",
-      },
-      breed: "Siamese Cat",
-    },
-    {
-      _id: {
-        $oid: "64f78545dab0467f88798e9f",
-      },
-      breed: "Maine Coon",
-    },
-    {
-      _id: {
-        $oid: "64f78545dab0467f1b574ea0",
-      },
-      breed: "Dachshund",
-    },
-    {
-      _id: {
-        $oid: "64f78545dabaf67f1b798ea1",
-      },
-      breed: "Bengal Cat",
-    },
-  ];
-  return response;
+export const getSpecies = async (token: string): Promise<Specie[]> => {
+  try {
+    const response = await axios.get(
+      "https://thinderpet-api-ild3-dev.fl0.io/api/v1/specie/",
+      {
+        headers: {
+          Authorization: `${token}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    const axiosError = error as AxiosError;
+    console.log(axiosError);
+
+    return [];
+  }
 };
