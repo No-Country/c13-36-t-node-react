@@ -220,7 +220,7 @@ const PetForm = () => {
       <ToastContainer />
       <form onSubmit={handlePetCreate}>
         <h1 className="font-bold text-4xl ">
-          {t("profile")} {dataPet.name ? dataPet.name : " tu mascota"}
+          {t("profile")} {dataPet.name ? dataPet.name : ""}
         </h1>
         <div className="grid grid-cols-2 gap-x-60 max-md:flex flex-col gap-2 px-4 mobile:grid-cols-1">
           <div className="max-md:w-[100%] flex flex-col mobile:w-full">
