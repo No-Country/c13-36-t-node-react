@@ -109,7 +109,7 @@ const Login: React.FC<LoginProps> = ({ setusuario }) => {
             </button>
           </form>
           <NavLink
-            to={"/reset"}
+            to={"/reset-password"}
             className="font-semibold text-sm hover:underline-offset-1 my-2"
           >
             {t("forgotPassword")}
