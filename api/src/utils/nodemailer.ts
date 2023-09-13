@@ -35,7 +35,7 @@ export const sendEmail = async (user: User, token: string) => {
         <tr>
           <td style="padding: 20px;">
             <h1 style="font-size: 18px; color: #333333; margin-top: 0;">Hi ${user.firstName},</h1>
-            <p style="font-size: 16px; color: #666666;">We received a request to reset your password for your WoofApp account.</p>
+            <p style="font-size: 16px; color: #666666;">We received a request to reset your password for your ThinderPet account.</p>
     <p style="font-size: 16px; color: #666666;">Click the following link to reset your password:</p>        
     <div align="center" style="background-color: #e1828e; padding: 10px 20px; border-radius: 4px; margin-top: 20px;">
               
