@@ -1,0 +1,111 @@
+# ThinderPet  
+<p align="center"><img src="https://thinderpet.vercel.app/logoFooter.png"/>
+</p>
+
+¡Descubre un nuevo mundo de amor por las mascotas con ThinderPet!
+
+Regístrate y únete a la comunidad de amantes de las mascotas. Encuentra y muestra a tus adorables compañeros peludos en nuestra plataforma diseñada pensando en ti.
+
+• Explora mascotas cercanas a tu ubicación para conocer a nuevos amigos peludos.
+• Personaliza tu búsqueda con filtros que se adaptan a tus preferencias, desde la distancia hasta el tipo de mascota.
+• Sumérgete en los perfiles detallados de las mascotas y descubre sus historias únicas.
+• Expresa tus emociones marcando tu interés o desinterés en las mascotas que te roban el corazón.
+• Experimenta la emoción de hacer "match" con otros amantes de las mascotas que comparten tu entusiasmo.
+• Recibe notificaciones instantáneas cuando conectes con otros dueños de mascotas que comparten tus intereses.
+• Conéctate con nuevos amigos peludos a través de nuestra plataforma fácil de usar.
+• Mantén tu perfil y la información de tu mascota siempre actualizados y refleja tu verdadera personalidad.
+
+<h4>¡Toma el control total! </h4>
+Si alguna vez decides que ThinderPet ya no es para ti, puedes eliminar tu cuenta en un abrir y cerrar de ojos.
+
+
+
+  <p align="center"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=E0838E&width=435&lines=ThinderPet" alt="Typing SVG" /></p>
+
+<p align="center">
+Donde las historias de amistad entre mascotas y personas comienzan y nunca terminan. Únete hoy mismo y comienza tu búsqueda de amor por las mascotas.</p>
+
+
+
+ --------------------------------------------------------------------------------------------------------------------
+## Demo
+
+[Link to demo](https://thinderpet.vercel.app/)
+
+
+
+## Authors
+
+- [@JuanPablo](https://github.com/jpsq)
+- [@Rafael](https://github.com/rafaric)
+- [@Ash](https://github.com/Ash19-88)
+- [@Mauricio](https://github.com/De1t4)
+- [@Emmanuel](https://github.com/EmmanuelML78)
+
+
+
+
+## Tech Stack
+
+**Client:** React, TailwindCSS
+
+**Server:** Node, Express, MongoDB, 
+
+
+
+## Configuration 
+Clone the project
+
+```bash
+  git clone https://github.com/No-Country/c13-36-t-node-react.git
+```
+
+
+### API (Backend)
+
+- [Node.js](https://nodejs.org/) (v14.x o superior)
+- [PostgreSQL](https://www.postgresql.org/)
+
+Go to the directory
+`cd api`
+
+Install dependencies
+`npm install`
+
+Start the server
+`npm run dev`
+
+Server available on http://localhost:3001.
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`API_KEY`
+
+`URL_BASE`
+`DB_USER`
+`DB_PASSWORD`
+`DB_HOST`
+`DB_PORT`
+
+Replace: `API_KEY` , `DB_USER` , `DB_PASSWORD` , `DB_PORT` with your data.
+
+
+
+
+### Client (Frontend)
+
+- [Node.js](https://nodejs.org/) (v14.x o superior)
+
+Go to the directory
+`cd client`
+
+Install dependencies
+`npm install`
+
+Start the server
+`npm run dev`
+
+
+
