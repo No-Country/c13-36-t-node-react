@@ -72,92 +72,106 @@ const Reset = () => {
   };
 
   return (
-    <div className="h-screen flex justify-center content-center items-center px-6 py-4">
-      <main className="flex justify-center items-center flex-col py-6 px-8 border-2 w-auto border-black relative rounded-md bg-[#fff]">
-        <img src={"dogConfuse.png"} className="w-2/5"></img>
-        <h1 className="text-2xl my-5 font-bold font-sans">
-          {isPasswordReset ? t("newPassword") : t("forgotPassword")}
-        </h1>
-        <ToastContainer />
-        {isPasswordReset ? (
-          <form
-            className="flex flex-col items-center gap-2"
-            onSubmit={handleConfirmPasswordChange}
-          >
-            <div className="flex flex-col w-[100%]">
-              <input
-                type="password"
-                placeholder={t("newPasswordPlaceholder")}
-                autoComplete="Off"
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-              />
-            </div>
-            <div className="flex flex-col w-[100%]">
-              <input
-                type="password"
-                placeholder={t("confirmPasswordChange")}
-                autoComplete="Off"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
-            </div>
-            <div className="flex flex-col m-auto gap-4 mt-4">
-              <button
-                className="bg-[#54A4A5] text-white px-4 py-2 rounded-xl"
-                type="submit"
-              >
-                {t("sendEmail")}
-              </button>
-            </div>
-          </form>
-        ) : (
-          <form
-            className="flex flex-col items-center gap-2"
-            onSubmit={handleResetPassword}
-          >
-            <div className="flex flex-col w-[100%]">
-              <InputWithLabel
-                label={t("email")}
-                type="email"
-                placeholder={t("emailPlaceholder")}
-                autoComplete="Off"
-                name="emailUser"
-                onChange={setEmail}
-                iconClass="fa-envelope"
-              />
-              <div className="flex flex-row justify-between">
-                <NavLink to={"/reset"} className="text-[#979797] text-sm mr-5">
-                  {t("chooseAnotherMethod")}
-                </NavLink>
-                <NavLink to={"/reset"} className="text-[#141414] text-sm">
-                  {t("needHelp")}
-                </NavLink>
+    <main className="w-full">
+      <div className="grid grid-cols-2 min-h-screen mobile:flex mobile:h-full mobile:justify-center  ">
+        <div className="bg-[#E0838E] w-11/12 mobile:hidden mobile:w-0 mobile:bg-none relative">
+          <img
+            className="absolute bottom-0 right-0 w-full"
+            src="happy-dog.png"
+            alt="happydog"
+          />
+        </div>
+        <div className="flex justify-center items-center my-24 flex-col px-5 py-16 w-[500px] mobile:w-[95vw] mobile:px-2 border-2 border-[#000] relative mx-auto rounded-md">
+          <div className="absolute rounded-3xl w-2/5 top-[-50px]">
+            <img src={"dogConfuse.png"}></img>
+          </div>
+          <h1 className="text-2xl my-5 font-bold font-sans">
+            {isPasswordReset ? t("newPassword") : t("forgotPassword")}
+          </h1>
+          <ToastContainer />
+          {isPasswordReset ? (
+            <form
+              className="flex flex-col  my-4 text-left gap-3 w-[350px] max-md:w-[100%] mobile:w-[80vw] max-md:px-2"
+              onSubmit={handleConfirmPasswordChange}
+            >
+              <div className="flex flex-col w-[100%]">
+                <input
+                  type="password"
+                  placeholder={t("newPasswordPlaceholder")}
+                  autoComplete="Off"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                />
               </div>
-            </div>
-            <div className="flex flex-col m-auto gap-4 mt-4">
-              <button
-                value="Login"
-                className="bg-[#54A4A5] text-white px-4 py-2 rounded-xl"
-                type="submit"
-              >
-                {t("sendEmail")}
-              </button>
-            </div>
-          </form>
-        )}
+              <div className="flex flex-col w-[100%]">
+                <input
+                  type="password"
+                  placeholder={t("confirmPasswordChange")}
+                  autoComplete="Off"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+              </div>
+              <div className="flex flex-col m-auto gap-4 mt-4">
+                <button
+                  className="bg-[#54A4A5] text-white px-4 py-2 rounded-xl"
+                  type="submit"
+                >
+                  {t("sendEmail")}
+                </button>
+              </div>
+            </form>
+          ) : (
+            <form
+              className="flex flex-col  my-4 text-left gap-3 w-[350px] max-md:w-[100%] mobile:w-[80vw] max-md:px-2"
+              onSubmit={handleResetPassword}
+            >
+              <div className="flex flex-col w-[100%]">
+                <InputWithLabel
+                  label={t("email")}
+                  type="email"
+                  placeholder={t("emailPlaceholder")}
+                  autoComplete="Off"
+                  name="emailUser"
+                  onChange={setEmail}
+                  iconClass="fa-envelope"
+                />
+                <div className="flex flex-row justify-between">
+                  <NavLink
+                    to={"/reset"}
+                    className="text-[#979797] text-sm mr-5"
+                  >
+                    {t("chooseAnotherMethod")}
+                  </NavLink>
+                  <NavLink to={"/reset"} className="text-[#141414] text-sm">
+                    {t("needHelp")}
+                  </NavLink>
+                </div>
+              </div>
+              <div className="flex flex-col m-auto gap-4 mt-4">
+                <button
+                  value="Login"
+                  className="bg-[#54A4A5] text-white px-4 py-2 rounded-xl"
+                  type="submit"
+                >
+                  {t("sendEmail")}
+                </button>
+              </div>
+            </form>
+          )}
 
-        <NavLink to={"/login"}>
-          <button className="bg-red-400 text-white px-4 py-2 rounded-xl my-2">
-            <i
-              className="fa-solid fa-arrow-left mr-2"
-              style={{ color: "#fff" }}
-            ></i>
-            {t("back")}
-          </button>
-        </NavLink>
-      </main>
-    </div>
+          <NavLink to={"/login"}>
+            <button className="bg-red-400 text-white px-4 py-2 rounded-xl my-2">
+              <i
+                className="fa-solid fa-arrow-left mr-2"
+                style={{ color: "#fff" }}
+              ></i>
+              {t("back")}
+            </button>
+          </NavLink>
+        </div>
+      </div>
+    </main>
   );
 };
 
