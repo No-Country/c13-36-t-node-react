@@ -2,6 +2,8 @@ import { useState } from "react";
 import { AiFillHeart } from "react-icons/ai";
 import { FaArrowUp } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import Ayuda from "./Ayuda";
+
 
 const Landing = () => {
   const { t } = useTranslation("landing");
@@ -15,10 +17,11 @@ const Landing = () => {
     }
   };
 
+
   window.addEventListener("scroll", toggleVisible);
   return (
     <>
-      <section className=" bg-[#99A3B0] w-full h-screen pt-[25vh]  sm:pt-[25vh] md:pt-[18vh] lg:pt-[10vh]">
+      <section className=" bg-[#E6E6FA] w-full h-screen pt-[25vh]  sm:pt-[25vh] md:pt-[18vh] lg:pt-[10vh]">
         <div className="grid grid-cols-3 px-4  gap-4 sm:flex sm:flex-row sm:gap-20 sm:justify-center sm:px-6 ">
           <div className="">
             <img src={"dogLanding.png"} className="w-[35vw] lg:w-80" />
@@ -92,6 +95,7 @@ const Landing = () => {
           className="w-80 sm:w-[30vw] lg:w-[20vw]"
         ></img>
       </section>
+      <Ayuda/>
     </>
   );
 };

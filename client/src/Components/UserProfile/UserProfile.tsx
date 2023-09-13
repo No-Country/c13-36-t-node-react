@@ -47,6 +47,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ usuario}) => {
   
         navigate("/");
         localStorage.removeItem("token");
+        window.location.reload();
         console.log("La cuenta fue eliminada ", response);
       } catch (error) {
         console.log("Error en la eliminación:", error);
