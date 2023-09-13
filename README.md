@@ -75,15 +75,19 @@ Clone the project
 - [MongoDB](https://www.mongodb.com/es) (Mongoose)
 
 Go to the directory
+
 `cd api`
 
 Install dependencies
+
 `npm install`
 
 To build
+
 `npm run build`
 
 To start
+
 `npm start`
 
 Server available on http://localhost:3001.
@@ -95,9 +99,13 @@ To run this project, you will need to add the following environment variables to
 `API_KEY`
 
 `URL_BASE`
+
 `DB_USER`
+
 `DB_PASSWORD`
+
 `DB_HOST`
+
 `DB_PORT`
 
 Replace: `API_KEY` , `DB_USER` , `DB_PASSWORD` , `DB_PORT` with your data.
@@ -110,12 +118,15 @@ Replace: `API_KEY` , `DB_USER` , `DB_PASSWORD` , `DB_PORT` with your data.
 - [Node.js](https://nodejs.org/) (v14.x o superior)
 
 Go to the directory
+
 `cd client`
 
 Install dependencies
+
 `npm install`
 
 Start
+
 `npm run dev`
 
 
