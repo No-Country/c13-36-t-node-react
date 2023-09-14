@@ -61,7 +61,7 @@ const Landing = () => {
       </section>
 
       <section
-        className="px-6 h-screen lg:px-36 my-10 lg:w-full flex justify-center items-center flex-col  sm:flex-row lg:flex-row max-md:px-10"
+        className="px-6 h-screen  lg:px-36 my-10 lg:w-full flex justify-center items-center flex-col  sm:flex-row lg:flex-row max-md:px-10"
         id="nosotros"
       >
         <div className="flex flex-col w-50 sm:w-[100%]">
@@ -80,7 +80,7 @@ const Landing = () => {
           className="w-80 sm:w-[50vw] lg:w-[30vw] mobile:m-auto"
         ></img>
       </section>
-      <p className="font-bold font-sans text-2xl px-8 py-5 sm:text-2xl lg:text-3xl sm:px-10 lg:px-24 sm:py-10 text-[#E0838E]">
+      <p className="font-bold font-sans text-2xl px-8 py-4 sm:text-2xl lg:text-3xl sm:px-10 lg:px-24 sm:py-10 text-[#E0838E]">
         {t("joinCommunity")}
       </p>
       {visible && (
@@ -89,7 +89,7 @@ const Landing = () => {
         </a>
       )}
       <section
-        className="px-6 h-screen lg:px-36 my-10 lg:w-full flex justify-center items-center flex-col  sm:flex-row lg:flex-row max-md:px-10"
+        className="px-6 h-screen lg:px-36 my-4 lg:w-full flex justify-center items-center flex-col  sm:flex-row lg:flex-row max-md:px-10"
         id="politicas"
       >
         <div className="">
