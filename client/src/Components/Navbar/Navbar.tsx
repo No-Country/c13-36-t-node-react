@@ -28,6 +28,7 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
   const hadleClickMenu = () => {
     setViewMenu(!viewMenu);
   };
+
   return (
     <nav className="relative w-full flex bg-[#E0838E] place-content-between items-center py-2 px-4 top-0 z-10">
       <NavLink to={"/"} className="flex items-center">
@@ -40,13 +41,15 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
         <>
           <ul className="hidden lg:flex gap-10">
             <li className="text-2xl text-white cursor-pointer ">
-              <a href="/#nosotros">{t("about")}</a>
+              <NavLink to="/#nosotros">{t("about")}</NavLink>
             </li>
-            <a href="/#ayuda">
-              <li className=" text-base sm:text-2xl text-white cursor-pointer mb-1 hover:opacity-80">
-                {t("help")}
-              </li>
-            </a>            <NavLink to={"/main"}>
+            <li className="text-base sm:text-2xl text-white cursor-pointer mb-1 hover:opacity-80">
+              <NavLink to="/#politicas">{t("policies")}</NavLink>
+            </li>{" "}
+            <li className=" text-base sm:text-2xl text-white cursor-pointer mb-1 hover:opacity-80">
+              <NavLink to="/#ayuda">{t("help")}</NavLink>
+            </li>
+            <NavLink to={"/main"}>
               <li className="text-2xl text-white cursor-pointer ">
                 {t("pets")}
               </li>
@@ -75,16 +78,15 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
                 : "hidden"
             } `}
           >
+            <li className="text-base text-white cursor-pointer ">
+              <NavLink to="/#nosotros">{t("about")}</NavLink>
+            </li>
             <li className="text-base sm:text-2xl text-white cursor-pointer mb-1 hover:opacity-80">
-              <a href="/#nosotros">{t("about")}</a>
-            </li>{" "}
-            <a href="/#ayuda">
-              <li className=" text-base sm:text-2xl text-white cursor-pointer mb-1 hover:opacity-80">
-                {t("help")}
-              </li>
-            </a>
-
-
+              <NavLink to="/#politicas">{t("policies")}</NavLink>
+            </li>
+            <li className=" text-base sm:text-2xl text-white cursor-pointer mb-1 hover:opacity-80">
+              <NavLink to="/#ayuda">{t("help")}</NavLink>
+            </li>
             <select
               className="border-white border-2 bg-[#E0838E]  text-white text-base sm:text-2xl sm:border-2 sm:border-white px-2 mb-1"
               value={i18n.language}
