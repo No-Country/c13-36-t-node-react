@@ -40,7 +40,7 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
       {usuario !== undefined ? (
         <>
           <ul className="hidden lg:flex gap-10">
-            <li className="text-2xl text-white cursor-pointer ">
+            <li className="text-2xl sm:text-2xl text-white cursor-pointer mb-1 hover:opacity-80">
               <NavLink to="/#nosotros">{t("about")}</NavLink>
             </li>
             <li className="text-2xl sm:text-2xl text-white cursor-pointer mb-1 hover:opacity-80">
@@ -50,7 +50,7 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
               <NavLink to="/#ayuda">{t("help")}</NavLink>
             </li>
             <NavLink to={"/main"}>
-              <li className="text-2xl text-white cursor-pointer ">
+              <li className="text-2xl sm:text-2xl text-white cursor-pointer mb-1 hover:opacity-80">
                 {t("pets")}
               </li>
             </NavLink>
@@ -78,7 +78,7 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
                 : "hidden"
             } `}
           >
-            <li className="text-base text-white cursor-pointer ">
+            <li className="text-base sm:text-2xl text-white cursor-pointer mb-1 hover:opacity-80 ">
               <NavLink to="/#nosotros">{t("about")}</NavLink>
             </li>
             <li className="text-base sm:text-2xl text-white cursor-pointer mb-1 hover:opacity-80">
