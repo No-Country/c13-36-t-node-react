@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiFillHeart } from "react-icons/ai";
 import { FaArrowUp } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
 import Ayuda from "./Ayuda";
-
 
 const Landing = () => {
   const { t } = useTranslation("landing");
@@ -17,8 +17,18 @@ const Landing = () => {
     }
   };
 
-
   window.addEventListener("scroll", toggleVisible);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    const sectionId = location.hash.slice(1); // Elimina el signo "#" de la ubicación
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [location]);
+
   return (
     <>
       <section className=" bg-[#EEE3AD] w-full h-screen pt-[25vh]  sm:pt-[25vh] md:pt-[18vh] lg:pt-[10vh]">
@@ -50,12 +60,12 @@ const Landing = () => {
         </div>
       </section>
 
-      <section className="px-6 lg:px-36 my-10 lg:w-full flex justify-center items-center flex-col  sm:flex-row lg:flex-row max-md:px-10">
+      <section
+        className="px-6 h-screen lg:px-36 my-10 lg:w-full flex justify-center items-center flex-col  sm:flex-row lg:flex-row max-md:px-10"
+        id="nosotros"
+      >
         <div className="flex flex-col w-50 sm:w-[100%]">
-          <h1
-            className="font-sans font-bold text-2xl sm:text-3xl lg:text-4xl my-16"
-            id="nosotros"
-          >
+          <h1 className="font-sans font-bold text-2xl sm:text-3xl lg:text-4xl my-16">
             {t("aboutUs")}
           </h1>
           <p className="font-sans leading-7 lg:leading-10 text-justify text-sm sm:text-lg lg:text-xl">
@@ -78,7 +88,10 @@ const Landing = () => {
           <FaArrowUp className="border z-20 border-black rounded-full p-1 w-8 h-8 cursor-pointer fixed bottom-10 sm:bottom-20 right-3 sm:right-20 max-md:right-4" />
         </a>
       )}
-      <section className="px-6 lg:px-36 my-10 lg:w-full flex justify-center items-center flex-col  sm:flex-row lg:flex-row max-md:px-10">
+      <section
+        className="px-6 h-screen lg:px-36 my-10 lg:w-full flex justify-center items-center flex-col  sm:flex-row lg:flex-row max-md:px-10"
+        id="politicas"
+      >
         <div className="">
           <h1 className="font-sans font-bold text-2xl sm:text-3xl lg:text-4xl my-10 mobile:my-4">
             {t("policies")}
@@ -95,7 +108,7 @@ const Landing = () => {
           className="w-80 sm:w-[30vw] lg:w-[20vw]"
         ></img>
       </section>
-      <Ayuda/>
+      <Ayuda />
     </>
   );
 };

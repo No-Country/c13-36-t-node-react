@@ -216,7 +216,7 @@ const PetForm = () => {
   };
 
   return (
-    <div className="flex justify-center border-2 content-center p-8 mobile:flex-col">
+    <div className="flex justify-center content-center p-8 mobile:flex-col">
       <ToastContainer />
       <form onSubmit={handlePetCreate}>
         <h1 className="font-bold text-4xl ">
