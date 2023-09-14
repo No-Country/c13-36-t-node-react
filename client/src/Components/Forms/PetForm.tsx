@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Avatar from "../Avatar/Avatar";
 import InputWithLabel from "../Create/InputWithLabel";
-import { Breed, Pet, Specie } from "../../types/types";
+import { Breed, Specie } from "../../types/types";
 import { createPet, getBreeds, getPet, getSpecies } from "../../services/pets";
 import { useTranslation } from "react-i18next";
 import { ToastContainer, toast } from "react-toastify";
@@ -139,15 +139,15 @@ const PetForm = () => {
     "650210368494e46a9f7e64ec"
   );
   const [token, setToken] = useState<string>("");
+  const [imagenes, setImagenes] = useState<string[]>([]);
   const [creating, setCreating] = useState(false);
-  const [dataPet, setDataPet] = useState<Pet>({
+  const [dataPet, setDataPet] = useState({
     name: "",
     gender: "",
-    age: 0,
+    age: "",
     description: "",
     breed: "",
   });
-  let edad = "0";
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("token") || "");
 
@@ -169,15 +169,17 @@ const PetForm = () => {
           setDataPet({
             name: mascota.name,
             gender: mascota.gender,
-            age: mascota.age,
+            age: mascota.age.toString(),
             breed: mascota.breedId.id,
             description: mascota.name,
           });
-          edad = mascota.age.toString();
+          setSelectedSpecie(mascota.breedId.specieId.id);
+          getBreeds(selectedSpecie, token);
+          setImagenes(mascota.image);
         }
       });
     }
-  }, [id, user.token, user.user.id, token]);
+  }, [id, user.token, user.user.id, token, selectedSpecie]);
 
   const handlePetnameChange = (value: string) => {
     setDataPet({ ...dataPet, name: value });
@@ -187,7 +189,7 @@ const PetForm = () => {
     setDataPet({ ...dataPet, gender: value });
   };
   const handlePetageChange = (value: string) => {
-    setDataPet({ ...dataPet, age: parseInt(value) });
+    setDataPet({ ...dataPet, age: value });
   };
   const handlePetdescriptionChange = (value: string) => {
     setDataPet({ ...dataPet, description: value });
@@ -202,7 +204,12 @@ const PetForm = () => {
   const handlePetCreate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setCreating(true);
-    const response = await createPet(dataPet, userId, token);
+
+    const response = await createPet(
+      { ...dataPet, age: parseInt(dataPet.age) },
+      userId,
+      token
+    );
 
     if (response.name) {
       toast.success("Mascota creada!");
@@ -243,7 +250,7 @@ const PetForm = () => {
               onChange={handlePetnameChange}
             />
             <InputWithLabel
-              value={edad}
+              value={dataPet.age.toString()}
               label={t("age")}
               type="text"
               placeholder="4"
@@ -284,6 +291,7 @@ const PetForm = () => {
                 value={dataPet.breed}
               >
                 {breeds &&
+                  selectedSpecie &&
                   breeds.map((raza, index) => (
                     <option key={index} value={raza.id} label={raza.breed} />
                   ))}
@@ -335,6 +343,7 @@ const PetForm = () => {
             />
           </div>
           <div className="grid grid-cols-2 border-2 m-auto gap-10 my-10 max-sm:gap-4 mobile:my-8">
+            {imagenes && imagenes.map((imagen) => <img src={imagen} />)}
             <img
               className="w-40 h-40 max-sm:w-28 max-sm:h-28"
               src="/perrito1.jpg"
@@ -351,7 +360,7 @@ const PetForm = () => {
               type="button"
               className=" min-w-40 min-h-40 border-2 bg-gray-300 text-[3rem] border-black mobile:min-w-28 mobile:min-h-28 flex items-center justify-center"
             >
-              +
+              <input type="file" />
             </button>
           </div>
         </div>

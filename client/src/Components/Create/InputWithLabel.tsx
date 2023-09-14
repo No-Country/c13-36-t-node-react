@@ -42,7 +42,7 @@ function InputWithLabel({
       </label>
       <div className="relative w-[100%]">
         <input
-          defaultValue={value}
+          defaultValue={value?.toString()}
           type={type}
           list={list}
           placeholder={placeholder}

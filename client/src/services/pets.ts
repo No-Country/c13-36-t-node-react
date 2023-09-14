@@ -41,6 +41,8 @@ export const getPet = async (
         },
       }
     );
+    console.log(response.data);
+
     return response.data;
   } catch (error) {
     const axiosError = error as AxiosError;

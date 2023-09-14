@@ -57,6 +57,7 @@ export type Pet = {
   age: number;
   description: string;
   breed: string;
+  image?: Array<string>;
 };
 
 export type RegistersErrors = {
