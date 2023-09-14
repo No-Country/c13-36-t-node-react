@@ -43,10 +43,10 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
             <li className="text-2xl text-white cursor-pointer ">
               <NavLink to="/#nosotros">{t("about")}</NavLink>
             </li>
-            <li className="text-base sm:text-2xl text-white cursor-pointer mb-1 hover:opacity-80">
+            <li className="text-2xl sm:text-2xl text-white cursor-pointer mb-1 hover:opacity-80">
               <NavLink to="/#politicas">{t("policies")}</NavLink>
             </li>{" "}
-            <li className=" text-base sm:text-2xl text-white cursor-pointer mb-1 hover:opacity-80">
+            <li className=" text-2xl sm:text-2xl text-white cursor-pointer mb-1 hover:opacity-80">
               <NavLink to="/#ayuda">{t("help")}</NavLink>
             </li>
             <NavLink to={"/main"}>
