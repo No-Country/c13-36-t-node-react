@@ -356,12 +356,13 @@ const PetForm = () => {
               className="w-40 h-40 max-sm:w-28 max-sm:h-28"
               src="/perrito3.jpg"
             />
-            <button
-              type="button"
-              className=" min-w-40 min-h-40 border-2 bg-gray-300 text-[3rem] border-black mobile:min-w-28 mobile:min-h-28 flex items-center justify-center"
-            >
-              <input type="file" />
-            </button>
+            <label className=" min-w-fit min-h-fit border-2 bg-gray-300 text-[3rem] border-black mobile:min-w-28 mobile:min-h-28 hover:bg-gray-500 active:bg-gray-600 cursor-pointer flex items-center justify-center">
+              <input
+                className="w-[0.1px] h-[0.1px] opacity-0 hidden absolute -z-10"
+                type="file"
+              />
+              +
+            </label>
           </div>
         </div>
         <button
