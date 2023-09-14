@@ -3,7 +3,6 @@ import { AiOutlinePlusCircle } from "react-icons/ai";
 import { User } from "../../services/users";
 import { FaSave, FaTrash } from "react-icons/fa";
 import Modals from "./Modals";
-import { useState } from "react";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { getPetsByUser } from "../../services/pets";
