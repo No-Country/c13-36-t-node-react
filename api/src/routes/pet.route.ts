@@ -80,7 +80,7 @@ router.put(
       .optional()
       .isString()
       .withMessage("despcrition only can be a string")
-      .isLength({ min: 4 })
+      .isLength({ min: 4 }),
 
     body("breedId")
       .optional()
