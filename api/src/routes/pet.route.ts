@@ -36,6 +36,12 @@ router.post(
         return false;
       }),
 
+    body("description")
+      .optional()
+      .isString()
+      .withMessage("despcrition only can be a string")
+      .isLength({ min: 4 })
+
     body("ownerId")
       .exists()
       .withMessage("ownerId is required")
@@ -69,6 +75,12 @@ router.put(
 
     ...nameValidation(true),
     ...genderValidation(true),
+
+    body("description")
+      .optional()
+      .isString()
+      .withMessage("despcrition only can be a string")
+      .isLength({ min: 4 })
 
     body("breedId")
       .optional()
