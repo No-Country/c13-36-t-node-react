@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import InputWithLabel from "./Create/InputWithLabel";
@@ -15,20 +15,22 @@ const Login: React.FC<LoginProps> = ({ setusuario }) => {
   const { t } = useTranslation("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [permitSubmit, setPermitSubmit] = useState(true);
+  const [permitSubmit, setPermitSubmit] = useState(false);
   const [mailError, setMailError] = useState("");
   const [passError, setPassError] = useState("");
   const [view, setView] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     if (permitSubmit) {
       setLoading(true);
       const response = await login(email, password);
       if (typeof response === "string") {
         console.log(response);
-
+        setMailError("");
+        setPassError("");
         if (response === "User not found.") {
           setMailError(t("userNotFound"));
         } else {
@@ -44,13 +46,20 @@ const Login: React.FC<LoginProps> = ({ setusuario }) => {
   const viewPassword = () => {
     setView(!view);
   };
+  useEffect(() => {
+    if (email.length > 0 && password.length > 0) {
+      setPermitSubmit(true);
+    } else {
+      setPermitSubmit(false);
+    }
+  }, [email, password]);
   return (
     <main className="w-full">
       <div className="grid grid-cols-2 min-h-screen mobile:flex mobile:h-full mobile:justify-center  ">
         <div className="bg-[#E0838E] w-11/12 mobile:hidden mobile:w-0 mobile:bg-none relative">
           <img
-            className="absolute bottom-0 right-0 w-full"
-            src="happy-dog.png"
+            className="absolute right-0 w-full h-3/4"
+            src="loginAlternativo-removebg-preview.png"
             alt="happydog"
           />
         </div>
@@ -72,8 +81,6 @@ const Login: React.FC<LoginProps> = ({ setusuario }) => {
               name="emailUser"
               iconClass="fa-envelope"
               onChange={setEmail}
-              setMailError={setMailError}
-              setPermitSubmit={setPermitSubmit}
               mailError={mailError}
             />
             {mailError && <p className="text-red-500">{mailError}</p>}
@@ -86,16 +93,13 @@ const Login: React.FC<LoginProps> = ({ setusuario }) => {
               iconClass={view ? "fa-eye" : "fa-lock"}
               viewPassword={viewPassword}
               onChange={setPassword}
-              setPassError={setPassError}
-              setPermitSubmit={setPermitSubmit}
               passError={passError}
             />
             {passError && <p className="text-red-500">{passError}</p>}
             <button
-              onClick={handleLogin}
               value="Login"
               className="bg-[#54A4A5] w-40 text-white px-4 py-2 rounded-xl m-auto"
-              disabled={loading}
+              disabled={loading || !permitSubmit ? true : false}
             >
               {loading ? (
                 <i className="fa-solid fa-spinner rotate-center"></i>
@@ -105,7 +109,7 @@ const Login: React.FC<LoginProps> = ({ setusuario }) => {
             </button>
           </form>
           <NavLink
-            to={"/reset"}
+            to={"/reset-password"}
             className="font-semibold text-sm hover:underline-offset-1 my-2"
           >
             {t("forgotPassword")}

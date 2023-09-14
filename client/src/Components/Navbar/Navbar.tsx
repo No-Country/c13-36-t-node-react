@@ -31,8 +31,10 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
   return (
     <nav className="relative w-full flex bg-[#E0838E] place-content-between items-center py-2 px-4 top-0 z-10">
       <NavLink to={"/"} className="flex items-center">
-        <Avatar size="medium" src="logo.png" />
-        <h1 className="text-xl sm:text-2xl text-white font-bold">ThinderPet</h1>
+        <Avatar size="small" src="logo.png" />
+        <h1 className="text-xl sm:text-2xl text-white font-bold ml-2">
+          ThinderPet
+        </h1>
       </NavLink>
       {usuario !== undefined ? (
         <>
@@ -40,8 +42,11 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
             <li className="text-2xl text-white cursor-pointer ">
               <a href="/#nosotros">{t("about")}</a>
             </li>
-            <li className="text-2xl text-white cursor-pointer ">{t("help")}</li>
-            <NavLink to={"/main"}>
+            <a href="/#ayuda">
+              <li className=" text-base sm:text-2xl text-white cursor-pointer mb-1 hover:opacity-80">
+                {t("help")}
+              </li>
+            </a>            <NavLink to={"/main"}>
               <li className="text-2xl text-white cursor-pointer ">
                 {t("pets")}
               </li>

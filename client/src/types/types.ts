@@ -28,16 +28,32 @@ export type UsuarioRegistro = {
 export type PetResponse = {
   name: string;
   gender: string;
-  breedId: string;
-  ownerId: string;
+  breedId: {
+    breed: string;
+    specieId: {
+      specie: string;
+      id: string;
+    };
+    id: string;
+  };
+  ownerId: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    localization: string;
+    phone: number;
+    username: string;
+    id: string;
+  };
   age: number;
-  description: string;
+  image: Array<string>;
+  id: string;
 };
 
 export type Pet = {
   name: string;
   gender: string;
-  age: string;
+  age: number;
   description: string;
   breed: string;
 };
@@ -50,4 +66,17 @@ export type RegistersErrors = {
   phone: boolean;
   localization: boolean;
   username: boolean;
+};
+export type Breed = {
+  breed: string;
+  specieId: string;
+  createdAt: string;
+  updatedAt: string;
+  id: string;
+};
+export type Specie = {
+  specie: string;
+  createdAt: string;
+  updatedAt: string;
+  id: string;
 };
