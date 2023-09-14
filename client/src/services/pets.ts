@@ -96,3 +96,24 @@ export const getSpecies = async (token: string): Promise<Specie[]> => {
     return [];
   }
 };
+export const savePictures = async (
+  token: string,
+  petId: string,
+  data: FormData
+): Promise<string[]> => {
+  console.log(data);
+
+  const respuesta = await axios.post(
+    `http://localhost:3001/api/v1/pet/upload-pet/${petId}`,
+    {
+      data,
+    },
+    {
+      headers: {
+        Authorization: `${token}`,
+        ContentType: "multipart/form-data",
+      },
+    }
+  );
+  return respuesta.data;
+};

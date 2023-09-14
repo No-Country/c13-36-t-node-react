@@ -18,18 +18,23 @@ import { Usuario } from "./types/types";
 import UserProfile from "./Components/UserProfile/UserProfile";
 import Footer from "./Components/Footer/Footer";
 import NotFound from "./Components/NotFound/NotFound";
+import masoothinas from "./types/deploy.pets.json";
 
 register();
 
 function App() {
   const [usuario, setUsuario] = useState<Usuario | undefined>();
-  const mascotas = ["chihuahua", "frances", "golden", "pastor"]; //reemplazar por el array de mascotas que tengo que traer del back.
+  const mascotas = masoothinas.map((mascota) => mascota._id.$oid);
+  const misMascotas = masoothinas.filter(
+    (mascota) => mascota.ownerId.$oid === usuario?.user.id
+  );
   const loged = localStorage.getItem("token");
   useEffect(() => {
     if (loged) {
       const usuario = JSON.parse(loged);
       setUsuario(usuario);
     }
+    console.log(masoothinas);
   }, [loged]);
 
   return (
@@ -65,7 +70,7 @@ function App() {
             element={
               <>
                 <Navbar setusuario={setUsuario} usuario={usuario} />
-                <Slider mascotas={mascotas} />
+                <Slider mascotas={mascotas} misMascotas={misMascotas} />
               </>
             }
           />

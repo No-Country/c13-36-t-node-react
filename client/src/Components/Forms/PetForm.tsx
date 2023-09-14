@@ -135,6 +135,7 @@ const PetForm = () => {
   ]; */
   const [specie, setSpecie] = useState<Specie[]>();
   const [breeds, setBreeds] = useState<Breed[]>();
+  const [newImage, setNewImage] = useState<File | null>(null);
   const [selectedSpecie, setSelectedSpecie] = useState<string>(
     "650210368494e46a9f7e64ec"
   );
@@ -201,9 +202,16 @@ const PetForm = () => {
   const handlePetbreedChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setDataPet({ ...dataPet, breed: e.target.value });
   };
+  const handlePetImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setNewImage(e.target.files[0]);
+    }
+  };
+
   const handlePetCreate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setCreating(true);
+    console.log(newImage);
 
     const response = await createPet(
       { ...dataPet, age: parseInt(dataPet.age) },
@@ -360,6 +368,7 @@ const PetForm = () => {
               <input
                 className="w-[0.1px] h-[0.1px] opacity-0 hidden absolute -z-10"
                 type="file"
+                onChange={handlePetImageChange}
               />
               +
             </label>
