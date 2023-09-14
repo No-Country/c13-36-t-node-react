@@ -2,6 +2,8 @@ import { useState } from "react";
 import { AiFillHeart } from "react-icons/ai";
 import { FaArrowUp } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import Ayuda from "./Ayuda";
+
 
 const Landing = () => {
   const { t } = useTranslation("landing");
@@ -14,6 +16,7 @@ const Landing = () => {
       setVisible(false);
     }
   };
+
 
   window.addEventListener("scroll", toggleVisible);
   return (
@@ -92,6 +95,7 @@ const Landing = () => {
           className="w-80 sm:w-[30vw] lg:w-[20vw]"
         ></img>
       </section>
+      <Ayuda/>
     </>
   );
 };

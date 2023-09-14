@@ -42,8 +42,11 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
             <li className="text-2xl text-white cursor-pointer ">
               <a href="/#nosotros">{t("about")}</a>
             </li>
-            <li className="text-2xl text-white cursor-pointer ">{t("help")}</li>
-            <NavLink to={"/main"}>
+            <a href="/#ayuda">
+              <li className=" text-base sm:text-2xl text-white cursor-pointer mb-1 hover:opacity-80">
+                {t("help")}
+              </li>
+            </a>            <NavLink to={"/main"}>
               <li className="text-2xl text-white cursor-pointer ">
                 {t("pets")}
               </li>
@@ -72,12 +75,16 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
                 : "hidden"
             } `}
           >
-            <li className="text-base sm:text-2xl text-white cursor-pointer mb-1">
-              <a href="#nosotros">{t("about")}</a>
+            <li className="text-base sm:text-2xl text-white cursor-pointer mb-1 hover:opacity-80">
+              <a href="/#nosotros">{t("about")}</a>
             </li>{" "}
-            <li className=" text-base sm:text-2xl text-white cursor-pointer mb-1">
-              {t("help")}
-            </li>
+            <a href="/#ayuda">
+              <li className=" text-base sm:text-2xl text-white cursor-pointer mb-1 hover:opacity-80">
+                {t("help")}
+              </li>
+            </a>
+
+
             <select
               className="border-white border-2 bg-[#E0838E]  text-white text-base sm:text-2xl sm:border-2 sm:border-white px-2 mb-1"
               value={i18n.language}
@@ -88,7 +95,7 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
             </select>
             <div>
               <NavLink to={"/login"} className="">
-                <button className="bg-white font-bold px-2 py-1 sm:px-4 sm:py-2 rounded-lg hover:scale-105 hover:ease-in duration-300 text-base sm:text-xl">
+                <button className="bg-white font-bold px-2 py-1 sm:px-4 sm:py-2 rounded-lg hover:scale-105 hover:ease-in duration-300 text-base sm:text-xl hover:opacity-80">
                   {t("login")}
                 </button>
               </NavLink>
