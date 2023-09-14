@@ -1,5 +1,5 @@
 # ThinderPet  
-<p align="center"><img src="https://thinderpet.vercel.app/logoFooter.png"/>
+<p align="center"><img width="100vw" src="https://thinderpet.vercel.app/logoFooter.png"/>
 </p>
 
 <h3 align="center">¡Descubre un nuevo mundo de amor por las mascotas con ThinderPet!</h3>
