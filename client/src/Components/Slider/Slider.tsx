@@ -114,7 +114,7 @@ const Slider: React.FC<SliderProps> = ({ mascotas, misMascotas }) => {
                     src="nope-stamp-png.png"
                   />
                 )}
-                <img className="object-cover w-full h-[80%]" src={imagen} />
+                <img className="object-contain w-full h-[80%]" src={imagen} />
                 <div className="bg-[#99A3B0] text-center flex flex-col items-center rounded-b-md h-full">
                   <p className="py-2">
                     {currentMascot?.name || "Mascota sin nombre"}
