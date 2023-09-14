@@ -8,6 +8,7 @@ interface BtnSilderProps {
     React.SetStateAction<{ [key: string]: string | null }>
   >;
   currentPet: string;
+  setVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function BtnSilder({
@@ -15,6 +16,7 @@ export default function BtnSilder({
   setLikes,
   likes,
   currentPet,
+  setVisible,
 }: BtnSilderProps) {
   // const [matchDogs, setMatchDogs] = useState(false);
   // const handleMatch = () => {
@@ -28,6 +30,9 @@ export default function BtnSilder({
         ...prevLikes,
         [currentPet]: "like",
       }));
+    }
+    if (currentPet === "650334418494e46a9f7e6dfc") {
+      setVisible(true);
     }
   };
 

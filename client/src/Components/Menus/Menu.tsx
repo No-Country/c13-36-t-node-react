@@ -34,7 +34,10 @@ const Menu: React.FC<MenuProps> = ({ setusuario, toggle }) => {
             <li
               key={index}
               className="bg-neutral-200 min-w-[150px] shadow-md shadow-neutral-500 rounded-full px-4 py-2 hover:bg-neutral-100 cursor-pointer hover:border-black hover:border"
-              onClick={() => navigate("/userprofile")}
+              onClick={() => {
+                navigate("/userprofile");
+                toggle();
+              }}
             >
               {label}
             </li>
@@ -42,7 +45,10 @@ const Menu: React.FC<MenuProps> = ({ setusuario, toggle }) => {
             <li
               key={index}
               className="bg-neutral-200 min-w-[150px] shadow-md shadow-neutral-500 rounded-full px-4 py-2 hover:bg-neutral-100 cursor-pointer hover:border-black hover:border"
-              onClick={() => navigate("/mascotas")}
+              onClick={() => {
+                navigate("/mascotas");
+                toggle();
+              }}
             >
               {label}
             </li>
@@ -50,7 +56,10 @@ const Menu: React.FC<MenuProps> = ({ setusuario, toggle }) => {
             <li
               key={index}
               className="bg-neutral-200 min-w-[150px] shadow-md shadow-neutral-500 rounded-full px-4 py-2 hover:bg-neutral-100 cursor-pointer hover:border-black hover:border"
-              onClick={() => navigate("/perfil")}
+              onClick={() => {
+                navigate("/perfil");
+                toggle();
+              }}
             >
               {label}
             </li>
