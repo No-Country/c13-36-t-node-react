@@ -247,7 +247,7 @@ const PetForm = () => {
             />
 
             <label className="font-semibold ml-1 mt-1 text-left" htmlFor="raza">
-              Especie
+              {t("specie")}
             </label>
             <div className="relative w-[100%] align-middle">
               <select
@@ -267,7 +267,7 @@ const PetForm = () => {
               ></i>
             </div>
             <label className="font-semibold ml-1 mt-1 text-left" htmlFor="raza">
-              label={t("breed")}
+              {t("breed")}
             </label>
             <div className="relative w-[100%] align-middle">
               <select
@@ -323,7 +323,7 @@ const PetForm = () => {
               placeholder={t("descriptionPlaceholder")}
               autoComplete="Off"
               name="description"
-              iconClass="fa-venus-mars"
+              iconClass="fa-file-lines"
               onChange={handlePetdescriptionChange}
             />
           </div>
