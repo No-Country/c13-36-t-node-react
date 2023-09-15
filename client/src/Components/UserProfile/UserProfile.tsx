@@ -30,10 +30,10 @@ interface UserData {
   };
 }
 
-const UserProfile: React.FC<UserProfileProps> = ({ usuario}) => {
+const UserProfile: React.FC<UserProfileProps> = ({ usuario }) => {
   const [mascotas, setMascotas] = useState<Pet[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const data = localStorage.getItem("token")
+  const data = localStorage.getItem("token");
   const { t } = useTranslation("userprofile");
   const navigate = useNavigate();
   const token = JSON.parse(localStorage.getItem("token") || "");
@@ -57,7 +57,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ usuario}) => {
             },
           }
         );
-  
+
         navigate("/");
         localStorage.removeItem("token");
         window.location.reload();
@@ -69,7 +69,6 @@ const UserProfile: React.FC<UserProfileProps> = ({ usuario}) => {
       alert("No se encontró un token en el almacenamiento local.");
     }
   };
-  
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -79,7 +78,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ usuario}) => {
     setIsModalOpen(false);
   };
   return (
-    <section className="p-4 font-sans border-2 flex justify-around mobile:flex-col">
+    <section className="p-4 font-sans flex justify-around mobile:flex-col">
       <div className="flex flex-col bg-[#99a3b0c2] w-96 p-8 rounded-lg text-left border-2 mobile:w-full">
         <h1 className="mb-2 font-bold text-2xl">
           {t("profile")}
@@ -133,12 +132,20 @@ const UserProfile: React.FC<UserProfileProps> = ({ usuario}) => {
           </NavLink>
         </div>
         <div className="flex flex-row justify-between mt-48  mobile:mt-16">
-          <button className="flex items-center gap-x-2 border-2 border-[#209FD6] text-center p-2 rounded-xl text-black hover:scale-105 transition-all" onClick={openModal}>
-            <FaTrash/>{t("deleteAccount")}
+          <button
+            className="flex items-center gap-x-2 border-2 border-[#209FD6] text-center p-2 rounded-xl text-black hover:scale-105 transition-all"
+            onClick={openModal}
+          >
+            <FaTrash />
+            {t("deleteAccount")}
           </button>
-          <Modals isOpen={isModalOpen} closeModal={closeModal} handleDelete={deleteUser}/>
+          <Modals
+            isOpen={isModalOpen}
+            closeModal={closeModal}
+            handleDelete={deleteUser}
+          />
           <button className="flex items-center gap-x-2 bg-[#77D3EC] rounded-xl p-2 text-black transition-all hover:scale-105">
-            <FaSave/>
+            <FaSave />
             {t("saveChanges")}
           </button>
         </div>

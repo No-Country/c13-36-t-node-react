@@ -20,6 +20,7 @@ import Footer from "./Components/Footer/Footer";
 import NotFound from "./Components/NotFound/NotFound";
 import NewPassword from "./Components/NewPassword/NewPassword";
 import masoothinas from "./types/deploy.pets.json";
+import Contact from "./Components/Forms/ContactForm";
 
 register();
 
@@ -123,6 +124,7 @@ function App() {
               </>
             }
           />
+
           <Route
             path="/mascotas"
             element={
@@ -138,6 +140,16 @@ function App() {
               <>
                 <Navbar setusuario={setUsuario} usuario={usuario} />
                 <PetForm />
+              </>
+            }
+          />
+          <Route
+            path="/contact"
+            element={
+              <>
+                <Navbar setusuario={setUsuario} usuario={usuario} />
+                <Contact />
+                <Footer />
               </>
             }
           />

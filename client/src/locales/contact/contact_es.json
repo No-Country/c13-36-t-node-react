@@ -1,0 +1,13 @@
+{
+  "title": "Contacto",
+  "description": "Por favor, complete el formulario para ponerse en contacto con nosotros",
+  "namePlaceholder": "Ingrese su nombre",
+  "emailPlaceholder": "Ingrese su correo electrónico",
+  "messagePlaceholder": "Ingrese su mensaje",
+  "submitButton": "Enviar",
+  "successMessage": "¡Mensaje enviado con éxito! Serás redirigido a la página de inicio",
+  "nameError": "Por favor, ingresa tu nombre",
+  "emailError": "Por favor, ingresa una dirección de correo electrónico",
+  "emailError2": "Por favor, ingresa una dirección de correo electrónico válida",
+  "messageError": "Por favor, ingresa tu mensaje"
+}

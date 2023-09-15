@@ -17,7 +17,7 @@ const Menu: React.FC<MenuProps> = ({ setusuario, toggle }) => {
     navigate("/");
   };
 
-  const labels = [t("userProfile"), t("myPets"), t("preferences"), t("logout")];
+  const labels = [t("userProfile"), t("myPets"), t("contact"), t("logout")];
   return (
     <div>
       <ul className="list-none flex flex-col items-center gap-2 mt-2 w-full p-2 rounded-md mb-2 transition-all duration-1000 z-50">
@@ -52,12 +52,12 @@ const Menu: React.FC<MenuProps> = ({ setusuario, toggle }) => {
             >
               {label}
             </li>
-          ) : label === t("userProfile") ? (
+          ) : label === t("contact") ? (
             <li
               key={index}
               className="bg-neutral-200 min-w-[150px] shadow-md shadow-neutral-500 rounded-full px-4 py-2 hover:bg-neutral-100 cursor-pointer hover:border-black hover:border"
               onClick={() => {
-                navigate("/perfil");
+                navigate("/contact");
                 toggle();
               }}
             >

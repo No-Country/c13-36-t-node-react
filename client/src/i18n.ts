@@ -25,6 +25,8 @@ import notfound_es from "./locales/notfound/notfound_es.json";
 import notfound_en from "./locales/notfound/notfound_en.json";
 import newpassword_es from "./locales/newpassword/newpassword_es.json";
 import newpassword_en from "./locales/newpassword/newpassword_en.json";
+import contact_es from "./locales/contact/contact_es.json";
+import contact_en from "./locales/contact/contact_en.json";
 
 console.log(i18n.language);
 i18n
@@ -50,6 +52,7 @@ i18n
         userprofile: userprofile_es,
         notfound: notfound_es,
         newpassword: newpassword_es,
+        contact: contact_es,
       },
       en: {
         navbar: en,
@@ -64,6 +67,7 @@ i18n
         userprofile: userprofile_en,
         notfound: notfound_en,
         newpassword: newpassword_en,
+        contact: contact_en,
       },
     },
   });

@@ -17,7 +17,7 @@ export default function Footer() {
   const opciones = [
     { text: t("aboutUs"), link: "/#nosotros" },
     { text: t("policies"), link: "/#politicas" },
-    { text: t("contact"), link: "/#ayuda" }, //cambiar por un componente de contacto
+    { text: t("contact"), link: "/contact" }, //cambiar por un componente de contacto
     { text: t("help"), link: "/#ayuda" },
   ];
 

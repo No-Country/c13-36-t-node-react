@@ -1,0 +1,13 @@
+{
+  "title": "Contact Us",
+  "description": "Please fill in the form to get in touch with us",
+  "namePlaceholder": "Enter your name",
+  "emailPlaceholder": "Enter your email",
+  "messagePlaceholder": "Enter your message",
+  "submitButton": "Submit",
+  "successMessage": "Message sent successfully! You will be redirected to the homepage.",
+  "nameError": "Please enter your name",
+  "emailError": "Please enter your email address",
+  "emailError2": "Please enter a valid email address",
+  "messageError": "Please enter your message"
+}
