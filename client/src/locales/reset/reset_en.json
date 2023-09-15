@@ -2,11 +2,8 @@
   "forgotPassword": "Forgot Password?",
   "email": "Email",
   "emailPlaceholder": "Enter your email",
-  "chooseAnotherMethod": "Choose another method",
-  "needHelp": "Need help",
+  "needHelp": "Need help?",
   "sendEmail": "Send Email",
-  "back": "Back",
-  "newPassword": "New Password",
-  "newPasswordPlaceholder": "Enter your new password",
-  "confirmPasswordChange": "Confirm Password Change"
+  "successMessage": "Great! Check your email inbox...",
+  "back": "Back"
 }

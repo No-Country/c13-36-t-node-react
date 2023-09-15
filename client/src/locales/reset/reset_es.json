@@ -2,11 +2,8 @@
   "forgotPassword": "¿Olvidó su contraseña?",
   "email": "Correo electrónico",
   "emailPlaceholder": "Ingrese su correo electrónico",
-  "chooseAnotherMethod": "Elija otro método",
-  "needHelp": "Necesita ayuda",
+  "needHelp": "¿Necesita ayuda?",
   "sendEmail": "Enviar correo electrónico",
-  "back": "Volver",
-  "newPassword": "Nueva contraseña",
-  "newPasswordPlaceholder": "Ingrese su nueva contraseña",
-  "confirmPasswordChange": "Confirmar cambio de contraseña"
+  "successMessage": "¡Genial! Revisa tu correo electrónico...",
+  "back": "Volver"
 }
