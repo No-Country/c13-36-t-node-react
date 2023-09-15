@@ -55,7 +55,7 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
               </li>
             </NavLink>
             <select
-              className="border-white border-2 text-white bg-[#E0838E] text-xl py-1 px-4"
+              className="border-white border-2 text-white bg-[#E0838E] text-xl py-1 px-4  focus:outline-none focus:border-white"
               value={i18n.language}
               onChange={handleLanguageChange}
             >
