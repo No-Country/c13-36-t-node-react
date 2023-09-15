@@ -96,22 +96,26 @@ export const getSpecies = async (token: string): Promise<Specie[]> => {
 };
 export const savePictures = async (
   token: string,
-  petId: string,
-  data: FormData
+  file: File
 ): Promise<string[]> => {
+  const data = new FormData();
+  data.append("avatar", file);
   console.log(data);
 
-  const respuesta = await axios.post(
-    `http://localhost:3001/api/v1/pet/upload-pet/${petId}`,
+  /* const respuesta = await axios.post(
+    `https://thinderpet-api-ild3-dev.fl0.io/api/v1/pet/upload-pet/650224e08494e46a9f7e65c0`,
     {
       data,
     },
     {
       headers: {
         Authorization: `${token}`,
-        ContentType: "multipart/form-data",
       },
     }
-  );
+  ); */
+  const respuesta = await fetch(
+    `https://thinderpet-api-ild3-dev.fl0.io/api/v1/pet/upload-pet/650224e08494e46a9f7e65c0`,
+    { method: "POST", body: data, headers: { Authorization: `${token}` } }
+  ).then((resp) => resp.json());
   return respuesta.data;
 };

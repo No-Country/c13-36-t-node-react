@@ -68,9 +68,15 @@ const Slider: React.FC<SliderProps> = ({ mascotas, misMascotas }) => {
   const handleMatch = () => {
     setVisible(false);
   };
+  const token = JSON.parse(localStorage.getItem("token") || "{}");
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    console.log(e);
+    console.log(token);
+  };
 
   return (
     <div className="w-full h-full flex flex-col items-center">
+      <button onClick={handleClick}>Boton</button>
       <div className="flex gap-10 my-4">
         {misMascotas.map((mascota) => (
           <div
@@ -90,6 +96,7 @@ const Slider: React.FC<SliderProps> = ({ mascotas, misMascotas }) => {
             </p>
           </div>
         ))}
+        b
       </div>
       <Swiper
         navigation={true}

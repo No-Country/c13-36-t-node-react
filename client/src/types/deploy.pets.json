@@ -13,7 +13,12 @@
     },
     "age": 2,
     "description": "No te deja estar triste!",
-    "image": [],
+    "image": [
+      "https://images.pexels.com/photos/4538450/pexels-photo-4538450.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://images.pexels.com/photos/9608030/pexels-photo-9608030.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://images.pexels.com/photos/10691056/pexels-photo-10691056.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "https://images.pexels.com/photos/7330948/pexels-photo-7330948.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    ],
     "createdAt": {
       "$date": "2023-09-13T21:08:48.739Z"
     },

@@ -2,10 +2,17 @@ import { useEffect, useState } from "react";
 import Avatar from "../Avatar/Avatar";
 import InputWithLabel from "../Create/InputWithLabel";
 import { Breed, Specie } from "../../types/types";
-import { createPet, getBreeds, getPet, getSpecies } from "../../services/pets";
+import {
+  createPet,
+  getBreeds,
+  getPet,
+  getSpecies,
+  savePictures,
+} from "../../services/pets";
 import { useTranslation } from "react-i18next";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router";
+import imgs from "../../Mockups/mascotas_imagenes.json";
 
 const PetForm = () => {
   const { id } = useParams();
@@ -140,7 +147,7 @@ const PetForm = () => {
     "650210368494e46a9f7e64ec"
   );
   const [token, setToken] = useState<string>("");
-  const [imagenes, setImagenes] = useState<string[]>([]);
+  const [imagenes, setImagenes] = useState<string[] | undefined>();
   const [creating, setCreating] = useState(false);
   const [dataPet, setDataPet] = useState({
     name: "",
@@ -172,11 +179,14 @@ const PetForm = () => {
             gender: mascota.gender,
             age: mascota.age.toString(),
             breed: mascota.breedId.id,
-            description: mascota.name,
+            description: mascota.description,
           });
           setSelectedSpecie(mascota.breedId.specieId.id);
           getBreeds(selectedSpecie, token);
-          setImagenes(mascota.image);
+          const petImages = imgs
+            .filter((pet) => pet.petId === mascota.id)
+            .map((pet) => pet.imagenes);
+          setImagenes(petImages[0]);
         }
       });
     }
@@ -205,6 +215,7 @@ const PetForm = () => {
   const handlePetImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       setNewImage(e.target.files[0]);
+      savePictures(token, e.target.files[0]);
     }
   };
 
@@ -289,7 +300,7 @@ const PetForm = () => {
               ></i>
             </div>
             <label className="font-semibold ml-1 mt-1 text-left" htmlFor="raza">
-              label={t("breed")}
+              {t("breed")}
             </label>
             <div className="relative w-[100%] align-middle">
               <select
@@ -351,20 +362,16 @@ const PetForm = () => {
             />
           </div>
           <div className="grid grid-cols-2 border-2 m-auto gap-10 my-10 max-sm:gap-4 mobile:my-8">
-            {imagenes && imagenes.map((imagen) => <img src={imagen} />)}
-            <img
-              className="w-40 h-40 max-sm:w-28 max-sm:h-28"
-              src="/perrito1.jpg"
-            />
-            <img
-              className="w-40 h-40 max-sm:w-28 max-sm:h-28"
-              src="/perrito2.jpg"
-            />
-            <img
-              className="w-40 h-40 max-sm:w-28 max-sm:h-28"
-              src="/perrito3.jpg"
-            />
-            <label className=" min-w-fit min-h-fit border-2 bg-gray-300 text-[3rem] border-black mobile:min-w-28 mobile:min-h-28 hover:bg-gray-500 active:bg-gray-600 cursor-pointer flex items-center justify-center">
+            {imagenes &&
+              imagenes.map((imagen) => (
+                <>
+                  <img
+                    className="object-cover w-40 h-40 max-sm:w-28 max-sm:h-28"
+                    src={imagen}
+                  />
+                </>
+              ))}
+            <label className=" w-40 h-40 border-2 bg-gray-300 text-[3rem] border-black mobile:w-28 mobile:h-28 hover:bg-gray-500 active:bg-gray-600 cursor-pointer flex items-center justify-center">
               <input
                 className="w-[0.1px] h-[0.1px] opacity-0 hidden absolute -z-10"
                 type="file"
