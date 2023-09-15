@@ -51,11 +51,13 @@ export type PetResponse = {
 };
 
 export type Pet = {
+  id?: string;
   name: string;
   gender: string;
   age: number;
   description: string;
   breed: string;
+  image?: Array<string>;
 };
 
 export type RegistersErrors = {

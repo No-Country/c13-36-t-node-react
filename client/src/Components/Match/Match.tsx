@@ -3,12 +3,68 @@ import { AiFillHeart } from "react-icons/ai";
 import Avatar from "../Avatar/Avatar";
 import { FaWindowClose } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import { User, getUserById } from "../../services/users";
+import { useState } from "react";
 
 interface MatchProps {
   handleMatch: () => void;
+  actual:
+    | {
+        _id: {
+          $oid: string;
+        };
+        name: string;
+        gender: string;
+        breedId: {
+          $oid: string;
+        };
+        ownerId: {
+          $oid: string;
+        };
+        age: number;
+        image: never[];
+        createdAt: {
+          $date: string;
+        };
+        updatedAt: {
+          $date: string;
+        };
+        description?: string | undefined;
+      }
+    | undefined;
+  currentPet:
+    | {
+        _id: {
+          $oid: string;
+        };
+        name: string;
+        gender: string;
+        breedId: {
+          $oid: string;
+        };
+        ownerId: {
+          $oid: string;
+        };
+        age: number;
+        image: never[];
+        createdAt: {
+          $date: string;
+        };
+        updatedAt: {
+          $date: string;
+        };
+        description?: string | undefined;
+      }
+    | undefined;
 }
 
-const Match: React.FC<MatchProps> = ({ handleMatch }) => {
+const Match: React.FC<MatchProps> = ({ handleMatch, actual, currentPet }) => {
+  const [usuario, setUserId] = useState<User>();
+  const token = JSON.parse(localStorage.getItem("token") || "{}");
+  getUserById(token.user.id, token.token).then((result) => {
+    setUserId(result);
+  });
+
   const { t } = useTranslation("match");
 
   return (
@@ -26,18 +82,33 @@ const Match: React.FC<MatchProps> = ({ handleMatch }) => {
         <h1 className="uppercase font-bold">Pet Match</h1>
         <div className="px-10 mb-8 flex place-content-around">
           <div className="flex flex-col gap-4">
-            <Avatar size="large" src="perrito1.jpg" />
-            <h1 className="font-bold bg-slate-300 rounded-md">SHABI</h1>
+            <Avatar
+              size="large"
+              src={`https://api.multiavatar.com/${actual?.name}.png`}
+            />
+            <h1 className="font-bold bg-slate-300 rounded-md">
+              {actual ? actual.name : "Mi mascota"}
+            </h1>
           </div>
           <AiFillHeart size={150} color="red" className="m-auto heartbeat" />
           <div className="flex flex-col gap-4">
-            <Avatar size="large" src="perrito2.jpg" />
-            <h1 className="font-bold bg-slate-300 rounded-md">GINA</h1>
+            <Avatar
+              size="large"
+              src={`https://api.multiavatar.com/${currentPet?.name}.png`}
+            />
+            <h1 className="font-bold bg-slate-300 rounded-md">
+              {currentPet ? currentPet.name : "Mi mascota"}
+            </h1>
           </div>
         </div>
         <p className="font-bold my-8">{t("contactOwner")}</p>
         <button
-          onClick={() => window.open("https://web.whatsapp.com/", "_blank")}
+          onClick={() =>
+            window.open(
+              `https://api.whatsapp.com/send?phone=${usuario?.phone}`,
+              "_blank"
+            )
+          }
           className="border border-black px-8 py-1 flex gap-6 justify-around m-auto items-center rounded-lg hover:border-2 hover:border-neutral-300 hover:shadow-md"
         >
           {t("contactButton")}

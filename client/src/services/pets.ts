@@ -15,7 +15,7 @@ export async function createPet(
       breedId: data.breed,
       gender: data.gender,
       ownerId: id,
-      desciption: data.description,
+      description: data.description,
       age: data.age,
     },
     {
@@ -56,6 +56,15 @@ export const getPet = async (
   }
 };
 
+export const getPetsByUser = async (id: string, token: string) => {
+  const response = await axios.get(
+    `https://thinderpet-api-ild3-dev.fl0.io/api/v1/pet/petsfromowner/${id}`,
+    { headers: { Authorization: `${token}` } }
+  );
+  console.log(response.data);
+  return response.data;
+};
+
 export const getBreeds = async (
   breed: string,
   token: string
@@ -84,4 +93,25 @@ export const getSpecies = async (token: string): Promise<Specie[]> => {
 
     return [];
   }
+};
+export const savePictures = async (
+  token: string,
+  petId: string,
+  data: FormData
+): Promise<string[]> => {
+  console.log(data);
+
+  const respuesta = await axios.post(
+    `http://localhost:3001/api/v1/pet/upload-pet/${petId}`,
+    {
+      data,
+    },
+    {
+      headers: {
+        Authorization: `${token}`,
+        ContentType: "multipart/form-data",
+      },
+    }
+  );
+  return respuesta.data;
 };

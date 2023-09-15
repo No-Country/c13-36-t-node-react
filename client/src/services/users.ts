@@ -154,3 +154,15 @@ export async function resetPassword(
     return false; // error
   }
 }
+
+export const getUserById = async (id: string, token: string) => {
+  const respuesta = await axios.get(
+    `https://thinderpet-api-ild3-dev.fl0.io/api/v1/user/${id}`,
+    {
+      headers: {
+        Authorization: `${token}`,
+      },
+    }
+  );
+  return respuesta.data;
+};
