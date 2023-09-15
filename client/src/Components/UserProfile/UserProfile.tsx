@@ -9,6 +9,7 @@ import { getPetsByUser } from "../../services/pets";
 import { useEffect, useState } from "react";
 import { Pet } from "../../types/types";
 import Avatar from "../Avatar/Avatar";
+import { ToastContainer, toast } from "react-toastify";
 
 interface UserProfileProps {
   usuario: User;
@@ -66,7 +67,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ usuario }) => {
         console.log("Error en la eliminación:", error);
       }
     } else {
-      alert("No se encontró un token en el almacenamiento local.");
+      toast.error("No se encontró un token en el almacenamiento local.");
     }
   };
 
@@ -79,6 +80,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ usuario }) => {
   };
   return (
     <section className="p-4 font-sans flex justify-around mobile:flex-col">
+      <ToastContainer />
       <div className="flex flex-col bg-[#99a3b0c2] w-96 p-8 rounded-lg text-left border-2 mobile:w-full">
         <h1 className="mb-2 font-bold text-2xl">
           {t("profile")}
