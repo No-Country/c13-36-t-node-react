@@ -6,6 +6,8 @@ import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { resetPassword } from "../../services/users";
+import dogConfuse from "../../../public/dogConfuse.png";
+import happyDog from "../../../public/loginAlternativo-removebg-preview.png";
 
 const NewPassword = () => {
   const { t } = useTranslation("newpassword");
@@ -71,13 +73,13 @@ const NewPassword = () => {
         <div className="bg-[#E0838E] w-11/12 mobile:hidden mobile:w-0 mobile:bg-none relative">
           <img
             className="absolute right-0 w-full h-3/4"
-            src="loginAlternativo-removebg-preview.png"
+            src={happyDog}
             alt="happydog"
           />
         </div>
         <div className="flex justify-center items-center my-24 flex-col px-5 py-16 w-[500px] mobile:w-[95vw] mobile:px-2 border-2 border-[#000] relative mx-auto rounded-md">
           <div className="absolute rounded-3xl w-2/5 top-[-50px]">
-            <img src={"dogConfuse.png"}></img>
+            <img src={dogConfuse}></img>
           </div>
           <h1 className="text-2xl my-5 font-bold font-sans">
             {t("newPassword")}
