@@ -23,6 +23,8 @@ import userprofile_es from "./locales/userprofile/userprofile_es.json";
 import userprofile_en from "./locales/userprofile/userprofile_en.json";
 import notfound_es from "./locales/notfound/notfound_es.json";
 import notfound_en from "./locales/notfound/notfound_en.json";
+import newpassword_es from "./locales/newpassword/newpassword_es.json";
+import newpassword_en from "./locales/newpassword/newpassword_en.json";
 
 console.log(i18n.language);
 i18n
@@ -47,6 +49,7 @@ i18n
         match: match_es,
         userprofile: userprofile_es,
         notfound: notfound_es,
+        newpassword: newpassword_es,
       },
       en: {
         navbar: en,
@@ -60,6 +63,7 @@ i18n
         match: match_en,
         userprofile: userprofile_en,
         notfound: notfound_en,
+        newpassword: newpassword_en,
       },
     },
   });
