@@ -27,6 +27,8 @@ import newpassword_es from "./locales/newpassword/newpassword_es.json";
 import newpassword_en from "./locales/newpassword/newpassword_en.json";
 import contact_es from "./locales/contact/contact_es.json";
 import contact_en from "./locales/contact/contact_en.json";
+import modals_es from "./locales/modals/modals_es.json";
+import modals_en from "./locales/modals/modals_en.json";
 
 console.log(i18n.language);
 i18n
@@ -53,6 +55,7 @@ i18n
         notfound: notfound_es,
         newpassword: newpassword_es,
         contact: contact_es,
+        modals: modals_es,
       },
       en: {
         navbar: en,
@@ -68,6 +71,7 @@ i18n
         notfound: notfound_en,
         newpassword: newpassword_en,
         contact: contact_en,
+        modals: modals_en,
       },
     },
   });

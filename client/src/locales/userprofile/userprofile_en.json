@@ -9,5 +9,6 @@
   "mypets": "My pets",
   "deleteAccount": "Delete Account",
   "saveChanges": "Save Changes",
-  "continue": "To proceed, enter your pet's profile"
+  "continue": "To proceed, enter your pet's profile",
+  "alert_token_not_found": "No token found in local storage."
 }

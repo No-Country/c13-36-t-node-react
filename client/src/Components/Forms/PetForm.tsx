@@ -231,12 +231,12 @@ const PetForm = () => {
     );
 
     if (response.name) {
-      toast.success("Mascota creada!");
+      toast.success(t("pet_created_success"));
       setTimeout(() => {
         navigate("/userprofile");
       }, 5000);
     } else {
-      toast.error("Revise los campos");
+      toast.error(t("fields_review_error"));
       setCreating(false);
     }
   };
@@ -253,7 +253,7 @@ const PetForm = () => {
             <Avatar
               size={"medium"}
               src={
-                dataPet
+                dataPet.name
                   ? `https://api.multiavatar.com/${dataPet.name}.png`
                   : `https://api.multiavatar.com/avatar.png`
               }
