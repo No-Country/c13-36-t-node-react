@@ -15,7 +15,8 @@ export const registerUser = async (
   res: Response
 ) => {
   try {
-    const user = await UserModel.create({ ...body });
+    const hashedPassword = await bcrypt.hash(body.password, 12);
+    const user = await UserModel.create({ ...body, password: hashedPassword });
     return created(res, user);
   } catch (err) {
     console.log(err);
