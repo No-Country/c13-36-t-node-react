@@ -2,10 +2,11 @@
   "profile": "Pet Profile",
   "name": "Name",
   "age": "Age",
+  "specie": "Specie",
   "breed": "Breed",
   "breedPlaceholder": "Poodle",
   "gender": "Gender",
   "description": "Description",
-  "descriptionPlaceholder": "Share with the community what your pet is like.",
+  "descriptionPlaceholder": "Share what your pet is like.",
   "saveChanges": "Save Changes"
 }

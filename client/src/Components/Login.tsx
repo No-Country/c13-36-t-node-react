@@ -58,8 +58,8 @@ const Login: React.FC<LoginProps> = ({ setusuario }) => {
       <div className="grid grid-cols-2 min-h-screen mobile:flex mobile:h-full mobile:justify-center  ">
         <div className="bg-[#E0838E] w-11/12 mobile:hidden mobile:w-0 mobile:bg-none relative">
           <img
-            className="absolute bottom-0 right-0 w-full"
-            src="happy-dog.png"
+            className="absolute right-0 w-full h-3/4"
+            src="loginAlternativo-removebg-preview.png"
             alt="happydog"
           />
         </div>

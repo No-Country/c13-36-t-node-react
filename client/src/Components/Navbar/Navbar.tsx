@@ -28,6 +28,7 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
   const hadleClickMenu = () => {
     setViewMenu(!viewMenu);
   };
+
   return (
     <nav className="relative w-full flex bg-[#E0838E] place-content-between items-center py-2 px-4 top-0 z-10">
       <NavLink to={"/"} className="flex items-center">
@@ -39,12 +40,17 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
       {usuario !== undefined ? (
         <>
           <ul className="hidden lg:flex gap-10">
-            <li className="text-2xl text-white cursor-pointer ">
-              <a href="/#nosotros">{t("about")}</a>
+            <li className="text-2xl sm:text-2xl text-white cursor-pointer mb-1 hover:opacity-80">
+              <NavLink to="/#nosotros">{t("about")}</NavLink>
             </li>
-            <li className="text-2xl text-white cursor-pointer ">{t("help")}</li>
+            <li className="text-2xl sm:text-2xl text-white cursor-pointer mb-1 hover:opacity-80">
+              <NavLink to="/#politicas">{t("policies")}</NavLink>
+            </li>{" "}
+            <li className="text-2xl sm:text-2xl text-white cursor-pointer mb-1 hover:opacity-80">
+              <NavLink to="/#ayuda">{t("help")}</NavLink>
+            </li>
             <NavLink to={"/main"}>
-              <li className="text-2xl text-white cursor-pointer ">
+              <li className="text-2xl sm:text-2xl text-white cursor-pointer mb-1 hover:opacity-80">
                 {t("pets")}
               </li>
             </NavLink>
@@ -72,11 +78,14 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
                 : "hidden"
             } `}
           >
-            <li className="text-base sm:text-2xl text-white cursor-pointer mb-1">
-              <a href="#nosotros">{t("about")}</a>
-            </li>{" "}
-            <li className=" text-base sm:text-2xl text-white cursor-pointer mb-1">
-              {t("help")}
+            <li className="text-base sm:text-2xl text-white cursor-pointer mb-1 hover:opacity-80 ">
+              <NavLink to="/#nosotros">{t("about")}</NavLink>
+            </li>
+            <li className="text-base sm:text-2xl text-white cursor-pointer mb-1 hover:opacity-80">
+              <NavLink to="/#politicas">{t("policies")}</NavLink>
+            </li>
+            <li className=" text-base sm:text-2xl text-white cursor-pointer mb-1 hover:opacity-80">
+              <NavLink to="/#ayuda">{t("help")}</NavLink>
             </li>
             <select
               className="border-white border-2 bg-[#E0838E]  text-white text-base sm:text-2xl sm:border-2 sm:border-white px-2 mb-1"
@@ -88,7 +97,7 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
             </select>
             <div>
               <NavLink to={"/login"} className="">
-                <button className="bg-white font-bold px-2 py-1 sm:px-4 sm:py-2 rounded-lg hover:scale-105 hover:ease-in duration-300 text-base sm:text-xl">
+                <button className="bg-white font-bold px-2 py-1 sm:px-4 sm:py-2 rounded-lg hover:scale-105 hover:ease-in duration-300 text-base sm:text-xl hover:opacity-80">
                   {t("login")}
                 </button>
               </NavLink>

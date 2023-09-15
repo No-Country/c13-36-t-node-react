@@ -1,6 +1,9 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { User } from "../../services/users";
+import { FaSave, FaTrash } from "react-icons/fa";
+import Modals from "./Modals";
+import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { getPetsByUser } from "../../services/pets";
 import { useEffect, useState } from "react";
@@ -11,9 +14,28 @@ interface UserProfileProps {
   usuario: User;
 }
 
-const UserProfile: React.FC<UserProfileProps> = ({ usuario }) => {
+interface UserData {
+  message: string;
+  token: string;
+  user: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    localization: string;
+    phone: number;
+    createdAt: string;
+    updatedAt: string;
+    id: string;
+  };
+}
+
+const UserProfile: React.FC<UserProfileProps> = ({ usuario}) => {
   const [mascotas, setMascotas] = useState<Pet[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const data = localStorage.getItem("token")
   const { t } = useTranslation("userprofile");
+  const navigate = useNavigate();
   const token = JSON.parse(localStorage.getItem("token") || "");
 
   useEffect(() => {
@@ -22,6 +44,40 @@ const UserProfile: React.FC<UserProfileProps> = ({ usuario }) => {
     );
   }, []);
 
+  const deleteUser = async () => {
+    const parsedData: UserData = data ? JSON.parse(data) : null;
+    if (parsedData) {
+      try {
+        const response = await axios.delete(
+          `https://thinderpet-api-ild3-dev.fl0.io/api/v1/user/delete/${parsedData.user.id}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `${parsedData.token}`,
+            },
+          }
+        );
+  
+        navigate("/");
+        localStorage.removeItem("token");
+        window.location.reload();
+        console.log("La cuenta fue eliminada ", response);
+      } catch (error) {
+        console.log("Error en la eliminación:", error);
+      }
+    } else {
+      alert("No se encontró un token en el almacenamiento local.");
+    }
+  };
+  
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   return (
     <section className="p-4 font-sans border-2 flex justify-around mobile:flex-col">
       <div className="flex flex-col bg-[#99a3b0c2] w-96 p-8 rounded-lg text-left border-2 mobile:w-full">
@@ -76,14 +132,13 @@ const UserProfile: React.FC<UserProfileProps> = ({ usuario }) => {
             </button>
           </NavLink>
         </div>
-        <div className="flex flex-row justify-between mt-48 mobile:mt-16">
-          <NavLink
-            to={"/main"}
-            className="border-2 border-[#209FD6] text-center p-2 rounded-xl text-black "
-          >
-            {t("deleteAccount")}
-          </NavLink>
-          <button className=" bg-[#77D3EC] rounded-xl p-2 text-black">
+        <div className="flex flex-row justify-between mt-48  mobile:mt-16">
+          <button className="flex items-center gap-x-2 border-2 border-[#209FD6] text-center p-2 rounded-xl text-black hover:scale-105 transition-all" onClick={openModal}>
+            <FaTrash/>{t("deleteAccount")}
+          </button>
+          <Modals isOpen={isModalOpen} closeModal={closeModal} handleDelete={deleteUser}/>
+          <button className="flex items-center gap-x-2 bg-[#77D3EC] rounded-xl p-2 text-black transition-all hover:scale-105">
+            <FaSave/>
             {t("saveChanges")}
           </button>
         </div>
