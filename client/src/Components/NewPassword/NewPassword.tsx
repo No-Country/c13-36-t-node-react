@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { resetPassword } from "../../services/users";
 
 const NewPassword = () => {
-  const { t } = useTranslation("reset");
+  const { t } = useTranslation("newpassword");
   const { userId, token } = useParams();
   const navigate = useNavigate();
   const [newPassword, setNewPassword] = useState("");
@@ -57,10 +57,6 @@ const NewPassword = () => {
       }
     } else {
       console.error("Alguno de los valores requeridos es undefined.");
-      console.log("userId:", userId);
-      console.log("token:", token);
-      console.log("newPassword:", newPassword);
-      console.log("confirmPassword:", confirmPassword);
     }
   };
 
@@ -74,8 +70,8 @@ const NewPassword = () => {
       <div className="grid grid-cols-2 min-h-screen mobile:flex mobile:h-full mobile:justify-center  ">
         <div className="bg-[#E0838E] w-11/12 mobile:hidden mobile:w-0 mobile:bg-none relative">
           <img
-            className="absolute bottom-0 right-0 w-full"
-            src="happy-dog.png"
+            className="absolute right-0 w-full h-3/4"
+            src="loginAlternativo-removebg-preview.png"
             alt="happydog"
           />
         </div>
