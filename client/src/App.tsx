@@ -18,6 +18,7 @@ import { Usuario } from "./types/types";
 import UserProfile from "./Components/UserProfile/UserProfile";
 import Footer from "./Components/Footer/Footer";
 import NotFound from "./Components/NotFound/NotFound";
+import NewPassword from "./Components/NewPassword/NewPassword";
 import masoothinas from "./types/deploy.pets.json";
 
 register();
@@ -75,11 +76,21 @@ function App() {
             }
           />
           <Route
-            path="/reset-password"
+            path="/forgot-password"
             element={
               <>
                 <Navbar setusuario={setUsuario} usuario={usuario} />
                 <Reset />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/reset-password/:userId/:token"
+            element={
+              <>
+                <Navbar setusuario={setUsuario} usuario={usuario} />
+                <NewPassword />
                 <Footer />
               </>
             }
