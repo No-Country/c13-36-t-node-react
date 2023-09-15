@@ -48,6 +48,7 @@ export type PetResponse = {
   age: number;
   image: Array<string>;
   id: string;
+  description: string;
 };
 
 export type Pet = {
