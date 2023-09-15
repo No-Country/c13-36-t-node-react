@@ -22,7 +22,7 @@ interface MatchProps {
           $oid: string;
         };
         age: number;
-        image: never[];
+        image: string[];
         createdAt: {
           $date: string;
         };
@@ -46,7 +46,7 @@ interface MatchProps {
           $oid: string;
         };
         age: number;
-        image: never[];
+        image: string[];
         createdAt: {
           $date: string;
         };

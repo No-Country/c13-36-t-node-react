@@ -13,28 +13,30 @@ import Match from "../Match/Match";
 
 interface SliderProps {
   mascotas: string[];
-  misMascotas: {
-    _id: {
-      $oid: string;
-    };
-    name: string;
-    gender: string;
-    breedId: {
-      $oid: string;
-    };
-    ownerId: {
-      $oid: string;
-    };
-    age: number;
-    image: never[];
-    createdAt: {
-      $date: string;
-    };
-    updatedAt: {
-      $date: string;
-    };
-    description?: string | undefined;
-  }[];
+  misMascotas:
+    | {
+        _id: {
+          $oid: string;
+        };
+        name: string;
+        gender: string;
+        breedId: {
+          $oid: string;
+        };
+        ownerId: {
+          $oid: string;
+        };
+        age: number;
+        image: string[];
+        createdAt: {
+          $date: string;
+        };
+        updatedAt: {
+          $date: string;
+        };
+        description?: string | undefined;
+      }[]
+    | undefined;
 }
 
 const Slider: React.FC<SliderProps> = ({ mascotas, misMascotas }) => {
@@ -56,7 +58,7 @@ const Slider: React.FC<SliderProps> = ({ mascotas, misMascotas }) => {
       setActive(0);
     }
   };
-  const actualPet = misMascotas.find((mascota) => mascota._id.$oid === actual);
+  const actualPet = misMascotas?.find((mascota) => mascota._id.$oid === actual);
   const currentPet = mascotas[active];
   const currentMascot = mascothinas.find(
     (mascota) => mascota._id.$oid === currentPet
@@ -78,7 +80,7 @@ const Slider: React.FC<SliderProps> = ({ mascotas, misMascotas }) => {
     <div className="w-full h-full flex flex-col items-center">
       <button onClick={handleClick}>Boton</button>
       <div className="flex gap-10 my-4">
-        {misMascotas.map((mascota) => (
+        {misMascotas?.map((mascota) => (
           <div
             className="hover:scale-105 group transition-all duration-200"
             onClick={() => setActual(mascota._id.$oid)}
