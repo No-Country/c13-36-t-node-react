@@ -20,7 +20,9 @@ export const registerUser = async (
     return created(res, user);
   } catch (err) {
     console.log(err);
-    return error(res);
+    return res
+      .status(500)
+      .json({ error: "Hubo un error durante el registro." });
   }
 };
 
