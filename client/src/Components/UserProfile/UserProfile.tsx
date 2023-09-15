@@ -2,13 +2,13 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { User } from "../../services/users";
 import { FaSave, FaTrash } from "react-icons/fa";
-import Modals from "./Modals";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { getPetsByUser } from "../../services/pets";
 import { useEffect, useState } from "react";
 import { Pet } from "../../types/types";
 import Avatar from "../Avatar/Avatar";
+import Modals from "./Modals";
 
 interface UserProfileProps {
   usuario: User;
@@ -66,7 +66,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ usuario }) => {
         console.log("Error en la eliminación:", error);
       }
     } else {
-      alert("No se encontró un token en el almacenamiento local.");
+      alert(t("alert_token_not_found"));
     }
   };
 

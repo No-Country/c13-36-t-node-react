@@ -1,0 +1,5 @@
+{
+  "modal_confirm_delete_account": "¿Estás seguro de eliminar tu cuenta?",
+  "modal_delete_account_warning": "Si decides proceder, ten en cuenta que eliminar tu cuenta eliminará permanentemente todos tus datos y registros asociados. Esto incluye tu perfil, tus mascotas y todas tus conexiones en la plataforma.",
+  "modal_delete_account_button": "Eliminar Cuenta"
+}

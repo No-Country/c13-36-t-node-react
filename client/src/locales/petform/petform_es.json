@@ -8,5 +8,7 @@
   "gender": "Género",
   "description": "Descripción",
   "descriptionPlaceholder": "Comparte cómo es tu mascota.",
-  "saveChanges": "Guardar Cambios"
+  "saveChanges": "Guardar Cambios",
+  "pet_created_success": "¡Mascota creada!",
+  "fields_review_error": "Por favor, revise los campos"
 }

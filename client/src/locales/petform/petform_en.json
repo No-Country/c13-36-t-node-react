@@ -8,5 +8,7 @@
   "gender": "Gender",
   "description": "Description",
   "descriptionPlaceholder": "Share what your pet is like.",
-  "saveChanges": "Save Changes"
+  "saveChanges": "Save Changes",
+  "pet_created_success": "Pet created!",
+  "fields_review_error": "Please review the fields"
 }

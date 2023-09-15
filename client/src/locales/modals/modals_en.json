@@ -1,0 +1,5 @@
+{
+  "modal_confirm_delete_account": "Are you sure you want to delete your account?",
+  "modal_delete_account_warning": "If you proceed, please note that deleting your account will permanently erase all your associated data and records. This includes your profile, your pets, and all your connections on the platform.",
+  "modal_delete_account_button": "Delete Account"
+}

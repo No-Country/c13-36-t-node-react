@@ -7,7 +7,7 @@ const Contact = () => {
     <div className="w-full h-screen bg-[#EEE3AD] p-4 text-black">
       <div className="flex flex-col p-4 justify-center max-w-screen-lg mx-auto h-full">
         <div className="pb-1 pt-14 lg:pt-16 2xl:pt-2">
-          <p className="text-2xl md:text-4xl font-bold inline border-b-4 border-slate-400">
+          <p className="text-2xl md:text-4xl font-bold inline border-b-4 border-red-400">
             {t("title")}
           </p>
           <p className="py-6">{t("description")}</p>
