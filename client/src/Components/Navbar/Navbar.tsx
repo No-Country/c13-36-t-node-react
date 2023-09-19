@@ -88,7 +88,7 @@ const Navbar: React.FC<NavBarProps> = ({ setusuario, usuario }) => {
               <NavLink to="/#ayuda">{t("help")}</NavLink>
             </li>
             <select
-              className="border-white border-2 bg-[#E0838E]  text-white text-base sm:text-2xl sm:border-2 sm:border-white px-2 mb-1"
+              className="border-white border-2 bg-[#E0838E]  text-white text-base sm:text-2xl sm:border-2 focus:outline-none focus:border-white px-2 mb-1"
               value={i18n.language}
               onChange={handleLanguageChange}
             >
