@@ -46,7 +46,7 @@ export type PetResponse = {
     id: string;
   };
   age: number;
-  image: Array<string>;
+  image: Array<{ secure_url: string; public_id: string }>;
   id: string;
   description: string;
 };

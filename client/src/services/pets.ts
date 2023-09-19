@@ -55,6 +55,21 @@ export const getPet = async (
     return "hola mundo";
   }
 };
+export const getPets = async (
+  id: string,
+  token: string
+): Promise<
+  {
+    distanceToPet: string | null;
+    pet: PetResponse;
+  }[]
+> => {
+  const response = await axios.get(
+    `https://thinderpet-api-ild3-dev.fl0.io/api/v1/pet/thinder/${id}`,
+    { headers: { Authorization: `${token}` } }
+  );
+  return response.data.result;
+};
 
 export const getPetsByUser = async (id: string, token: string) => {
   const response = await axios.get(
@@ -95,6 +110,7 @@ export const getSpecies = async (token: string): Promise<Specie[]> => {
   }
 };
 export const savePictures = async (
+  id: string,
   token: string,
   file: File
 ): Promise<string[]> => {
@@ -114,7 +130,7 @@ export const savePictures = async (
     }
   ); */
   const respuesta = await fetch(
-    `https://thinderpet-api-ild3-dev.fl0.io/api/v1/pet/upload-pet/650224e08494e46a9f7e65c0`,
+    `https://thinderpet-api-ild3-dev.fl0.io/api/v1/pet/upload-pet/${id}`,
     { method: "POST", body: data, headers: { Authorization: `${token}` } }
   ).then((resp) => resp.json());
   return respuesta.data;

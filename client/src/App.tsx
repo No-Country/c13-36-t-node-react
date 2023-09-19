@@ -36,7 +36,6 @@ function App() {
       const usuario = JSON.parse(loged);
       setUsuario(usuario);
     }
-    console.log(masoothinas);
   }, [loged]);
 
   return (

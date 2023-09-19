@@ -215,7 +215,11 @@ const PetForm = () => {
   const handlePetImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       setNewImage(e.target.files[0]);
-      savePictures(token, e.target.files[0]);
+      if (id) {
+        savePictures(id, token, e.target.files[0])
+          .then(() => toast.success("Imagen subida con exito"))
+          .catch(() => toast.error("Error al subir la imagen"));
+      }
     }
   };
 
