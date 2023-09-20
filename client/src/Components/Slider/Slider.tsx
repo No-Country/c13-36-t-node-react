@@ -133,7 +133,6 @@ const Slider = () => {
             </SwiperSlide>
           ))}
       </Swiper>
-      <button onClick={handleNext}>siguiente</button>
       <BtnSilder
         next={handleNext}
         likes={likes}
