@@ -19,17 +19,14 @@ import UserProfile from "./Components/UserProfile/UserProfile";
 import Footer from "./Components/Footer/Footer";
 import NotFound from "./Components/NotFound/NotFound";
 import NewPassword from "./Components/NewPassword/NewPassword";
-import masoothinas from "./types/deploy.pets.json";
+
 import Contact from "./Components/Forms/ContactForm";
 
 register();
 
 function App() {
   const [usuario, setUsuario] = useState<Usuario | undefined>();
-  const mascotas = masoothinas.map((mascota) => mascota._id.$oid);
-  const misMascotas = masoothinas.filter(
-    (mascota) => mascota.ownerId.$oid === usuario?.user.id
-  );
+
   const loged = localStorage.getItem("token");
   useEffect(() => {
     if (loged) {
@@ -71,7 +68,7 @@ function App() {
             element={
               <>
                 <Navbar setusuario={setUsuario} usuario={usuario} />
-                <Slider mascotas={mascotas} misMascotas={misMascotas} />
+                <Slider />
               </>
             }
           />

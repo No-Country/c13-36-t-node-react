@@ -76,7 +76,6 @@ export const getPetsByUser = async (id: string, token: string) => {
     `https://thinderpet-api-ild3-dev.fl0.io/api/v1/pet/petsfromowner/${id}`,
     { headers: { Authorization: `${token}` } }
   );
-  console.log(response.data);
   return response.data;
 };
 

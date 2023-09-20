@@ -7,7 +7,7 @@ interface BtnSilderProps {
   setLikes: React.Dispatch<
     React.SetStateAction<{ [key: string]: string | null }>
   >;
-  currentPet: string;
+  currentPet?: string;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -24,25 +24,29 @@ export default function BtnSilder({
   // };
 
   const handleLike = () => {
-    console.log("Like button clicked");
-    if (!likes[currentPet] || likes[currentPet] === "") {
-      setLikes((prevLikes) => ({
-        ...prevLikes,
-        [currentPet]: "like",
-      }));
-    }
-    if (currentPet === "650334418494e46a9f7e6dfc") {
-      setVisible(true);
+    if (currentPet) {
+      console.log("Like button clicked");
+      if (!likes[currentPet] || likes[currentPet] === "") {
+        setLikes((prevLikes) => ({
+          ...prevLikes,
+          [currentPet]: "like",
+        }));
+      }
+      if (currentPet === "650334418494e46a9f7e6dfc") {
+        setVisible(true);
+      }
     }
   };
 
   const handleNope = () => {
-    console.log("Nope button clicked");
-    if (!likes[currentPet] || likes[currentPet] === "") {
-      setLikes((prevLikes) => ({
-        ...prevLikes,
-        [currentPet]: "nope",
-      }));
+    if (currentPet) {
+      console.log("Nope button clicked");
+      if (!likes[currentPet] || likes[currentPet] === "") {
+        setLikes((prevLikes) => ({
+          ...prevLikes,
+          [currentPet]: "nope",
+        }));
+      }
     }
   };
 

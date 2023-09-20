@@ -7,44 +7,14 @@ import "swiper/css/pagination";
 import BtnSilder from "../BtnSlider/BtnSilder";
 import { useEffect, useState } from "react";
 import Avatar from "../Avatar/Avatar";
-import mascothinas from "../../types/deploy.pets.json";
 import Match from "../Match/Match";
-import { getPets } from "../../services/pets";
+import { getPets, getPetsByUser } from "../../services/pets";
 import { PetResponse } from "../../types/types";
 
-interface SliderProps {
-  mascotas: string[];
-  misMascotas:
-    | {
-        _id: {
-          $oid: string;
-        };
-        name: string;
-        gender: string;
-        breedId: {
-          $oid: string;
-        };
-        ownerId: {
-          $oid: string;
-        };
-        age: number;
-        image: string[];
-        createdAt: {
-          $date: string;
-        };
-        updatedAt: {
-          $date: string;
-        };
-        description?: string | undefined;
-      }[]
-    | undefined;
-}
-
-const Slider: React.FC<SliderProps> = ({ mascotas, misMascotas }) => {
+const Slider = () => {
   // TO-DO: debe recibir el listado de imagenes por props.
+  const [misMascotas, setMisMascotas] = useState<PetResponse[]>();
   const [actual, setActual] = useState("650224e08494e46a9f7e65c0");
-  const [imagenes, setImagenes] =
-    useState<{ public_id: string; secure_url: string }[][]>();
   const [mascotasFromBack, setMascotasFromBack] = useState<
     {
       distanceToPet: string | null;
@@ -67,12 +37,15 @@ const Slider: React.FC<SliderProps> = ({ mascotas, misMascotas }) => {
       setActive(0);
     }
   };
-  const actualPet = misMascotas?.find((mascota) => mascota._id.$oid === actual);
-  const currentPet = mascotas[active];
-  const currentMascot = mascothinas.find(
-    (mascota) => mascota._id.$oid === currentPet
+  const actualPet = misMascotas?.find((mascota) => mascota.id === actual);
+  const currentPet = mascotasFromBack?.[active];
+  const currentMascot = mascotasFromBack?.find(
+    (mascota) => mascota.pet.id === currentPet?.pet.id
   );
-  const currentLikeStatus = likes[currentPet] || ""; // Obtenemos el estado de "like" o "nope"
+  let currentLikeStatus: string;
+  if (currentPet) {
+    currentLikeStatus = likes[currentPet?.pet.id] || ""; // Obtenemos el estado de "like" o "nope"
+  }
 
   //const imagenes = petImg.filter((pet) => pet.petId === currentPet);
 
@@ -80,27 +53,29 @@ const Slider: React.FC<SliderProps> = ({ mascotas, misMascotas }) => {
     setVisible(false);
   };
 
+  const token = JSON.parse(localStorage.getItem("token") || "");
   useEffect(() => {
     if (actualPet) {
       getPets(
-        actualPet?._id.$oid,
+        actualPet?.id,
         JSON.parse(localStorage.getItem("token") || "").token
       ).then((pet) => {
         if (typeof pet !== "string") {
           setMascotasFromBack(pet);
-          setImagenes(pet.map((mascota) => mascota.pet.image));
         }
       });
     }
-    console.log(imagenes);
-  }, [actualPet]);
+    getPetsByUser(token.user.id, token.token).then((respuesta) =>
+      setMisMascotas(respuesta)
+    );
+  }, [active]);
   return (
     <div className="w-full h-full flex flex-col items-center">
       <div className="flex gap-10 my-4">
         {misMascotas?.map((mascota) => (
           <div
             className="hover:scale-105 group transition-all duration-200"
-            onClick={() => setActual(mascota._id.$oid)}
+            onClick={() => setActual(mascota.id)}
           >
             <Avatar
               size="small"
@@ -108,7 +83,7 @@ const Slider: React.FC<SliderProps> = ({ mascotas, misMascotas }) => {
             />
             <p
               className={`group-hover:opacity-100 ${
-                actual === mascota._id.$oid ? "opacity-100" : "opacity-0"
+                actual === mascota.id ? "opacity-100" : "opacity-0"
               }`}
             >
               {mascota.name}
@@ -123,8 +98,8 @@ const Slider: React.FC<SliderProps> = ({ mascotas, misMascotas }) => {
         modules={[Navigation, Pagination]}
         className="w-[70vw] h-[60vh] sm:w-[60vw] sm:h-[60vh] md:w-[60vw] md:h-[60vh]  lg:w-[65vw] lg:h-[60vh] xl:w-[50vw] xl:h-[67vh] rounded-md  z-0"
       >
-        {imagenes &&
-          imagenes[active].map((imagen, index) => (
+        {mascotasFromBack &&
+          mascotasFromBack[active].pet.image.map((imagen, index) => (
             <SwiperSlide>
               <>
                 {currentLikeStatus === "like" && (
@@ -146,29 +121,31 @@ const Slider: React.FC<SliderProps> = ({ mascotas, misMascotas }) => {
                 />
                 <div className="bg-[#99A3B0] text-center flex flex-col items-center rounded-b-md h-full">
                   <p className="py-2">
-                    {currentMascot?.name || "Mascota sin nombre"}
+                    {currentMascot?.pet.name || "Mascota sin nombre"}
                     {/*SE MOSTRARA EL NOMBRE DE LA MASCOTA Y SU BIO*/}
                   </p>
                   <p className="font-bold w-[80%] text-center py-2  text-xs sm:text-sm lg:text-lg xl:text-xl">
-                    {currentMascot?.description || "Mascota sin descripción"}
+                    {currentMascot?.pet.description ||
+                      "Mascota sin descripción"}
                   </p>
                 </div>
               </>
             </SwiperSlide>
           ))}
       </Swiper>
+      <button onClick={handleNext}>siguiente</button>
       <BtnSilder
         next={handleNext}
         likes={likes}
         setVisible={setVisible}
         setLikes={setLikes}
-        currentPet={mascotas[active]}
+        currentPet={mascotasFromBack && mascotasFromBack?.[active].pet.id}
       />
       {visible && (
         <Match
           handleMatch={handleMatch}
           actual={actualPet}
-          currentPet={currentMascot}
+          currentPet={currentMascot?.pet}
         />
       )}
     </div>

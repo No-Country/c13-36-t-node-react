@@ -5,57 +5,12 @@ import { FaWindowClose } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { User, getUserById } from "../../services/users";
 import { useState } from "react";
+import { PetResponse } from "../../types/types";
 
 interface MatchProps {
   handleMatch: () => void;
-  actual:
-    | {
-        _id: {
-          $oid: string;
-        };
-        name: string;
-        gender: string;
-        breedId: {
-          $oid: string;
-        };
-        ownerId: {
-          $oid: string;
-        };
-        age: number;
-        image: string[];
-        createdAt: {
-          $date: string;
-        };
-        updatedAt: {
-          $date: string;
-        };
-        description?: string | undefined;
-      }
-    | undefined;
-  currentPet:
-    | {
-        _id: {
-          $oid: string;
-        };
-        name: string;
-        gender: string;
-        breedId: {
-          $oid: string;
-        };
-        ownerId: {
-          $oid: string;
-        };
-        age: number;
-        image: string[];
-        createdAt: {
-          $date: string;
-        };
-        updatedAt: {
-          $date: string;
-        };
-        description?: string | undefined;
-      }
-    | undefined;
+  actual: PetResponse | undefined;
+  currentPet: PetResponse | undefined;
 }
 
 const Match: React.FC<MatchProps> = ({ handleMatch, actual, currentPet }) => {
