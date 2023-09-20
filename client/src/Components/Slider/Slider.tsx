@@ -68,7 +68,7 @@ const Slider = () => {
     getPetsByUser(token.user.id, token.token).then((respuesta) =>
       setMisMascotas(respuesta)
     );
-  }, [active]);
+  }, [active, actualPet, token]);
   return (
     <div className="w-full h-full flex flex-col items-center">
       <div className="flex gap-10 my-4">
